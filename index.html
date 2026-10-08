@@ -448,7 +448,7 @@ one of them takes money you can never get back.</p>
       <div>
         <div class="stats" style="grid-template-columns:1fr 1fr">
           <div class="stat"><span class="k">Since he left</span><span class="v" id="cDays">—</span><p class="d" id="cDaysD">days</p></div>
-          <div class="stat clay"><span class="k">Property clock</span><span class="v" id="cLeft">—</span><p class="d" id="cLeftD">days left of 3 years</p></div>
+          <div class="stat clay"><span class="k">Property settlement</span><span class="v" id="cLeft">—</span><p class="d" id="cLeftD">of the 3 years still left</p></div>
         </div>
         <div class="card" style="margin-top:16px;padding:20px 22px">
           <div class="small"><b>The 3-year property clock</b> <span class="muted" id="cDeadline"></span></div>
@@ -1145,15 +1145,16 @@ function clockData(){
 }
 function renderClocks(){
   var c=clockData();
-  if(!c){$('cDays').textContent='—';$('cDaysD').textContent='days';$('cLeft').textContent='—';$('cLeftD').textContent='days left of 3 years';$('cGone').textContent='—';$('cBar').style.width='0';$('cDeadline').textContent='';$('cBarD').textContent='Enter the date he left.';$('cSay').innerHTML='';return;}
+  if(!c){$('cDays').textContent='—';$('cDaysD').textContent='days';$('cLeft').textContent='—';$('cLeftD').textContent='of the 3 years still left';$('cGone').textContent='—';$('cBar').style.width='0';$('cDeadline').textContent='';$('cBarD').textContent='Enter the date you left.';$('cSay').innerHTML='';return;}
   $('cDays').textContent=int.format(c.since);
   $('cDaysD').textContent='days, or about '+num.format(c.since/7)+' weeks';
-  if(c.leftDays>=0){$('cLeft').textContent=int.format(c.leftDays);$('cLeftD').textContent='days left of 3 years';}
-  else{$('cLeft').textContent='Passed';$('cLeftD').textContent='the 3-year mark was '+int.format(-c.leftDays)+' days ago';}
+  var pctLeft=c.leftDays<=0?0:Math.min(100,c.leftDays/c.total*100);
+  var pctTxt=(c.leftDays>0&&Math.round(pctLeft)===0)?'<1%':Math.round(pctLeft)+'%';
+  if(c.leftDays>=0){$('cLeft').textContent=pctTxt;$('cLeftD').textContent='of the 3 years still left · '+int.format(c.leftDays)+' days';}
+  else{$('cLeft').textContent='0%';$('cLeftD').textContent='left · the 3-year mark was '+int.format(-c.leftDays)+' days ago';}
   $('cDeadline').textContent='· ends '+fmtD(c.deadline);
-  var pct=Math.min(100,Math.max(0,c.since/c.total*100));
-  $('cBar').style.width=pct+'%';
-  $('cBarD').textContent=Math.round(pct)+'% of the time has already gone.';
+  $('cBar').style.width=Math.max(0,Math.min(100,pctLeft))+'%';
+  $('cBarD').textContent=c.leftDays>0?(pctTxt+' of the days are still left for a property settlement.'):'None of the 3 years is left for a property settlement.';
   var label=c.applied?'between him leaving and IRD receiving your application':'since he left, still counting until you apply';
   if(c.wk>0){$('cGone').textContent=money(c.gone);$('cGoneD').textContent=money(c.wk)+' a week × '+num.format(c.weeks)+' weeks '+label+'. This can\u2019t be claimed back.';}
   else{$('cGone').textContent=num.format(c.weeks)+' wks';$('cGoneD').textContent='weeks '+label+'. Add your weekly figure to see it in dollars.';}
