@@ -2,8 +2,8 @@
 <html lang="en-NZ">
 <head>
 <meta charset="utf-8">
+<script>try{if(!!(window.matchMedia&&matchMedia('(pointer:coarse), (max-width:820px)').matches))document.documentElement.classList.add('lite');}catch(e){}</script>
 <meta name="theme-color" content="#0E2A2F">
-<link rel="preconnect" href="https://www.metservice.com"><link rel="dns-prefetch" href="https://www.google.co.nz"><link rel="dns-prefetch" href="https://nzta.govt.nz">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){var skip=true;try{skip=localStorage.getItem('quietpath.introSeen')==='1'||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)||!!location.hash;}catch(e){}document.documentElement.classList.add(skip?'intro-skip':'intro-on');})();</script>
 <title>The Quiet Path</title>
@@ -691,12 +691,16 @@ section.sec.privzone{background:linear-gradient(180deg,#0B2328 0%,var(--night) 1
   .stage-head .when.now,.step .chev i{animation:none}
   #introFly,#introFly .intro-txt{will-change:auto}
 }
+
+/* Phones and tablets: simple Quick exit only */
+.lite .desk-only{display:none!important}
+html:not(.lite) .lite-only{display:none!important}
 </style>
 </head>
 <body>
 
 <div id="hideCover" aria-hidden="true"></div>
-<button id="quickExit" type="button" aria-label="Quick exit: leave this site now">Quick exit<small>or press Esc twice</small></button>
+<button id="quickExit" type="button" aria-label="Quick exit: leave this site now">Quick exit<small class="desk-only">or press Esc twice</small></button>
 
 <header class="top">
   <div class="wrap">
@@ -810,8 +814,8 @@ one of them takes money you can never get back.</p>
       <p class="last">If an account is shared, or you're not sure, set up a new one that only you control before you do anything else on this site, including the AI email&nbsp;search.</p>
     </div>
     <div class="pgrid">
-      <div class="pcard qx"><span class="ppill">Built in</span><h3>Quick exit</h3><p><b>The Quick exit button</b> in the corner swaps this page for an everyday one in an instant, and the back button won't bring it&nbsp;back. On&nbsp;a&nbsp;computer, pressing <b>Esc</b> twice does the same.</p>
-      <div class="hidepick" id="hidePick">
+      <div class="pcard qx"><span class="ppill">Built in</span><h3>Quick exit</h3><p class="desk-only"><b>The Quick exit button</b> in the corner swaps this page for an everyday one in an instant, and the back button won't bring it&nbsp;back. On&nbsp;a&nbsp;computer, pressing <b>Esc</b> twice does the same.</p><p class="lite-only"><b>The Quick exit button</b> in the corner leaves this page straight away and opens Google. The back button won't bring it&nbsp;back.</p>
+      <div class="hidepick desk-only" id="hidePick">
         <h4>When I hide, show:</h4>
         <label><input type="radio" name="decoy" value="garden"> A gardening site (Awapuni Nurseries), the&nbsp;fastest</label>
         <label><input type="radio" name="decoy" value="met"> MetService weather</label>
@@ -1574,7 +1578,7 @@ var DECOYS={
   road:{url:'https://nzta.govt.nz/roadcode/general-road-code/about-driving/giving-way/giving-way-at-roundabouts',title:'Giving way at roundabouts | NZ Transport Agency Waka Kotahi',cls:'nzta',bar:'NZ Transport Agency Waka Kotahi'},
   dinner:{url:'https://www.google.co.nz/search?q=easy+weeknight+dinner+ideas+nz',title:'easy weeknight dinner ideas nz - Google Search',cls:'goo',q:'easy weeknight dinner ideas nz'}
 };
-function decoy(){var d=DECOYS[S.decoy]||DECOYS.garden;if(LITE&&d.frame){var c={};for(var k in d)c[k]=d[k];c.frame=false;return c;}return d;}
+function decoy(){return DECOYS[S.decoy]||DECOYS.garden;}
 /* Paint the cover now, while she's reading, so the click only has to switch it on. */
 function prepCover(){
   var d=decoy(),c=$('hideCover');
@@ -1635,6 +1639,10 @@ function exitNow(){
   try{$('hideCover').classList.add('on');document.title=d.title;document.body.style.overflow='hidden';}catch(e){}
   window.location.replace(d.url);
 }
+if(LITE){
+  /* Phones and tablets: no decoy at all, just leave for Google. */
+  $('quickExit').addEventListener('click',function(){window.location.replace('https://www.google.co.nz/');});
+}else{
 prepCover();
 if(decoy().frame){var idle=window.requestIdleCallback||function(f){setTimeout(f,1)};setTimeout(function(){idle(warmDecoy,{timeout:4000});},3000);}else setTimeout(warmDecoy,800);
 (function(){
@@ -1647,6 +1655,7 @@ window.addEventListener('pageshow',function(e){if(e.persisted){$('hideCover').cl
 $('quickExit').addEventListener('click',exitNow);
 var lastEsc=0;
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){var n=Date.now();if(n-lastEsc<800)exitNow();lastEsc=n;}});
+}
 
 /* Paid state */
 function applyPaid(){
