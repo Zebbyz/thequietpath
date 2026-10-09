@@ -261,6 +261,13 @@ body:not(.paid) .gated > .gate-overlay{display:flex;position:absolute;inset:0;z-
 .step input{appearance:none;-webkit-appearance:none;flex:none;width:28px;height:28px;border:2px solid var(--glass);border-radius:50%;margin:1px 0 0;background:transparent;cursor:pointer;display:grid;place-items:center;transition:background .2s}
 .step input:checked{background:var(--glass)}
 .step input:checked::after{content:"";width:6px;height:12px;border:solid var(--night);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.step .chev{flex:none;display:flex;align-items:center;height:1.65rem;margin-left:-6px}
+.step .chev i{width:15px;height:15px;border:solid #5E6B70;border-width:4.5px 4.5px 0 0;transform:rotate(45deg);margin-right:5px;animation:chev 1.8s infinite}
+.step .chev i:nth-child(2){animation-delay:.3s}
+.step .chev i:nth-child(3){animation-delay:.6s}
+@keyframes chev{0%,100%{border-color:#5E6B70;filter:none}20%,45%{border-color:#FF8A1F;filter:drop-shadow(0 0 5px rgba(255,138,31,.85))}65%{border-color:#5E6B70;filter:none}}
+@media (prefers-reduced-motion:reduce){.step .chev i{animation:none;border-color:#FF8A1F}}
+@media (max-width:560px){.step .chev i{width:11px;height:11px;border-width:3.5px 3.5px 0 0;margin-right:3px}}
 .step .t{font-weight:700;display:block;font-size:1.05rem}
 .step .dd{display:block;color:var(--muted);font-size:.95rem;margin-top:4px;max-width:46em}
 .step.done .t{text-decoration:line-through;text-decoration-color:rgba(143,191,179,.6);opacity:.7}
@@ -1376,7 +1383,7 @@ function renderRoadmap(){
   PLAN.forEach(function(st,si){
     var b0=base;base+=st.items.length;
     function stepHtml(it,ii){var id='s'+si+'_'+ii,on=!!S.ticks[id];
-      return '<label class="step c-'+catOf(it[0])+(on?' done':'')+'"><input type="checkbox" data-tick="'+id+'"'+(on?' checked':'')+'><span class="no">'+(b0+ii+1)+'</span><span>'+(it[2]?'<span class="tagx'+(it[2]===2?' now':'')+'">'+(it[2]===2?'Do this today, no delay':'Most important')+'</span>':'')+'<span class="t">'+esc(it[0])+'</span><span class="dd">'+esc(it[1])+'</span>'+(it[3]?'<a class="steplink" href="'+it[3][0]+'" target="_blank" rel="noopener">'+esc(it[3][1])+' \u2197</a>':'')+(it[4]&&EXTRA[it[4]]?EXTRA[it[4]]:'')+'</span></label>';}
+      return '<label class="step c-'+catOf(it[0])+(on?' done':'')+'"><input type="checkbox" data-tick="'+id+'"'+(on?' checked':'')+'><span class="no">'+(b0+ii+1)+'</span>'+(it[2]&&!on?'<span class="chev" aria-hidden="true"><i></i><i></i><i></i></span>':'')+'<span>'+(it[2]?'<span class="tagx'+(it[2]===2?' now':'')+'">'+(it[2]===2?'Do this today, no delay':'Most important')+'</span>':'')+'<span class="t">'+esc(it[0])+'</span><span class="dd">'+esc(it[1])+'</span>'+(it[3]?'<a class="steplink" href="'+it[3][0]+'" target="_blank" rel="noopener">'+esc(it[3][1])+' \u2197</a>':'')+(it[4]&&EXTRA[it[4]]?EXTRA[it[4]]:'')+'</span></label>';}
     var cut=si===0?Math.max(0,st.items.length-2):st.items.length;
     var steps=st.items.slice(0,cut).map(stepHtml).join('');
     var block='<div class="stage"><div class="stage-head"><span class="when">'+esc(st.when)+'</span><h3>'+esc(st.title)+'</h3></div><p>'+esc(st.intro)+'</p>'+steps+'</div>';
