@@ -411,6 +411,7 @@ footer .linkbtn{color:var(--amber)}
 
 .warnbox{border-left:4px solid #E8553B;background:rgba(232,85,59,.1);padding:12px 14px;border-radius:0 8px 8px 0;font-size:.98rem;margin:0 0 16px;text-wrap:pretty}
 .warnbox b{color:#FF9A85}
+.himwrap{max-width:620px;margin:0 0 44px}
 .kidrow{display:flex;gap:10px;align-items:center;margin-bottom:8px}.kidrow .field{margin:0;flex:1}
 .kidx{flex:none;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);background:transparent;color:var(--fg);font-size:1.2rem;cursor:pointer}
 .doccheck label{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line);cursor:pointer;font-size:1rem}
@@ -608,6 +609,20 @@ one of them takes money you can never get back.</p>
     <h2>One step at a time. Tick as you go.</h2>
     <p class="lead">Your ticks are saved on this device, so you can close the page and pick up where you left off.</p>
     <div class="prog"><div class="bar"><i id="pBar"></i></div><b id="pTxt">0 of 0 done</b></div>
+    <div class="himwrap">
+          <div class="card himcard">
+        <h3>About him</h3>
+        <p class="small muted" style="margin:-4px 0 14px">Just his name and ID details.</p>
+        <div class="field"><label class="f" for="h_name">Full name</label><input type="text" id="h_name" data-him="name" autocomplete="off"></div>
+        <div class="field"><label class="f" for="h_aka">Other names he uses<span class="hint">Nicknames, previous surnames</span></label><input type="text" id="h_aka" data-him="aka" autocomplete="off"></div>
+        <div class="row">
+          <div class="field"><label class="f" for="h_dob">Date of birth</label><input type="date" id="h_dob" data-him="dob"></div>
+          <div class="field"><label class="f" for="h_ird">IRD number, if known</label><input type="text" id="h_ird" data-him="ird" inputmode="numeric" placeholder="e.g. 123-456-789" autocomplete="off"></div>
+        </div>
+        <p class="small muted" style="margin:0 0 14px">That's all you need here. The AI prompt in step 1 below searches your own email for the rest, such as his work, address, cars and accounts.</p>
+        <div class="warnbox"><b>Don't look him up on LinkedIn.</b> If you view his profile while signed in, LinkedIn can show him exactly who looked. If your lawyer's firm looks, he gets a clear warning that you've seen a lawyer. If you need his work history, use a CV you already have, or ask your lawyer how they want to handle it.</div>
+      </div>
+    </div>
     <div id="roadmap"></div>
   </div>
 </section>
@@ -622,20 +637,6 @@ one of them takes money you can never get back.</p>
       <div class="gate-overlay"><div class="gate-card"><h4>The quiet record is part of full access</h4><p>Keep his details, a simple log and your documents together, then print a tidy pack for your lawyer.</p><a href="#access" class="btn sm">Unlock for NZ$79</a></div></div>
       <div class="gate-body">
         <div class="grid2" style="align-items:start">
-          <div class="card">
-            <h3>About him</h3>
-            <p class="small muted" style="margin:-4px 0 14px">Just his name and ID details.</p>
-            <div class="field"><label class="f" for="h_name">Full name</label><input type="text" id="h_name" data-him="name" autocomplete="off"></div>
-            <div class="field"><label class="f" for="h_aka">Other names he uses<span class="hint">Nicknames, previous surnames</span></label><input type="text" id="h_aka" data-him="aka" autocomplete="off"></div>
-            <div class="row">
-              <div class="field"><label class="f" for="h_dob">Date of birth</label><input type="date" id="h_dob" data-him="dob"></div>
-              <div class="field"><label class="f" for="h_ird">IRD number, if known</label><input type="text" id="h_ird" data-him="ird" inputmode="numeric" placeholder="e.g. 123-456-789" autocomplete="off"></div>
-            </div>
-            <p class="small muted" style="margin:0 0 14px">That's all you need here. The AI prompt in step 1 searches your own email for the rest, such as his work, address, cars and accounts.</p>
-            <div class="warnbox"><b>Don't look him up on LinkedIn.</b> If you view his profile while signed in, LinkedIn can show him exactly who looked. If your lawyer's firm looks, he gets a clear warning that you've seen a lawyer. If you need his work history, use a CV you already have, or ask your lawyer how they want to handle it.</div>
-            <div class="note" style="margin-top:0">His care pattern and income range come through automatically from <a href="#care">Time together</a> and <a href="#range">A fair range</a>.</div>
-          </div>
-
           <div>
             <div class="card">
               <h3>About you</h3>
@@ -657,8 +658,9 @@ one of them takes money you can never get back.</p>
               <div class="field"><label class="f" for="y_home">Who is living in the house now?</label><select id="y_home" data-her="home"><option value="">Choose one</option><option value="him">He is, and I pay rent elsewhere</option><option value="me">I am</option><option value="both">We both still are</option><option value="neither">Neither of us, or it has sold</option></select></div>
               <div class="field" style="margin-bottom:0"><label class="f" for="y_mort">Who has paid the mortgage since he left?</label><select id="y_mort" data-her="mort"><option value="">Choose one</option><option value="me">Mostly me</option><option value="him">Mostly him</option><option value="shared">We have shared it</option><option value="na">There is no mortgage</option></select></div>
             </div>
-
-            <div class="card" style="margin-top:20px">
+          </div>
+          <div>
+            <div class="card">
               <h3>Your document folder</h3>
               <p class="small muted">Drop in your papers: the KiwiSaver withdrawal letter, sale and purchase agreement, settlement statement, mortgage, rates, insurance, IRD letters. In this prototype they're listed in your lawyer pack index. In the full version, we read them for you and fill in what we can.</p>
               <label class="docdrop" id="drop" for="docInput">
