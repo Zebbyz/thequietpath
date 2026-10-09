@@ -172,7 +172,8 @@ var DECOYS={
   road:{url:'https://nzta.govt.nz/roadcode/general-road-code/about-driving/giving-way/giving-way-at-roundabouts',title:'Giving way at roundabouts | NZ Transport Agency Waka Kotahi',cls:'nzta',bar:'NZ Transport Agency Waka Kotahi'},
   dinner:{url:'https://www.google.co.nz/search?q=easy+weeknight+dinner+ideas+nz',title:'easy weeknight dinner ideas nz - Google Search',cls:'goo',q:'easy weeknight dinner ideas nz'}
 };
-function decoy(){return DECOYS[S.decoy]||DECOYS.garden;}
+var LITE=!!(window.matchMedia&&matchMedia('(pointer:coarse), (max-width:820px)').matches);
+function decoy(){var d=DECOYS[S.decoy]||DECOYS.garden;if(LITE&&d.frame){var c={};for(var k in d)c[k]=d[k];c.frame=false;return c;}return d;}
 var d=decoy(),c=$('hideCover');
 c.className=d.cls;
 c.innerHTML=d.cls==='goo'?'<div class="hc-bar"><span class="hc-g">Google</span><span class="hc-q">'+esc(d.q)+'</span></div>':'<div class="hc-bar">'+esc(d.bar)+'</div>';
