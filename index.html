@@ -187,6 +187,7 @@ textarea{min-height:90px;resize:vertical}
 .stat.wide{grid-column:1 / -1}
 .stat .v.pair{display:flex;flex-wrap:wrap;gap:.35em 1.15rem;align-items:baseline}
 .stat .v.pair span{font:inherit;color:inherit;letter-spacing:inherit}
+.steplink{display:inline-block;margin-top:8px;color:var(--accent);font-weight:600;text-underline-offset:4px}
 .stat.clay{border-top-color:var(--amber)}
 .stat.clay .v{color:var(--accent)}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
@@ -738,6 +739,8 @@ one of them takes money you can never get back.</p>
       <div class="card contact"><h3>Work and Income (MSD)</h3><p>Sole Parent Support, Accommodation Supplement, childcare help.</p><a href="https://www.workandincome.govt.nz" target="_blank" rel="noopener">workandincome.govt.nz ↗</a></div>
       <div class="card contact"><h3>Community Law</h3><p>Free legal advice, including birth costs, and referral to a family lawyer for the house.</p><a href="https://communitylaw.org.nz" target="_blank" rel="noopener">communitylaw.org.nz ↗</a></div>
       <div class="card contact"><h3>Family Justice (Ministry of Justice)</h3><p>The free Parenting Through Separation course and family court information.</p><a href="https://www.justice.govt.nz/family" target="_blank" rel="noopener">justice.govt.nz/family ↗</a></div>
+      <div class="card contact"><h3>Land Information NZ (LINZ)</h3><p>Order a copy of the record of title for the house, and see how you own it. About $8, emailed as a PDF.</p><a href="https://lrs.linz.govt.nz/search/" target="_blank" rel="noopener">lrs.linz.govt.nz ↗</a></div>
+      <div class="card contact"><h3>Births, Deaths and Marriages (DIA)</h3><p>Order your child's birth certificate online, by post or by phone. A standard certificate is $35.</p><a href="https://www.govt.nz/browse/passports-citizenship-and-identity/proving-and-protecting-your-identity/order-a-birth-certificate/" target="_blank" rel="noopener">Order a birth certificate ↗</a></div>
     </div>
   </div>
 </section>
@@ -1264,14 +1267,14 @@ var PLAN=[
   ['Apply to Inland Revenue for child support','Online through myIR or by phone. A short, complete application today beats a perfect one next month.',1],
   ['Choose \u201cIRD collects\u201d for payments','IRD deducts from his wages or follows him up. You are not the debt collector.'],
   ['Gather what you know about him','Full name, date of birth, last address, employer, IRD number if you have it. Gaps are fine, IRD can trace him. Keep it in the quiet record.'],
-  ['Check his name is on the birth certificate','If it isn\u2019t, ask IRD what proof of parentage they need, so the application isn\u2019t stalled.'],
+  ['Check his name is on the birth certificate','If it isn\u2019t, ask IRD what proof of parentage they need, so the application isn\u2019t stalled.',0,['https://www.govt.nz/browse/passports-citizenship-and-identity/proving-and-protecting-your-identity/order-a-birth-certificate/','Order your child\u2019s birth certificate from DIA']],
   ['Ask IRD to keep your address and details private','Mention it on the call. Low conflict also means low contact.'],
   ['Answer every IRD follow-up fast','An incomplete application can lose the start date. Diary any deadline IRD gives you.']]},
  {when:'Now, in parallel',title:'Protect your half of the house',intro:'Your share of the house is likely your biggest asset. Relationship property is separate from child support, and it can be settled quietly by agreement.',items:[
   ['Book a family lawyer for relationship property','Any binding agreement needs independent legal advice for each of you anyway. Legal aid may be available. Community Law can point you to one.',1],
   ['Write down the key dates','When you started living together, when you bought, when he left. Under 3 years together, different contribution-based rules can apply, so your KiwiSaver deposit matters more.'],
   ['Diary the 3-year time limit','For de facto couples a court claim generally has to be filed within 3 years of separating. It\u2019s already on your calendar here.'],
-  ['Get the title and check how you own it','If you\u2019re joint tenants and either of you died, the whole house would pass to the survivor. Ask your lawyer about severing the joint tenancy.'],
+  ['Get the title and check how you own it','If you\u2019re joint tenants and either of you died, the whole house would pass to the survivor. Ask your lawyer about severing the joint tenancy.',0,['https://lrs.linz.govt.nz/search/','Order the title from LINZ Land Record Search']],
   ['Ask about a notice of claim on the title','Stops the house being sold or remortgaged behind your back. A protective step, not an attack.'],
   ['Collect the paper trail','KiwiSaver first-home withdrawal letter, sale and purchase agreement, settlement statement, mortgage statements, rates and insurance.'],
   ['Record every mortgage, rates and repair payment since he left','If you\u2019re carrying the house alone, those payments can be taken into account when it\u2019s split.'],
@@ -1300,7 +1303,7 @@ function renderRoadmap(){
   var h='',rest='';
   PLAN.forEach(function(st,si){
     function stepHtml(it,ii){var id='s'+si+'_'+ii,on=!!S.ticks[id];
-      return '<label class="step'+(on?' done':'')+'"><input type="checkbox" data-tick="'+id+'"'+(on?' checked':'')+'><span><span class="t">'+esc(it[0])+(it[2]?'<span class="tagx">Most important</span>':'')+'</span><span class="dd">'+esc(it[1])+'</span></span></label>';}
+      return '<label class="step'+(on?' done':'')+'"><input type="checkbox" data-tick="'+id+'"'+(on?' checked':'')+'><span><span class="t">'+esc(it[0])+(it[2]?'<span class="tagx">Most important</span>':'')+'</span><span class="dd">'+esc(it[1])+'</span>'+(it[3]?'<a class="steplink" href="'+it[3][0]+'" target="_blank" rel="noopener">'+esc(it[3][1])+' \u2197</a>':'')+'</span></label>';}
     var cut=si===0?Math.max(0,st.items.length-2):st.items.length;
     var steps=st.items.slice(0,cut).map(stepHtml).join('');
     var block='<div class="stage"><div class="stage-head"><span class="when">'+esc(st.when)+'</span><h3>'+esc(st.title)+'</h3></div><p>'+esc(st.intro)+'</p>'+steps+'</div>';
