@@ -6,14 +6,26 @@
 <link rel="preconnect" href="https://www.metservice.com"><link rel="dns-prefetch" href="https://www.google.co.nz"><link rel="dns-prefetch" href="https://nzta.govt.nz">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Quiet Path</title>
-<meta name="description" content="Tracking what you're owed">
+<meta name="description" content="Tracking what you're owed. A calm, step-by-step path to the child support and share of the house you're owed. Quietly, privately.">
+<meta property="og:site_name" content="The Quiet Path">
 <meta property="og:title" content="The Quiet Path">
-<meta property="og:description" content="Tracking what you're owed">
-<meta property="og:url" content="https://thequietpath.co.nz/">
+<meta property="og:description" content="A calm, step-by-step path to the child support and share of the house you're owed. Quietly, privately.">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
+<meta property="og:url" content="https://thequietpath.co.nz/">
+<meta property="og:locale" content="en_NZ">
+<meta property="og:image" content="https://thequietpath.co.nz/og-image.png">
+<meta property="og:image:secure_url" content="https://thequietpath.co.nz/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Quiet Path. Tracking what you're owed. A calm dusk sun setting over the sea.">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Quiet Path">
-<meta name="twitter:description" content="Tracking what you're owed">
+<meta name="twitter:description" content="A calm, step-by-step path to the child support and share of the house you're owed. Quietly, privately.">
+<meta name="twitter:image" content="https://thequietpath.co.nz/og-image.png">
+<meta name="twitter:image:alt" content="The Quiet Path. Tracking what you're owed.">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E2A2F'/%3E%3Ctext x='15' y='42' font-family='Arial,sans-serif' font-weight='800' font-size='40' fill='%23F4EADB'%3Ep%3C/text%3E%3Crect x='13' y='49' width='38' height='5' rx='2.5' fill='%23F0A23B'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -229,30 +241,32 @@ textarea{min-height:90px;resize:vertical}
 
 /* What waiting has cost you */
 #wcost{margin-top:44px;background:#0B2226;border:1px solid var(--line);border-top:4px solid var(--amber);border-radius:var(--r);padding:34px 34px 30px;box-shadow:0 24px 60px rgba(4,20,23,.35)}
-#wcost .wpill{display:inline-block;font:700 1rem/1 var(--display);padding:9px 15px 8px;border-radius:999px;background:var(--amber);color:var(--night);margin:0 0 16px}
+#wcost .wpill{display:inline-block;font:750 1.02rem/1 var(--display);padding:9px 15px 8px;border-radius:999px;background:var(--amber);color:var(--night);margin:0 0 16px}
 #wcost .wpill.ex{background:transparent;color:var(--cream);border:1.5px solid var(--glass)}
 #wcost h3{font:700 clamp(1.8rem,3.4vw,2.5rem)/1.1 var(--display);letter-spacing:-.025em;color:var(--cream);margin:0 0 10px;text-wrap:balance}
-#wcost .wsub{font:560 1.22rem/1.5 var(--sans);color:#E1EAE6;margin:0 0 26px;max-width:44em;text-wrap:pretty}
-#wcost .wsub b{font-weight:560;color:var(--cream)}#wcost .wsub a{color:var(--amber);font-weight:560;text-underline-offset:3px}
-#wcost .wyear{text-align:center;margin:8px auto 0;max-width:30em}#wcost .wyear h4{font:650 1.2rem/1.25 var(--display);color:var(--cream);margin:0}#wcost .wyear .wbig{display:block;font:700 clamp(2.4rem,4.6vw,3.3rem)/1 var(--display);letter-spacing:-.035em;color:#F08A6E;margin:12px 0 10px;font-variant-numeric:tabular-nums}#wcost .wyear p{font:560 1.18rem/1.45 var(--sans);color:#E1EAE6;margin:0;text-wrap:pretty}
+#wcost .wsub{font:650 1.2rem/1.45 var(--display);letter-spacing:-.005em;color:#F1F5F3;margin:0 0 26px;max-width:44em;text-wrap:pretty}
+#wcost .wsub b{font-weight:750;color:var(--cream)}#wcost .wsub a{color:var(--amber);font-weight:700;text-underline-offset:3px}
+#wcost .wyear{text-align:center;margin:8px auto 0;max-width:30em}#wcost .wyear h4{font:700 1.2rem/1.25 var(--display);color:var(--cream);margin:0}#wcost .wyear .wbig{display:block;font:800 clamp(2.4rem,4.6vw,3.3rem)/1 var(--display);letter-spacing:-.035em;color:#F08A6E;margin:12px 0 10px;font-variant-numeric:tabular-nums}#wcost .wyear p{font:650 1.14rem/1.4 var(--display);letter-spacing:-.005em;color:#F1F5F3;margin:0;text-wrap:pretty}
 #wcost .wgrid{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 #wcost .wt{border-top:2px solid var(--line);padding-top:18px}
-#wcost .wt h4{font:650 1.2rem/1.25 var(--display);color:var(--cream);margin:0;text-wrap:pretty}
-#wcost .wt .wbig{display:block;font:700 clamp(2.4rem,4.6vw,3.3rem)/1 var(--display);letter-spacing:-.035em;color:var(--amber);margin:12px 0 10px;font-variant-numeric:tabular-nums}
+#wcost .wt h4{font:700 1.2rem/1.25 var(--display);color:var(--cream);margin:0;text-wrap:pretty}
+#wcost .wt .wbig{display:block;font:800 clamp(2.4rem,4.6vw,3.3rem)/1 var(--display);letter-spacing:-.035em;color:var(--amber);margin:12px 0 10px;font-variant-numeric:tabular-nums}
 #wcost .wt.lost .wbig{color:#F08A6E}
-#wcost .wt p{font:560 1.18rem/1.45 var(--sans);color:#E1EAE6;margin:0;text-wrap:pretty}
-#wcost .wt p b{font-weight:560;color:var(--cream)}
+#wcost .wt p{font:650 1.12rem/1.42 var(--display);letter-spacing:-.005em;color:#F1F5F3;margin:0;text-wrap:pretty}
+#wcost .wt p b{font-weight:750;color:var(--cream)}
 #wcost .wfee{margin-top:30px;background:var(--cream);color:var(--night);border-radius:16px;padding:28px 30px}
-#wcost .wfee p.wc{color:var(--night);font:700 clamp(1.9rem,4vw,2.9rem)/1.1 var(--display);letter-spacing:-.03em;margin:0 0 10px;text-wrap:balance}
+#wcost .wfee p.wc{color:var(--night);font:800 clamp(1.9rem,4vw,2.9rem)/1.1 var(--display);letter-spacing:-.03em;margin:0 0 10px;text-wrap:balance}
 #wcost .wfee .wc em{font-style:normal;color:var(--amber-deep)}
-#wcost .wfee p{font:560 1.2rem/1.45 var(--sans);color:#14302E;margin:0;text-wrap:pretty}
-#wcost .wfee p b{font-weight:560;color:var(--night)}
+#wcost .wfee p{font:650 1.16rem/1.42 var(--display);letter-spacing:-.005em;color:#0E2A2F;margin:0;text-wrap:pretty}
+#wcost .wfee p b{font-weight:800;color:var(--night)}
 #wcost .winputs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 22px;margin:0 0 30px;align-items:start}
-#wcost .winputs label{display:block;font:650 1.12rem/1.25 var(--display);color:var(--cream);margin:0 0 8px;letter-spacing:-.005em;text-wrap:balance}
-#wcost .winputs input{font-size:1.2rem;padding-top:14px;padding-bottom:14px;min-height:54px}
-#wcost .winputs .money span{font:560 1.2rem/1 var(--sans);color:var(--cream)}
+#wcost .winputs label{display:block;font:700 1.12rem/1.25 var(--display);color:var(--cream);margin:0 0 8px;letter-spacing:-.005em;text-wrap:balance}
+#wcost .winputs input{font:650 1.2rem/1.2 var(--display);color:var(--cream);padding-top:14px;padding-bottom:14px;min-height:54px}
+#wcost .winputs .money span{font:700 1.2rem/1 var(--display);color:var(--cream)}
 @media (max-width:760px){#wcost .winputs{grid-template-columns:1fr;gap:16px}}
-#wcost .wfine{font:560 1.15rem/1.5 var(--sans);color:#E1EAE6;margin:18px 0 0;text-wrap:pretty}
+#wcost .wfine{font:650 1.1rem/1.45 var(--display);letter-spacing:-.005em;color:#F1F5F3;margin:18px 0 0;text-wrap:pretty}
+#wcost,#wcost *{font-style:normal}
+#wcost input::placeholder{font-family:var(--display);font-weight:600;color:rgba(244,234,219,.55)}
 @media (max-width:860px){#wcost .wgrid{grid-template-columns:1fr;gap:14px}}
 @media (max-width:560px){#wcost{padding:26px 20px 22px;margin-top:34px}#wcost .wfee{padding:22px 20px}#wcost .wt .wbig,#wcost .wyear .wbig{font-size:2.5rem}#wcost .wgrid{margin-top:30px}}
 /* Numbers sit on a rule, not in boxes */
@@ -542,6 +556,26 @@ body.paid #roadmap .brief{display:none}
 #roadmap .ai-prompt{font-size:1.05rem;font-weight:560;color:#F2EEE6}
 #roadmap .steplink{font-size:1.05rem}
 @media (max-width:560px){#roadmap .step .t{font-size:1.22rem}#roadmap .step .dd,#roadmap .stage > p{font-size:1.02rem}#roadmap .step .no{font-size:1.5rem}}
+
+/* Forms: everything in Bricolage, bold and solid */
+label.f,span.f{font:700 1.1rem/1.3 var(--display);letter-spacing:-.005em;color:var(--fg);margin:0 0 8px}
+label.f.small{font-size:1.02rem}
+.hint{font:600 1rem/1.4 var(--display);letter-spacing:-.003em;color:var(--fg);opacity:.9;margin-top:4px;text-wrap:pretty}
+input[type=text],input[type=date],input[type=number],input[type=email],input[type=tel],input[type=password],select,textarea{font-family:var(--display);font-weight:600;font-size:1.08rem;letter-spacing:-.003em;color:var(--fg)}
+input::placeholder,textarea::placeholder{font-family:var(--display);font-weight:500;color:var(--fg);opacity:.6}
+input::-webkit-datetime-edit{font-family:var(--display);font-weight:600}
+.money span{font:700 1.08rem/1 var(--display);color:var(--fg)}
+.seg button{font:700 1.02rem/1 var(--display)}
+.toggle span{font:650 1.06rem/1.4 var(--display);letter-spacing:-.003em}
+.toggle span.small{font:600 1rem/1.4 var(--display)}
+.toggle b{font-weight:750}
+.doccheck label{font:650 1.05rem/1.35 var(--display);letter-spacing:-.003em}
+.hidepick label{font:650 1.22rem/1.3 var(--display);letter-spacing:-.005em}
+.docdrop{font-family:var(--display);font-weight:650}
+.field .small,.field .muted{font-family:var(--display);font-weight:600}
+.card:has(input,select,textarea) p.small,.card:has(input,select,textarea) p.muted,.card:has(input,select,textarea) > p{font:600 1.02rem/1.45 var(--display);letter-spacing:-.003em;color:var(--fg);opacity:.92;text-wrap:pretty}
+.card:has(input,select,textarea) .safebox,.card:has(input,select,textarea) .warnbox{font:600 1.05rem/1.45 var(--display);letter-spacing:-.003em}
+.card:has(input,select,textarea) .safebox b,.card:has(input,select,textarea) .warnbox b{font-family:var(--display);font-weight:750}
 </style>
 </head>
 <body>
@@ -747,7 +781,7 @@ one of them takes money you can never get back.</p>
         </div>
         <div class="safebox"><b>He will never know.</b> Searching your own email for his number or address happens only in your account. Nothing is sent to him or anyone&nbsp;else.</div>
         <p class="small muted" style="margin:0 0 14px">That's all you need here. The AI prompt in step 2 below searches your own email for the rest, such as his work, address, cars and accounts.</p>
-        <div class="warnbox"><b>Don't look him up on LinkedIn.</b> If you view his profile while signed in, LinkedIn can show him exactly who looked. If your lawyer's firm looks, he gets a clear warning that you've seen a lawyer. If you need his work history, use a CV you already have, or ask your lawyer how they want to handle it.</div>
+        <div class="warnbox"><b>Don't look him up on LinkedIn.</b> If you view his profile while signed in, LinkedIn can show him exactly who looked. If your lawyer's firm looks, he gets a clear warning that you've seen a lawyer. If&nbsp;you need his work history, use a CV you already have, or ask your lawyer how they want to handle it.</div>
       </div>
     </div>
     <div id="roadmap"></div>
@@ -2020,7 +2054,7 @@ function renderWait(){
   $('wSub').innerHTML=n===3?'Worked out from the dates and weekly figure you entered. Nothing leaves this&nbsp;device.':
     n?'Still using the example\u2019s '+esc(andList(ex))+'. Fill in the rest below. Nothing leaves this&nbsp;device.':
     '<b>Example:</b> $95 a week, a 2\u2011year\u2011old, separated two years ago. Fill in the three boxes below to see your own. Nothing leaves this&nbsp;device.';
-  $('wYear').textContent=money(W*52);$('wYearD').textContent=(hasWk?money(wkIn)+' a week':'The example $95 a week')+' \u00d7 52 weeks';
+  $('wYear').textContent=money(W*52);$('wYearD').textContent=(hasWk?money(wkIn)+' a week':'The example $95 a week')+'\u00a0\u00d7\u00a052\u00a0weeks';
   $('wHouse').textContent=houseTxt;$('wHouseD').innerHTML=houseD;
   $('wLost').textContent=money(lost);$('wLostD').innerHTML=lostD;
   $('wAhead').textContent=ahead>0?money(ahead):'\u2014';$('wAheadD').innerHTML=aheadD;
