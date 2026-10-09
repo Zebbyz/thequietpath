@@ -404,6 +404,24 @@ footer .linkbtn{color:var(--amber)}
 .truth p b{font-size:1.45rem}
 }
 @media (min-width:900px){.lead br{display:inline}}
+
+/* roadmap: larger, more solid text */
+#roadmap p,#roadmap .dd,#roadmap .t{text-wrap:pretty}
+#roadmap .legend{font-size:1.08rem;font-weight:600;color:#E6EEEA;gap:12px 26px}
+#roadmap .legend i{width:16px;height:16px}
+#roadmap .stage-head .when{font-size:.86rem;padding:8px 14px;border-width:2px}
+#roadmap .stage-head h3{font-size:clamp(1.8rem,3vw,2.4rem)}
+#roadmap .stage > p{font-size:1.22rem;font-weight:560;color:#D5E0DC}
+#roadmap .step .no{font-size:1.8rem;width:1.5em}
+#roadmap .step .t{font-size:1.42rem;font-weight:700;color:#F6F1E8}
+#roadmap .step .dd{font-size:1.18rem;font-weight:560;color:#D2DDD9;line-height:1.55}
+#roadmap .tagx{font-size:.8rem;padding:6px 12px}
+#roadmap .ai{font-size:1.14rem;font-weight:560;color:#E6EEEA}
+#roadmap .ai-h{font-size:1.45rem}
+#roadmap .ai-note{font-size:1rem;font-weight:600;opacity:1}
+#roadmap .ai-prompt{font-size:1.05rem;font-weight:560;color:#F2EEE6}
+#roadmap .steplink{font-size:1.05rem}
+@media (max-width:560px){#roadmap .step .t{font-size:1.15rem}#roadmap .step .dd,#roadmap .stage > p{font-size:1.02rem}#roadmap .step .no{font-size:1.5rem}}
 </style>
 </head>
 <body>
@@ -1340,7 +1358,7 @@ function aiFilled(){var Y=S.her||{},H=S.him||{};return !!((Y.name||'').trim()||(
 function refreshAI(){var p=$('aiPrompt');if(p)p.textContent=aiPrompt();var h=$('aiHint');if(h)h.textContent=aiFilled()?'This prompt already includes the names and dates you have entered, and it updates as you add more.':'The prompt gets sharper as you add names and dates further down the page. It rewrites itself to search for them.';}
 var EXTRA={AIDATES:'<div class="ai" onclick="event.preventDefault()"><p class="ai-h">Let AI find the dates for you</p><p>Copy this prompt and paste it into an AI assistant that can read <b>your own</b> email and calendar, such as ChatGPT, Gemini, Copilot or Claude with your email connected. Never use his accounts.</p><p class="ai-note" id="aiHint"></p><pre class="ai-prompt" id="aiPrompt">'+esc(aiPrompt())+'</pre><button type="button" class="btn sm" data-act="copyai">Copy the prompt</button></div>'};
 var PLAN=[
- {when:'This week',title:'Lock in the start date',intro:'Support only runs from the day IRD receives the application. Every day of waiting is money gone for good.',items:[
+ {when:'This week',title:'Lock in the start date',intro:'Support only runs from the day IRD receives the application. Every day of waiting is money gone\u00a0for\u00a0good.',items:[
   ['Write down the key dates','When you started living together, when you bought, when he left. Under 3 years together, different contribution-based rules can apply, so your KiwiSaver deposit matters more.',2,0,'AIDATES'],
   ['Diary the 3-year time limit','For de facto couples a court claim generally has to be filed within 3 years of separating. It\u2019s already on your calendar here.',2],
   ['Apply to Inland Revenue for child support','Online through myIR or by phone. A short, complete application today beats a perfect one next month.',1],
