@@ -261,13 +261,13 @@ body:not(.paid) .gated > .gate-overlay{display:flex;position:absolute;inset:0;z-
 .step input{appearance:none;-webkit-appearance:none;flex:none;width:28px;height:28px;border:2px solid var(--glass);border-radius:50%;margin:1px 0 0;background:transparent;cursor:pointer;display:grid;place-items:center;transition:background .2s}
 .step input:checked{background:var(--glass)}
 .step input:checked::after{content:"";width:6px;height:12px;border:solid var(--night);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
-.step .chev{flex:none;display:flex;align-items:center;height:1.65rem;margin-left:-6px}
-.step .chev i{width:15px;height:15px;border:solid #5E6B70;border-width:4.5px 4.5px 0 0;transform:rotate(45deg);margin-right:5px;animation:chev 1.8s infinite}
-.step .chev i:nth-child(2){animation-delay:.3s}
-.step .chev i:nth-child(3){animation-delay:.6s}
+.step .chev{flex:none;display:flex;align-items:center;height:2rem;margin-left:-4px;padding-right:6px}
+.step .chev i{width:20px;height:20px;border:solid #5E6B70;border-width:6px 6px 0 0;transform:rotate(45deg);margin-right:-3px;animation:chev .9s infinite}
+.step .chev i:nth-child(2){animation-delay:.15s}
+.step .chev i:nth-child(3){animation-delay:.3s}
 @keyframes chev{0%,100%{border-color:#5E6B70;filter:none}20%,45%{border-color:#FF8A1F;filter:drop-shadow(0 0 5px rgba(255,138,31,.85))}65%{border-color:#5E6B70;filter:none}}
 @media (prefers-reduced-motion:reduce){.step .chev i{animation:none;border-color:#FF8A1F}}
-@media (max-width:560px){.step .chev i{width:11px;height:11px;border-width:3.5px 3.5px 0 0;margin-right:3px}}
+@media (max-width:560px){.step .chev i{width:15px;height:15px;border-width:4.5px 4.5px 0 0;margin-right:-2px}}
 .step .t{font-weight:700;display:block;font-size:1.05rem}
 .step .dd{display:block;color:var(--muted);font-size:.95rem;margin-top:4px;max-width:46em}
 .step.done .t{text-decoration:line-through;text-decoration-color:rgba(143,191,179,.6);opacity:.7}
@@ -405,6 +405,16 @@ footer .linkbtn{color:var(--amber)}
 }
 @media (min-width:900px){.lead br{display:inline}}
 
+.kidrow{display:flex;gap:10px;align-items:center;margin-bottom:8px}.kidrow .field{margin:0;flex:1}
+.kidx{flex:none;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);background:transparent;color:var(--fg);font-size:1.2rem;cursor:pointer}
+.doccheck label{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line);cursor:pointer;font-size:1rem}
+.doccheck input{flex:none;width:20px;height:20px;margin-top:2px;accent-color:#3DDC84}
+.doccheck label.on span{color:#9FE8BE}
+.paper p,.paper li{text-wrap:pretty}
+.paper .letter p{margin:0 0 14px;line-height:1.6}
+.paper .letter ol{margin:0 0 16px;padding-left:22px}.paper .letter li{margin-bottom:8px;line-height:1.55}
+.paper .dc{columns:2;column-gap:30px;margin:0;padding-left:0;list-style:none}.paper .dc li{break-inside:avoid;padding:4px 0}
+@media (max-width:600px){.paper .dc{columns:1}}
 /* roadmap: larger, more solid text */
 #roadmap p,#roadmap .dd,#roadmap .t{text-wrap:pretty}
 #roadmap .legend{font-size:1.08rem;font-weight:600;color:#E6EEEA;gap:12px 26px}
@@ -626,15 +636,16 @@ one of them takes money you can never get back.</p>
           <div>
             <div class="card">
               <h3>About you</h3>
-              <div class="row">
-                <div class="field"><label class="f" for="y_name">Your name</label><input type="text" id="y_name" data-her="name" autocomplete="off"></div>
-                <div class="field"><label class="f" for="y_baby">Baby's first name</label><input type="text" id="y_baby" data-her="baby" autocomplete="off"></div>
-              </div>
+              <div class="field"><label class="f" for="y_name">Your name</label><input type="text" id="y_name" data-her="name" autocomplete="off"></div>
+              <div class="field"><label class="f">Your children<span class="hint">First name and date of birth for each child</span></label><div id="kidList"></div><button type="button" class="btn ghost sm" id="addKid">Add another child</button></div>
               <div class="row">
                 <div class="field"><label class="f" for="y_lived">Started living together</label><input type="date" id="y_lived" data-her="lived"></div>
                 <div class="field"><label class="f" for="y_bought">Bought the house</label><input type="date" id="y_bought" data-her="bought"></div>
               </div>
-              <div class="field" style="margin-bottom:0"><label class="f" for="y_lawyer">Your lawyer's name<span class="hint">Shown on the pack cover</span></label><input type="text" id="y_lawyer" data-her="lawyer" autocomplete="off"></div>
+              <div class="field"><label class="f" for="y_lawyer">Your lawyer's name<span class="hint">Shown on the pack cover</span></label><input type="text" id="y_lawyer" data-her="lawyer" autocomplete="off"></div>
+              <div class="field"><label class="f" for="y_paid">Since he left, has he paid anything towards the children?</label><select id="y_paid" data-her="paid"><option value="">Choose one</option><option value="none">Nothing at all</option><option value="some">Some, but not regularly</option><option value="regular">Yes, regularly</option></select></div>
+              <div class="field"><label class="f" for="y_home">Who is living in the house now?</label><select id="y_home" data-her="home"><option value="">Choose one</option><option value="him">He is, and I pay rent elsewhere</option><option value="me">I am</option><option value="both">We both still are</option><option value="neither">Neither of us, or it has sold</option></select></div>
+              <div class="field" style="margin-bottom:0"><label class="f" for="y_mort">Who has paid the mortgage since he left?</label><select id="y_mort" data-her="mort"><option value="">Choose one</option><option value="me">Mostly me</option><option value="him">Mostly him</option><option value="shared">We have shared it</option><option value="na">There is no mortgage</option></select></div>
             </div>
 
             <div class="card" style="margin-top:20px">
@@ -645,6 +656,12 @@ one of them takes money you can never get back.</p>
                 <input type="file" id="docInput" multiple accept=".pdf,image/*,.doc,.docx" hidden>
               </label>
               <ul class="doclist" id="docList"></ul>
+            </div>
+
+            <div class="card" style="margin-top:20px">
+              <h3>Document checklist</h3>
+              <p class="small muted">Tick each one you have. Your lawyer pack shows what you have and what is still to find.</p>
+              <div id="docCheck" class="doccheck"></div>
             </div>
           </div>
         </div>
@@ -1332,16 +1349,16 @@ var AIPROMPT="I've separated from my partner in New Zealand and need to build an
 
 function aiPrompt(){
   var Y=S.her||{},H=S.him||{},t=function(v){return (v||'').trim();};
-  var me=t(Y.name),him=t(H.name),aka=t(H.aka),kid=t(Y.baby),addr=t(H.addr);
+  var me=t(Y.name),him=t(H.name),aka=t(H.aka),kid=kidNames(),addr=t(H.addr);
   var lived=parseD(Y.lived),bought=parseD(Y.bought),left=parseD(S.left);
   var intro=[],look=[],dates=[];
   if(me)intro.push('My name is '+me+'.');
   if(him)intro.push('My former partner is '+him+(aka?', who also goes by '+aka:'')+'.');
   else if(aka)intro.push('My former partner also goes by '+aka+'.');
-  if(kid)intro.push('Our child is '+kid+'.');
+  if(kid)intro.push((kidList().length>1?'Our children are ':'Our child is ')+kid+'.');
   if(him){var fn=him.split(' ')[0];if(fn!==him)look.push(fn);look.push(him);}
   if(aka)look.push(aka);
-  if(kid)look.push(kid);
+  if(kid)kidList().forEach(function(x){if((x.name||'').trim())look.push(x.name.trim());});
   if(addr)look.push('his address, '+addr);
   if(lived)dates.push('We started living together around '+fmtD(lived)+'. Check emails and events from six months either side to confirm the real date.');
   if(bought)dates.push('We bought the house around '+fmtD(bought)+'. Look closely at the months before it for the offer, finance and KiwiSaver withdrawals.');
@@ -1354,7 +1371,7 @@ function aiPrompt(){
   if(extra){var cut=out.indexOf('Please search');out=out.slice(0,cut)+'\n\n'+extra+out.slice(cut);}
   return out;
 }
-function aiFilled(){var Y=S.her||{},H=S.him||{};return !!((Y.name||'').trim()||(H.name||'').trim()||(Y.baby||'').trim()||Y.lived||Y.bought||S.left);}
+function aiFilled(){var Y=S.her||{},H=S.him||{};return !!((Y.name||'').trim()||(H.name||'').trim()||kidNames()||Y.lived||Y.bought||S.left);}
 function refreshAI(){var p=$('aiPrompt');if(p)p.textContent=aiPrompt();var h=$('aiHint');if(h)h.textContent=aiFilled()?'This prompt already includes the names and dates you have entered, and it updates as you add more.':'The prompt gets sharper as you add names and dates further down the page. It rewrites itself to search for them.';}
 var EXTRA={AIDATES:'<div class="ai" onclick="event.preventDefault()"><p class="ai-h">Let AI find the dates for you</p><p>Copy this prompt and paste it into an AI assistant that can read <b>your own</b> email and calendar, such as ChatGPT, Gemini, Copilot or Claude with your email connected. Never use his accounts.</p><p class="ai-note" id="aiHint"></p><pre class="ai-prompt" id="aiPrompt">'+esc(aiPrompt())+'</pre><button type="button" class="btn sm" data-act="copyai">Copy the prompt</button></div>'};
 var PLAN=[
@@ -1393,7 +1410,7 @@ var PLAN=[
   ['Build your support crew','Whānau Āwhina Plunket, your midwife or GP, friends who can hold the baby while you make the calls.']]}
 ];
 var AVOID=['Accepting cash \u201cinstead of IRD\u201d with no record of it.','Signing anything he writes up without free legal advice first.','Discussing money at handovers or in front of the baby.','Waiting to \u201csee if he comes round\u201d. The start date only moves forward.','Withdrawing the IRD application to smooth things over. It can\u2019t be backdated later.','Agreeing to \u201cforget child support\u201d in exchange for a better house split. Keep the two separate.','Moving out of the house or signing over the title before getting advice.'];
-function scriptText(){var b=(S.her.baby||'').trim()||'[baby]';return 'Hi, just so you know, I\u2019ve applied to IRD for child support for '+b+'. It\u2019s the standard process and they\u2019ll be in touch with you directly about it. Happy to keep things simple between us for '+b+'\u2019s sake.';}
+function scriptText(){var b=kidNames()||'[baby]';return 'Hi, just so you know, I\u2019ve applied to IRD for child support for '+b+'. It\u2019s the standard process and they\u2019ll be in touch with you directly about it. Happy to keep things simple between us for '+b+'\u2019s sake.';}
 function renderRoadmap(){
   var h='',rest='';
   var base=0;
@@ -1422,6 +1439,14 @@ $('roadmap').addEventListener('change',function(e){var id=e.target.dataset.tick;
 /* Quiet record */
 document.querySelectorAll('[data-him]').forEach(function(el){el.value=S.him[el.dataset.him]||'';var f=function(){S.him[el.dataset.him]=el.value;save();renderPack();refreshAI();};el.addEventListener('input',f);el.addEventListener('change',f);});
 document.querySelectorAll('[data-her]').forEach(function(el){el.value=S.her[el.dataset.her]||'';el.addEventListener('input',function(){S.her[el.dataset.her]=el.value;save();renderPack();renderTimeline();refreshAI();if(el.dataset.her==='baby'){var sb=$('scriptBox');if(sb)sb.textContent='\u201c'+scriptText()+'\u201d';}});});
+var DOCS=[['title','Record of title for the house (from LINZ)'],['bc','Birth certificate for each child (from DIA)'],['tenancy','Tenancy agreements or bond receipts showing when you moved in together'],['sp','Sale and purchase agreement'],['settle','Settlement statement from the purchase'],['ks','KiwiSaver first-home withdrawal letters, or First Home grant'],['mortgage','Mortgage statements, before and since he left'],['rates','Rates notices and proof of payment'],['power','Power, internet and phone bills, showing whose name they are in'],['insure','Insurance policies for the house, contents, cars and life'],['cars','Car registration and any car finance papers'],['bank','Bank statements for joint and personal accounts'],['loans','Credit card, loan and finance company statements'],['repairs','Receipts for repairs and big purchases for the home'],['pay','Your payslips or proof of income'],['ird','IRD child support application confirmation, with the date received'],['irdl','IRD letters and assessments'],['agree','Any agreement you both signed about property, and your wills'],['msgs','Screenshots of messages about money or arrangements'],['log','Your simple log of payments and contact']];
+function renderKids(){var el=$('kidList');if(!el)return;var K=kidsArr();el.innerHTML=K.map(function(k,i){return '<div class="kidrow"><div class="field"><input type="text" placeholder="First name" aria-label="Child '+(i+1)+' first name" data-kid="'+i+'" data-kk="name" value="'+esc(k.name)+'" autocomplete="off"></div><div class="field"><input type="date" aria-label="Child '+(i+1)+' date of birth" data-kid="'+i+'" data-kk="dob" value="'+esc(k.dob)+'"></div>'+(K.length>1?'<button type="button" class="kidx" data-kidx="'+i+'" aria-label="Remove this child">\u00d7</button>':'')+'</div>';}).join('');}
+function kidsChanged(){S.her.baby=(kidsArr()[0].name||'');save();renderPack();renderTimeline();refreshAI();var sb=$('scriptBox');if(sb)sb.textContent='\u201c'+scriptText()+'\u201d';}
+if($('kidList')){$('kidList').addEventListener('input',function(e){var t=e.target;if(t.dataset.kid==null)return;kidsArr()[+t.dataset.kid][t.dataset.kk]=t.value;kidsChanged();});
+$('kidList').addEventListener('click',function(e){var b=e.target.closest('[data-kidx]');if(!b)return;e.preventDefault();kidsArr().splice(+b.dataset.kidx,1);renderKids();kidsChanged();});
+$('addKid').addEventListener('click',function(e){e.preventDefault();kidsArr().push({name:'',dob:''});save();renderKids();});renderKids();}
+function renderDocCheck(){var el=$('docCheck');if(!el)return;S.have=S.have||{};el.innerHTML=DOCS.map(function(d){var on=!!S.have[d[0]];return '<label class="'+(on?'on':'')+'"><input type="checkbox" data-have="'+d[0]+'"'+(on?' checked':'')+'><span>'+esc(d[1])+'</span></label>';}).join('');}
+if($('docCheck')){$('docCheck').addEventListener('change',function(e){var t=e.target;if(!t.dataset.have)return;S.have=S.have||{};S.have[t.dataset.have]=t.checked;t.parentNode.classList.toggle('on',t.checked);save();renderPack();});renderDocCheck();}
 function sizeFmt(b){return b>1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB';}
 function addDocs(files){var n=files.length;Array.prototype.forEach.call(files,function(f){S.docs.push({name:f.name,size:f.size,type:f.type||'',added:iso(today())});});save();renderDocs();renderPack();toast(n+' document'+(n>1?'s':'')+' added to your folder');}
 function renderDocs(){$('docList').innerHTML=S.docs.map(function(d,i){return '<li><span>'+esc(d.name)+' <span class="muted">· '+sizeFmt(d.size)+'</span></span><button type="button" class="linkbtn small" data-deldoc="'+i+'">Remove</button></li>';}).join('');}
@@ -1438,6 +1463,51 @@ $('logBody').addEventListener('click',function(e){var i=e.target.dataset.dellog;
 /* Lawyer pack */
 function kv(k,v){return '<dt>'+esc(k)+'</dt><dd>'+(v?esc(v):'<span class="muted" style="font-weight:400">Not known yet</span>')+'</dd>';}
 var WM='<span class="wm"><span class="wm-q">the quiet</span> <span class="wm-p">path</span></span>';
+function kidsArr(){if(!Array.isArray(S.kids)||!S.kids.length)S.kids=[{name:(S.her&&S.her.baby)||'',dob:''}];return S.kids;}
+function kidList(){return kidsArr().filter(function(k){return (k.name||'').trim()||k.dob;});}
+function andList(a){return a.length<2?(a[0]||''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];}
+function kidNames(){return andList(kidList().map(function(k){return (k.name||'').trim();}).filter(Boolean));}
+function ageTxt(d){d=parseD(d);if(!d)return '';var m=(today().getFullYear()-d.getFullYear())*12+today().getMonth()-d.getMonth()-(today().getDate()<d.getDate()?1:0);if(m<0)return '';return m<24?m+' month'+(m===1?'':'s')+' old':Math.floor(m/12)+' years old';}
+function kidsPhrase(){var k=kidList(),n=k.length,W=['','one','two','three','four','five','six','seven','eight'];var parts=k.map(function(x){var nm=(x.name||'').trim(),a=ageTxt(x.dob);return nm?(a?nm+' ('+a+')':nm):(a?'a child '+a:'');}).filter(Boolean);if(n<=1)return 'our child'+(parts[0]?', '+parts[0]:'');return 'our '+(W[n]||n)+' children'+(parts.length?', '+andList(parts):'');}
+function spanTxt(a,b){var m=(b.getFullYear()-a.getFullYear())*12+b.getMonth()-a.getMonth();if(m<1)return 'less than a month';if(m<24)return m+' month'+(m===1?'':'s');var y=Math.floor(m/12),r=m%12;return (r>=6?'over ':'')+y+' years';}
+function letterHTML(){
+  var Y=S.her,H=S.him,c=clockData(),care=careData(),k=kidList(),n=Math.max(1,k.length),t=today();
+  var them=n>1?'our children':'our child',nm=(H.name||'').trim()||'my former partner';
+  var P=[],F=[],W=[];
+  P.push('I am asking you to act for me in my separation from '+nm+'. I want to claim everything I am entitled to, for myself and for '+kidsPhrase()+'. I want no stone left unturned.');
+  var lived=parseD(Y.lived),bought=parseD(Y.bought);
+  if(lived)F.push('We started living together on '+fmtD(lived)+(c?', and were together for '+spanTxt(lived,c.left):'')+'.');
+  if(bought)F.push('We bought our home on '+fmtD(bought)+'.');
+  if(c)F.push('We separated on '+fmtD(c.left)+', '+spanTxt(c.left,t)+' ago.');
+  if(Y.paid==='none')F.push('Since he left, he has made no contribution to the care or costs of '+them+'.');
+  else if(Y.paid==='some')F.push('Since he left, he has paid only small or irregular amounts towards '+them+'.');
+  else if(Y.paid==='regular')F.push('Since he left, he has paid towards '+them+' regularly.');
+  var lives=n>1?'The children live':((k[0]&&(k[0].name||'').trim())||'Our child')+' lives';
+  if(S.sees==='yes'&&care.yr>0)F.push(lives+' with me. He has '+(n>1?'them':'care')+' for about '+pctTxt(care.share)+' of the year.');
+  else if(S.sees==='no')F.push(lives+' with me full time, and he has no regular contact.');
+  if(Y.home==='him')F.push('He is living in our home, while I pay rent elsewhere.');
+  else if(Y.home==='me')F.push('I am living in our home.');
+  else if(Y.home==='both')F.push('We are both still living in our home.');
+  else if(Y.home==='neither')F.push('Neither of us lives in our home now.');
+  if(Y.mort==='me')F.push('I have paid most of the mortgage since we separated.');
+  else if(Y.mort==='him')F.push('He has paid most of the mortgage since we separated.');
+  else if(Y.mort==='shared')F.push('We have shared the mortgage since we separated.');
+  var ap=c&&c.applied?c.applied:parseD(S.applied);
+  F.push(ap?'Inland Revenue received my child support application on '+fmtD(ap)+'.':'I have not yet applied to Inland Revenue for child support.');
+  W.push('My full share of our relationship property, including the house, KiwiSaver, savings, vehicles and anything else that counts.');
+  if(c){var aim=addMonths(c.deadline,-6);W.push('The property claim made in time. The 3-year limit falls on '+fmtD(c.deadline)+'. I would like it settled well before then, ideally by '+fmtD(aim)+'.');}
+  W.push('Credit for every payment I have made towards our home since we separated, including the mortgage, rates, insurance and repairs'+(Y.home==='him'?', and for his sole use of our home while I pay rent elsewhere':'')+'.');
+  W.push('Child support for '+(n>1?'each of our children':'our child')+', assessed by Inland Revenue, and whatever is needed to make sure it is actually paid.');
+  W.push('To know whether I can recover a share of costs that child support does not cover, such as birth, schooling or medical costs.');
+  W.push('Your advice on anything else I may be entitled to that I have not thought of.');
+  var law=(Y.lawyer||'').trim();
+  return '<div class="letter"><p>'+esc(law?'Dear '+law+',':'To my lawyer,')+'</p>'+P.map(function(x){return '<p>'+esc(x)+'</p>';}).join('')+(F.length?'<p>'+esc(F.join(' '))+'</p>':'')+'<p><b>What I want:</b></p><ol>'+W.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ol><p>I am not asking you to explain the law in this letter. I am telling you what I want, so you can tell me how to get it and what it will cost. Please give me a fixed fee or a clear estimate before you start.</p><p>The rest of this pack sets out the key dates, his details, the care pattern, my log of payments, and the documents I have and still need. My open tasks are numbered, so we can refer to them by number.</p><p>Yours sincerely,<br>'+esc((Y.name||'').trim()||'')+'</p></div>';
+}
+function docsHTML(){
+  var have=S.have||{},h=DOCS.filter(function(d){return have[d[0]];}),m=DOCS.filter(function(d){return !have[d[0]];});
+  var li=function(a,mark){return a.map(function(d){return '<li>'+mark+' '+esc(d[1])+'</li>';}).join('');};
+  return '<p><b>I have ('+h.length+' of '+DOCS.length+')</b></p>'+(h.length?'<ul class="dc">'+li(h,'\u2713')+'</ul>':'<p class="muted">None ticked yet.</p>')+'<p style="margin-top:16px"><b>Still to find ('+m.length+')</b></p>'+(m.length?'<ul class="dc">'+li(m,'\u25a1')+'</ul>':'<p class="muted">Nothing left to find.</p>');
+}
 function packHTML(){
   var c=clockData(),care=careData(),H=S.him,Y=S.her;
   var done=0,total=0,open=[];PLAN.forEach(function(st,si){st.items.forEach(function(it,ii){total++;if(S.ticks['s'+si+'_'+ii])done++;else if(si<2)open.push(total+'. '+it[0]);});});
@@ -1450,20 +1520,20 @@ function packHTML(){
   return '<div class="paper">'+
    '<div class="cover">'+WM+'<span class="wm-line" style="display:block">Tracking what you’re owed</span>'+
    '<div class="rule"></div><span class="eyebrow">Summary for legal advice</span><h2>Relationship property<br>&amp; child support, <i>in brief</i>.</h2>'+
-   '<dl>'+kv('Prepared for',Y.lawyer)+kv('Prepared by',Y.name)+kv('Regarding',H.name)+kv('Child',Y.baby)+kv('Date',fmtD(today()))+'</dl>'+
+   '<dl>'+kv('Prepared for',Y.lawyer)+kv('Prepared by',Y.name)+kv('Regarding',H.name)+kv(kidList().length>1?'Children':'Child',andList(kidList().map(function(k){var nm=(k.name||'').trim(),d=parseD(k.dob);return nm+(d?' (born '+fmtD(d)+')':'');}).filter(Boolean)))+kv('Date',fmtD(today()))+'</dl>'+
    '<div class="foot"><span>Confidential. Prepared by the client from her own notes, for her lawyer.</span><span>General information, not legal advice.</span></div></div>'+
-   '<div class="pk-sec">'+head+'<h3><b>1.</b> Key dates</h3><dl class="kv">'+kv('Started living together',fmtD(parseD(Y.lived)))+kv('Bought the house',fmtD(parseD(Y.bought)))+kv('Separated (he left)',c?fmtD(c.left):'')+kv('IRD received application',appliedTxt)+kv('3-year property mark',c?fmtD(c.deadline)+(c.leftDays>=0?' ('+int.format(c.leftDays)+' days away)':' (passed)'):'')+'</dl></div>'+
+   '<div class="pk-sec">'+head+'<h3>What I\u2019m asking for</h3>'+letterHTML()+'</div>'+'<div class="pk-sec"><h3><b>1.</b> Key dates</h3><dl class="kv">'+kv('Started living together',fmtD(parseD(Y.lived)))+kv('Bought the house',fmtD(parseD(Y.bought)))+kv('Separated (he left)',c?fmtD(c.left):'')+kv('IRD received application',appliedTxt)+kv('3-year property mark',c?fmtD(c.deadline)+(c.leftDays>=0?' ('+int.format(c.leftDays)+' days away)':' (passed)'):'')+'</dl></div>'+
    '<div class="pk-sec"><h3><b>2.</b> The other party</h3><dl class="kv">'+kv('Full name',H.name)+kv('Other names',H.aka)+kv('Date of birth',fmtD(parseD(H.dob)))+kv('IRD number',H.ird)+kv('Last known address',H.addr)+kv('Employer',H.emp)+kv('Job or trade',H.job)+kv('On birth certificate',H.bc)+kv('Other notes',H.notes)+'</dl></div>'+
    '<div class="pk-sec"><h3><b>3.</b> Care pattern</h3><dl class="kv">'+kv('Current pattern',careTxt)+kv('Hours per year',S.sees==='yes'?int.format(care.yr)+' hours (about '+num.format(care.days)+' days, '+pctTxt(care.share)+' of the year)':'0')+kv('Overnights per year',S.sees==='yes'?String(care.nights):'0')+'</dl></div>'+
    '<div class="pk-sec"><h3><b>4.</b> Income range (estimates)</h3><p class="small muted">His income is not known. These are her guesses. Weekly figures, where shown, were entered by her from IRD\u2019s estimator and are not an assessment.</p><dl class="kv">'+spreadRows+'</dl></div>'+
    '<div class="pk-sec"><h3><b>5.</b> Log of payments and contact</h3>'+logRows+'</div>'+
-   '<div class="pk-sec"><h3><b>6.</b> Documents held</h3>'+docRows+'</div>'+
+   '<div class="pk-sec"><h3><b>6.</b> Document checklist</h3>'+docsHTML()+'<p style="margin-top:16px"><b>Files in my folder</b></p>'+docRows+'</div>'+
    '<div class="pk-sec"><h3><b>7.</b> Progress</h3><p>'+done+' of '+total+' steps completed.'+(open.length?' Still open from the first two stages:':'')+'</p>'+(open.length?'<ul style="margin:0;padding-left:20px">'+open.map(function(o){return '<li>'+esc(o)+'</li>';}).join('')+'</ul>':'')+'<p class="small muted" style="margin-top:22px">General information only, not legal advice. Child support amounts are set by Inland Revenue.</p></div>'+
   '</div>';
 }
 function renderPack(){$('packView').innerHTML=packHTML();}
 function checklistHTML(){
-  var items=['IRD child support application confirmation (with the date IRD received it)','Baby\u2019s birth certificate','KiwiSaver first-home withdrawal letter','Sale and purchase agreement','Settlement statement','Record of title, and how you own it (joint tenants or tenants in common)','Mortgage statements, before and since he left','Rates notices and payments','House insurance policy and payments','Receipts for repairs since he left','Bank statements showing what you\u2019ve paid','Messages about money or arrangements (screenshots)','Your simple log','IRD letters and assessments'];
+  var items=DOCS.map(function(d){return d[1];});var _old=['IRD child support application confirmation (with the date IRD received it)','Baby\u2019s birth certificate','KiwiSaver first-home withdrawal letter','Sale and purchase agreement','Settlement statement','Record of title, and how you own it (joint tenants or tenants in common)','Mortgage statements, before and since he left','Rates notices and payments','House insurance policy and payments','Receipts for repairs since he left','Bank statements showing what you\u2019ve paid','Messages about money or arrangements (screenshots)','Your simple log','IRD letters and assessments'];
   return '<div class="paper"><div class="pk-head">'+WM+'<span>Paper trail checklist</span></div><h2 style="margin-top:20px">Your paper trail.</h2><p class="muted">Tick each one off as it goes into your folder.</p><ul style="list-style:none;padding:0;margin:20px 0 0">'+items.map(function(i){return '<li style="padding:12px 0;border-bottom:1px solid #D9CFBF;display:flex;gap:14px"><span style="flex:none;width:20px;height:20px;border:2px solid #2B6A60;border-radius:5px;margin-top:2px"></span>'+esc(i)+'</li>';}).join('')+'</ul><p class="small muted" style="margin-top:22px">General information only, not legal advice.</p></div>';
 }
 function printThis(html){var pa=$('printArea');pa.innerHTML=html;document.body.classList.add('print-pack');setTimeout(function(){window.print();setTimeout(function(){document.body.classList.remove('print-pack');pa.innerHTML='';},500);},60);}
