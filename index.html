@@ -151,15 +151,46 @@ section.sec{padding:128px 0;background:var(--bg);color:var(--fg);position:relati
 .truth .n{font-family:var(--display);font-size:clamp(2.4rem,4vw,3.4rem);font-weight:650;color:var(--amber);line-height:.9;letter-spacing:-.03em;padding-top:.12em}
 .truth p{margin:0;color:var(--muted);font-size:1.28rem;line-height:1.45;max-width:22em}
 .truth p b{color:var(--fg);display:block;font-size:clamp(1.7rem,2.8vw,2.25rem);line-height:1.15;font-weight:640;letter-spacing:-.02em;margin-bottom:10px;max-width:16em}
-.options{display:grid;grid-template-columns:1fr;gap:0;margin-top:30px;max-width:820px}
-.opt{padding:24px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:260px 1fr;gap:6px 28px;align-items:baseline}
-@media (max-width:760px){.opt{grid-template-columns:1fr}}
-.opt h4{margin:0;font:650 1.2rem/1.25 var(--display);letter-spacing:-.01em}
-.opt p{margin:0;font-size:1rem;color:var(--muted)}
-.opt.rec{border:0;background:var(--cream);color:var(--night);border-radius:var(--r);padding:28px 30px;margin:8px -30px 0;grid-template-columns:260px 1fr;position:relative;box-shadow:0 20px 60px rgba(240,162,59,.18)}
-@media (max-width:760px){.opt.rec{margin:8px 0 0;padding:24px;grid-template-columns:1fr}}
-.opt.rec p{color:#33504D}
-.opt .pill{grid-column:1/-1;justify-self:start;display:inline-block;font:700 .7rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--night);background:var(--amber);padding:7px 10px;border-radius:999px;margin-bottom:8px}
+.options{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px;align-items:stretch}
+@media (max-width:980px){.options{gap:14px}}
+@media (max-width:760px){.options{grid-template-columns:1fr;gap:20px}}
+.opt{--ink:var(--cream);--soft:#C6D3CE;--wire:rgba(169,186,180,.55);--node:rgba(244,234,219,.08);display:grid;grid-row:span 4;grid-template-rows:subgrid;row-gap:0;align-content:start;background:rgba(244,234,219,.045);border:1px solid var(--line);border-radius:var(--r);padding:30px 28px 28px;color:var(--ink)}
+.opt.rec{--ink:var(--night);--soft:#33504D;--wire:var(--amber-deep);--node:#E6D8C0;background:var(--cream);border-color:transparent;box-shadow:0 24px 70px rgba(240,162,59,.22),0 0 0 3px var(--amber)}
+.opt .pill{justify-self:start;align-self:start;display:inline-block;font:650 1rem/1 var(--display);letter-spacing:0;text-transform:none;color:var(--soft);border:1.5px solid var(--wire);background:transparent;padding:9px 15px 8px;border-radius:999px;margin:0 0 16px}
+.opt.rec .pill{background:var(--amber);border-color:var(--amber);color:var(--night);font-weight:700}
+.opt h4{margin:0 0 8px;font:700 1.6rem/1.15 var(--display);letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
+.opt .hd p.sum{margin:0 0 26px;font:400 1.15rem/1.45 var(--sans);color:var(--soft);text-wrap:pretty}
+.flow{display:flex;flex-direction:column}
+.node{display:grid;grid-template-columns:68px 1fr;gap:16px;align-items:center}
+.ic{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:var(--node);color:var(--ink)}
+.ic svg{width:38px;height:38px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ic.you{background:var(--amber);color:var(--night)}
+.ic.ird{background:#2F6B63;color:#F4EADB}
+.opt.rec .ic.ird{background:var(--night);color:var(--cream)}
+.node b{display:block;font:700 1.22rem/1.2 var(--display);color:var(--ink)}
+.node span{display:block;font:400 1.05rem/1.35 var(--sans);color:var(--soft);text-wrap:pretty}
+.arw{display:grid;grid-template-columns:68px 1fr;gap:16px;align-items:center;min-height:72px}
+.arw i{justify-self:center;position:relative;width:0;height:100%;min-height:72px;border-left:3px solid var(--wire)}
+.arw i:after{content:"";position:absolute;bottom:-1px;left:-9.5px;border:8px solid transparent;border-top:11px solid var(--wire);border-bottom:0}
+.arw.weak i{border-left-style:dashed}
+.arw.strong i{border-left-width:5px;left:-1px}
+.arw.strong i:after{left:-11.5px;border-width:9px;border-top-width:12px;border-bottom:0}
+.opt.rec .arw.strong i{border-color:var(--amber-deep)}
+.arw em{font:650 1.02rem/1.25 var(--display);font-style:normal;color:var(--soft);display:flex;align-items:center;gap:8px}
+.arw em svg{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.miss{padding-top:26px}
+.miss .split{display:flex;align-items:center;gap:12px;border-top:2px dashed var(--wire);padding-top:20px;font:700 1.15rem/1.2 var(--display);color:var(--ink)}
+.miss .split svg{width:34px;height:34px;flex:none;fill:none;stroke:#E8836F;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.opt.rec .miss .split svg{stroke:var(--amber-deep)}
+.out{margin-top:16px;display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start;border-radius:16px;padding:18px 18px 18px 16px;background:rgba(232,131,111,.13);border:1.5px solid rgba(232,131,111,.55)}
+.out svg{width:52px;height:52px;fill:none;stroke:#F09A87;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.out b{display:block;font:700 1.18rem/1.2 var(--display);color:#FFD9CF;margin:2px 0 4px}
+.out p{margin:0;font:400 1.06rem/1.4 var(--sans);color:#E9CFC8;text-wrap:pretty}
+.out.ok{background:#DCEFE7;border-color:#2F7D6D}
+.out.ok svg{stroke:#1F6B5C}
+.out.ok b{color:#0F4A3F}
+.out.ok p{color:#24504A}
+@media (max-width:760px){.opt{grid-row:auto;grid-template-rows:none;padding:26px 22px}.opt h4{font-size:1.5rem}}
 
 label.f,span.f{display:block;font-weight:700;font-size:.93rem;margin:0 0 7px;color:var(--fg)}
 .hint{display:block;font-weight:400;color:var(--muted);font-size:.85rem;margin-top:2px}
@@ -495,9 +526,9 @@ one of them takes money you can never get back.</p>
     <h3 style="margin-top:64px">Three ways this can go</h3>
     <p class="muted" style="max-width:44em">The calm choice isn't the one where you ask him nicely. It's the one where you never have to ask at all.</p>
     <div class="options">
-      <div class="opt"><h4>A private agreement</h4><p>Relies on his goodwill. Every missed payment becomes your argument to have.</p></div>
-      <div class="opt"><h4>IRD sets it, he pays you</h4><p>A fair figure, but he pays you direct. If he misses a week because something came up, you're the one chasing him for it. He doesn't have to do anything, and that payment is often just gone.</p></div>
-      <div class="opt rec"><span class="pill">The quiet option</span><h4>IRD sets it and collects it</h4><p>IRD works out the amount and collects it. If he misses a payment, he's in arrears with IRD, and IRD deals with him, not you.</p></div>
+      <div class="opt"><span class="pill">On his goodwill</span><div class="hd"><h4>A private agreement</h4><p class="sum">Relies on his goodwill. Every missed payment becomes your argument to&nbsp;have.</p></div><div class="flow"><div class="node"><div class="ic "><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.6"/><path d="M4.5 20.5c.6-4.1 3.6-6.6 7.5-6.6s6.9 2.5 7.5 6.6"/></svg></div><div><b>Him</b><span>Decides what he pays, and&nbsp;when</span></div></div><div class="arw weak"><i></i><em><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 8.6c-.6-.8-1.6-1.2-2.8-1.2-1.6 0-2.8.8-2.8 2.1 0 2.9 5.8 1.6 5.8 4.6 0 1.4-1.3 2.3-3 2.3-1.3 0-2.4-.5-3-1.4M12 5.8v1.6M12 16.4v1.8"/></svg>If and when he&nbsp;pays</em></div><div class="node"><div class="ic you"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.6"/><path d="M4.5 20.5c.6-4.1 3.6-6.6 7.5-6.6s6.9 2.5 7.5 6.6"/><path d="M8.4 6.3c1.2-2.4 5.9-2.6 7.2 0"/></svg></div><div><b>You</b><span>Waiting to see if it&nbsp;arrives</span></div></div></div><div class="miss"><div class="split"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 8.6c-.6-.8-1.6-1.2-2.8-1.2-1.6 0-2.8.8-2.8 2.1 0 2.9 5.8 1.6 5.8 4.6 0 1.4-1.3 2.3-3 2.3-1.3 0-2.4-.5-3-1.4M12 5.8v1.6M12 16.4v1.8"/><path d="M4 4l16 16"/></svg>If he misses a payment</div><div class="out"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.3 4.2 2.6 17.6A2 2 0 0 0 4.3 20.5h15.4a2 2 0 0 0 1.7-2.9L13.7 4.2a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4.5"/><path d="M12 17.2h.01" stroke-width="2.6"/></svg><div><b>You chase him</b><p>It becomes your argument to have. Often that payment is just&nbsp;gone.</p></div></div></div></div>
+      <div class="opt"><span class="pill">You do the chasing</span><div class="hd"><h4>IRD sets it, he pays you</h4><p class="sum">A fair figure, but he pays you&nbsp;direct.</p></div><div class="flow"><div class="node"><div class="ic ird"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5z"/><path d="M5 9.5v8M9.7 9.5v8M14.3 9.5v8M19 9.5v8"/><path d="M3 20h18"/></svg></div><div><b>IRD</b><span>Works out a fair&nbsp;figure</span></div></div><div class="arw "><i></i><em>Sets the amount</em></div><div class="node"><div class="ic "><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.6"/><path d="M4.5 20.5c.6-4.1 3.6-6.6 7.5-6.6s6.9 2.5 7.5 6.6"/></svg></div><div><b>Him</b><span>Meant to pay you what IRD&nbsp;set</span></div></div><div class="arw weak"><i></i><em><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 8.6c-.6-.8-1.6-1.2-2.8-1.2-1.6 0-2.8.8-2.8 2.1 0 2.9 5.8 1.6 5.8 4.6 0 1.4-1.3 2.3-3 2.3-1.3 0-2.4-.5-3-1.4M12 5.8v1.6M12 16.4v1.8"/></svg>Pays you&nbsp;direct</em></div><div class="node"><div class="ic you"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.6"/><path d="M4.5 20.5c.6-4.1 3.6-6.6 7.5-6.6s6.9 2.5 7.5 6.6"/><path d="M8.4 6.3c1.2-2.4 5.9-2.6 7.2 0"/></svg></div><div><b>You</b><span>Watching your bank&nbsp;account</span></div></div></div><div class="miss"><div class="split"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 8.6c-.6-.8-1.6-1.2-2.8-1.2-1.6 0-2.8.8-2.8 2.1 0 2.9 5.8 1.6 5.8 4.6 0 1.4-1.3 2.3-3 2.3-1.3 0-2.4-.5-3-1.4M12 5.8v1.6M12 16.4v1.8"/><path d="M4 4l16 16"/></svg>If he misses a payment</div><div class="out"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.3 4.2 2.6 17.6A2 2 0 0 0 4.3 20.5h15.4a2 2 0 0 0 1.7-2.9L13.7 4.2a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4.5"/><path d="M12 17.2h.01" stroke-width="2.6"/></svg><div><b>You chase him</b><p>If something came up, you're the one chasing him. He doesn't have to do anything, and that payment is often just&nbsp;gone.</p></div></div></div></div>
+      <div class="opt rec"><span class="pill">The quiet option</span><div class="hd"><h4>IRD sets it and collects it</h4><p class="sum">IRD works out the amount and collects it. You never have to ask him for&nbsp;anything.</p></div><div class="flow"><div class="node"><div class="ic "><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.6"/><path d="M4.5 20.5c.6-4.1 3.6-6.6 7.5-6.6s6.9 2.5 7.5 6.6"/></svg></div><div><b>Him</b><span>Pays IRD, not&nbsp;you</span></div></div><div class="arw strong"><i></i><em><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 8.6c-.6-.8-1.6-1.2-2.8-1.2-1.6 0-2.8.8-2.8 2.1 0 2.9 5.8 1.6 5.8 4.6 0 1.4-1.3 2.3-3 2.3-1.3 0-2.4-.5-3-1.4M12 5.8v1.6M12 16.4v1.8"/></svg>Collected by&nbsp;IRD</em></div><div class="node"><div class="ic ird"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5z"/><path d="M5 9.5v8M9.7 9.5v8M14.3 9.5v8M19 9.5v8"/><path d="M3 20h18"/></svg></div><div><b>IRD</b><span>Works out the amount and collects&nbsp;it</span></div></div><div class="arw strong"><i></i><em><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 8.6c-.6-.8-1.6-1.2-2.8-1.2-1.6 0-2.8.8-2.8 2.1 0 2.9 5.8 1.6 5.8 4.6 0 1.4-1.3 2.3-3 2.3-1.3 0-2.4-.5-3-1.4M12 5.8v1.6M12 16.4v1.8"/></svg>IRD pays&nbsp;you</em></div><div class="node"><div class="ic you"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.6"/><path d="M4.5 20.5c.6-4.1 3.6-6.6 7.5-6.6s6.9 2.5 7.5 6.6"/><path d="M8.4 6.3c1.2-2.4 5.9-2.6 7.2 0"/></svg></div><div><b>You</b><span>Paid by IRD, no contact&nbsp;needed</span></div></div></div><div class="miss"><div class="split"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 8.6c-.6-.8-1.6-1.2-2.8-1.2-1.6 0-2.8.8-2.8 2.1 0 2.9 5.8 1.6 5.8 4.6 0 1.4-1.3 2.3-3 2.3-1.3 0-2.4-.5-3-1.4M12 5.8v1.6M12 16.4v1.8"/><path d="M4 4l16 16"/></svg>If he misses a payment</div><div class="out ok"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="m7.8 12.3 2.8 2.8 5.6-5.8"/></svg><div><b>He's in arrears with&nbsp;IRD</b><p>IRD deals with him, not you. You don't have to chase&nbsp;anyone.</p></div></div></div></div>
     </div>
   </div>
 </section>
