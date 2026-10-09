@@ -187,6 +187,9 @@ textarea{min-height:90px;resize:vertical}
 .stat.wide{grid-column:1 / -1}
 .stat .v.pair{display:flex;flex-wrap:wrap;gap:.35em 1.15rem;align-items:baseline}
 .stat .v.pair span{font:inherit;color:inherit;letter-spacing:inherit}
+.aim{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-family:var(--display);font-size:1.35rem;font-weight:600}
+.aim b{color:var(--amber)}
+.aim span{display:block;font-family:var(--sans);font-size:.9rem;font-weight:400;color:var(--muted);margin-top:4px}
 .steplink{display:inline-block;margin-top:8px;color:var(--accent);font-weight:600;text-underline-offset:4px}
 .stat.clay{border-top-color:var(--amber)}
 .stat.clay .v{color:var(--accent)}
@@ -469,7 +472,8 @@ one of them takes money you can never get back.</p>
         <div class="card" style="margin-top:16px;padding:20px 22px">
           <div class="small"><b>The 3-year property clock</b> <span class="muted" id="cDeadline"></span></div>
           <div class="bar clay"><i id="cBar"></i></div>
-          <div class="small muted" id="cBarD">Enter the date he left.</div>
+          <div class="small muted" id="cBarD">Enter the date you left.</div>
+          <div class="aim" id="cAim"></div>
         </div>
         <div class="stat" style="margin-top:16px">
           <span class="k">Support not yet claimed</span>
@@ -1164,7 +1168,7 @@ function clockData(){
 }
 function renderClocks(){
   var c=clockData();
-  if(!c){$('cDays').textContent='—';$('cDaysD').textContent='days';$('cPct').textContent='—';$('cDaysLeft').textContent='';$('cLeftD').textContent='of the 3 years still left';$('cGone').textContent='—';$('cBar').style.width='0';$('cDeadline').textContent='';$('cBarD').textContent='Enter the date you left.';$('cSay').innerHTML='';return;}
+  if(!c){$('cDays').textContent='—';$('cDaysD').textContent='days';$('cPct').textContent='—';$('cDaysLeft').textContent='';$('cLeftD').textContent='of the 3 years still left';$('cGone').textContent='—';$('cBar').style.width='0';$('cDeadline').textContent='';$('cBarD').textContent='Enter the date you left.';$('cSay').innerHTML='';$('cAim').innerHTML='';return;}
   $('cDays').textContent=int.format(c.since);
   $('cDaysD').textContent='days, or about '+num.format(c.since/7)+' weeks';
   var pctLeft=c.leftDays<=0?0:Math.min(100,c.leftDays/c.total*100);
@@ -1173,6 +1177,9 @@ function renderClocks(){
   $('cDaysLeft').textContent=c.leftDays>=0?(int.format(c.leftDays)+' days'):(int.format(-c.leftDays)+' days ago');
   $('cLeftD').textContent=c.leftDays>=0?'of the 3 years still left':'the 3-year mark has passed';
   $('cDeadline').textContent='· ends '+fmtD(c.deadline);
+  var aim=new Date(c.deadline.getTime());aim.setMonth(aim.getMonth()-6);
+  var aimDays=diffDays(today(),aim);
+  $('cAim').innerHTML=aimDays>0?'Aim to settle by <b>'+esc(fmtD(aim))+'</b><span>'+int.format(aimDays)+' days from today, leaving six months of room before the 3-year mark.</span>':(c.leftDays>0?'Aim to settle <b>now</b><span>You\u2019re inside the last six months before the 3-year mark.</span>':'');
   $('cBar').style.width=Math.max(0,Math.min(100,pctLeft))+'%';
   $('cBarD').textContent=c.leftDays>0?(pctTxt+' of the days are still left for a property settlement.'):'None of the 3 years is left for a property settlement.';
   var label=c.applied?'between him leaving and IRD receiving your application':'since he left, still counting until you apply';
