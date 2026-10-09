@@ -242,6 +242,8 @@ body:not(.paid) .gated > .gate-overlay{display:flex;position:absolute;inset:0;z-
 .step{display:flex;gap:18px;padding:20px 4px;border-top:1px solid var(--line);cursor:pointer;transition:background .2s}
 .step:last-child{border-bottom:1px solid var(--line)}
 .step:hover{background:rgba(143,191,179,.05)}
+.step .no{flex:none;width:2.2em;font-family:var(--display);font-weight:700;font-size:1.5rem;line-height:1.1;color:var(--amber);font-variant-numeric:tabular-nums;text-align:right}
+.step.done .no{opacity:.55}
 .step input{appearance:none;-webkit-appearance:none;flex:none;width:28px;height:28px;border:2px solid var(--glass);border-radius:50%;margin:1px 0 0;background:transparent;cursor:pointer;display:grid;place-items:center;transition:background .2s}
 .step input:checked{background:var(--glass)}
 .step input:checked::after{content:"";width:6px;height:12px;border:solid var(--night);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
@@ -1322,9 +1324,11 @@ var AVOID=['Accepting cash \u201cinstead of IRD\u201d with no record of it.','Si
 function scriptText(){var b=(S.her.baby||'').trim()||'[baby]';return 'Hi, just so you know, I\u2019ve applied to IRD for child support for '+b+'. It\u2019s the standard process and they\u2019ll be in touch with you directly about it. Happy to keep things simple between us for '+b+'\u2019s sake.';}
 function renderRoadmap(){
   var h='',rest='';
+  var base=0;
   PLAN.forEach(function(st,si){
+    var b0=base;base+=st.items.length;
     function stepHtml(it,ii){var id='s'+si+'_'+ii,on=!!S.ticks[id];
-      return '<label class="step'+(on?' done':'')+'"><input type="checkbox" data-tick="'+id+'"'+(on?' checked':'')+'><span>'+(it[2]?'<span class="tagx">Most important</span>':'')+'<span class="t">'+esc(it[0])+'</span><span class="dd">'+esc(it[1])+'</span>'+(it[3]?'<a class="steplink" href="'+it[3][0]+'" target="_blank" rel="noopener">'+esc(it[3][1])+' \u2197</a>':'')+'</span></label>';}
+      return '<label class="step'+(on?' done':'')+'"><input type="checkbox" data-tick="'+id+'"'+(on?' checked':'')+'><span class="no">'+(b0+ii+1)+'</span><span>'+(it[2]?'<span class="tagx">Most important</span>':'')+'<span class="t">'+esc(it[0])+'</span><span class="dd">'+esc(it[1])+'</span>'+(it[3]?'<a class="steplink" href="'+it[3][0]+'" target="_blank" rel="noopener">'+esc(it[3][1])+' \u2197</a>':'')+'</span></label>';}
     var cut=si===0?Math.max(0,st.items.length-2):st.items.length;
     var steps=st.items.slice(0,cut).map(stepHtml).join('');
     var block='<div class="stage"><div class="stage-head"><span class="when">'+esc(st.when)+'</span><h3>'+esc(st.title)+'</h3></div><p>'+esc(st.intro)+'</p>'+steps+'</div>';
@@ -1363,7 +1367,7 @@ function kv(k,v){return '<dt>'+esc(k)+'</dt><dd>'+(v?esc(v):'<span class="muted"
 var WM='<span class="wm"><span class="wm-q">the quiet</span> <span class="wm-p">path</span></span>';
 function packHTML(){
   var c=clockData(),care=careData(),H=S.him,Y=S.her;
-  var done=0,total=0,open=[];PLAN.forEach(function(st,si){st.items.forEach(function(it,ii){total++;if(S.ticks['s'+si+'_'+ii])done++;else if(si<2)open.push(it[0]);});});
+  var done=0,total=0,open=[];PLAN.forEach(function(st,si){st.items.forEach(function(it,ii){total++;if(S.ticks['s'+si+'_'+ii])done++;else if(si<2)open.push(total+'. '+it[0]);});});
   var careTxt=S.sees==='yes'?(care.parts.join('; ')||''):'No regular contact at present';
   var spreadRows=S.spread.map(function(s,i){return kv(LV[i],money(parseFloat(s.inc)||0)+' a year'+(s.wk?' · '+money(+s.wk)+' a week (her figure, from IRD\u2019s estimator)':''));}).join('');
   var logRows=S.log.length?'<table class="log"><thead><tr><th>Date</th><th>What</th><th>Amount</th></tr></thead><tbody>'+S.log.map(function(l){return '<tr><td>'+esc(fmtD(parseD(l.date)))+'</td><td>'+esc(l.what)+'</td><td>'+(l.amt?esc(money(+l.amt)):'')+'</td></tr>';}).join('')+'</tbody></table>':'<p class="muted">No entries yet.</p>';
