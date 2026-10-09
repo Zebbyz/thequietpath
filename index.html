@@ -247,9 +247,11 @@ textarea{min-height:90px;resize:vertical}
 #wcost .wfee .wc em{font-style:normal;color:var(--amber-deep)}
 #wcost .wfee p{font:560 1.2rem/1.45 var(--sans);color:#14302E;margin:0;text-wrap:pretty}
 #wcost .wfee p b{font-weight:560;color:var(--night)}
-#wcost .wkid{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:0 0 24px}
-#wcost .wkid label{font:560 1.2rem/1.3 var(--sans);color:#F6F1E8}
-#wcost .wkid input{max-width:240px;font-size:1.15rem}
+#wcost .winputs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 22px;margin:0 0 30px;align-items:start}
+#wcost .winputs label{display:block;font:650 1.12rem/1.25 var(--display);color:var(--cream);margin:0 0 8px;letter-spacing:-.005em;text-wrap:balance}
+#wcost .winputs input{font-size:1.2rem;padding-top:14px;padding-bottom:14px;min-height:54px}
+#wcost .winputs .money span{font:560 1.2rem/1 var(--sans);color:var(--cream)}
+@media (max-width:760px){#wcost .winputs{grid-template-columns:1fr;gap:16px}}
 #wcost .wfine{font:560 1.15rem/1.5 var(--sans);color:#E1EAE6;margin:18px 0 0;text-wrap:pretty}
 @media (max-width:860px){#wcost .wgrid{grid-template-columns:1fr;gap:14px}}
 @media (max-width:560px){#wcost{padding:26px 20px 22px;margin-top:34px}#wcost .wfee{padding:22px 20px}#wcost .wt .wbig,#wcost .wyear .wbig{font-size:2.5rem}#wcost .wgrid{margin-top:30px}}
@@ -596,7 +598,11 @@ one of them takes money you can never get back.</p>
       <span class="wpill ex" id="wPill">Example</span>
       <h3>What waiting has cost&nbsp;you</h3>
       <p class="wsub" id="wSub"></p>
-      <div class="wkid"><label for="wKidDob">Your youngest child's date of&nbsp;birth</label><input type="date" id="wKidDob"></div>
+      <div class="winputs">
+        <div><label for="wLeft">Date he&nbsp;left</label><input type="date" id="wLeft"></div>
+        <div><label for="wWeekly">Weekly child&nbsp;support</label><div class="money"><span>$</span><input type="number" id="wWeekly" min="0" step="1" inputmode="decimal" placeholder="95"></div></div>
+        <div><label for="wKidDob">Youngest child's date of&nbsp;birth</label><input type="date" id="wKidDob"></div>
+      </div>
       <div class="wyear"><h4>Child support a&nbsp;year</h4><span class="wbig" id="wYear">—</span><p id="wYearD"></p></div>
       <div class="wgrid">
         <div class="wt"><h4>Time left to claim the&nbsp;house</h4><span class="wbig" id="wHouse">—</span><p id="wHouseD"></p></div>
@@ -1980,38 +1986,52 @@ function mdTxt(o){var m=o.m,d=o.d;var mt=m?m+'\u00a0month'+(m===1?'':'s'):'',dt=
 function youngestKid(){var K=kidsArr(),y=null,yi=-1;K.forEach(function(k,i){var d=parseD(k.dob);if(d&&(!y||d>y)){y=d;yi=i;}});return {d:y,i:yi};}
 function centsTxt(c){return c>=0.5?Math.round(c)+'c':'less than 1c';}
 function pct2(x){return x>=1?num.format(Math.round(x*10)/10)+'%':x.toPrecision(2)+'%';}
+function syncVal(id,v){var e=$(id);if(e&&document.activeElement!==e&&e.value!==v)e.value=v;}
 function renderWait(){
   if(!$('wcost'))return;
-  var c=clockData(),yk=youngestKid(),t=today(),wk=c?c.wk:0;
-  var ki=$('wKidDob');if(ki&&document.activeElement!==ki)ki.value=yk.d?iso(yk.d):'';
-  var mine=!!(c&&wk>0&&yk.d);
-  var houseTxt,houseD,lost,lostD,ahead,aheadD;
-  if(mine){
+  var c=clockData(),yk=youngestKid(),t=today();
+  var wkIn=parseFloat(S.weekly)||0;
+  syncVal('wKidDob',yk.d?iso(yk.d):'');syncVal('wLeft',S.left||'');syncVal('wWeekly',S.weekly||'');
+  syncVal('leftDate',S.left||'');syncVal('spreadLeft',S.left||'');syncVal('weekly',S.weekly||'');
+  var hasLeft=!!c,hasWk=wkIn>0,hasDob=!!yk.d,n=(hasLeft?1:0)+(hasWk?1:0)+(hasDob?1:0);
+  var W=hasWk?wkIn:95;
+  var rate=hasWk?'your '+money(wkIn)+' a week':'the example $95 a week';
+  var houseTxt,houseD,weeks,lostD,wa,aheadD;
+  if(hasLeft){
     var md=monthsDays(t,c.deadline);
     houseTxt=c.leftDays>0?(md.m>=1?md.m+(md.m===1?' month':' months'):md.d+(md.d===1?' day':' days')):'Passed';
-    houseD=c.leftDays>0?(md.d?mdTxt(md)+' until ':'Until ')+fmtD(c.deadline)+', 3\u00a0years after he left.':'The 3-year mark was '+fmtD(c.deadline)+'. Talk to a family lawyer this week about what can still be done.';
-    lost=c.gone;
-    lostD=(c.applied?int.format(Math.round(c.weeks))+' weeks between him leaving and IRD receiving your application, at '+money(wk)+' a week.':int.format(Math.round(c.weeks))+' weeks since he left, at '+money(wk)+' a week, and still counting until you apply.')+' It can\u2019t be backdated.';
-    var e18=addYears(yk.d,18),wa=Math.max(0,diffDays(t,e18)/7);
-    ahead=wk*wa;
-    aheadD=ahead>0?'At today\u2019s rate, until your youngest turns 18 on '+fmtD(e18)+'. About '+int.format(Math.round(wa))+' more weeks.':'Your youngest has already turned 18.';
+    houseD=c.leftDays>0?(md.d?mdTxt(md)+' until ':'Until ')+fmtD(c.deadline)+', 3\u00a0years after he&nbsp;left.':'The 3-year mark was '+fmtD(c.deadline)+'. Talk to a family lawyer this week about what can still be&nbsp;done.';
+    weeks=c.weeks;
+    lostD=(c.applied?int.format(Math.round(weeks))+' weeks between him leaving and IRD receiving your application, at '+rate+'.':int.format(Math.round(weeks))+' weeks since he left, at '+rate+', and still counting until you&nbsp;apply.')+' It can\u2019t be&nbsp;backdated.';
   }else{
-    houseTxt='12 months';houseD='Separated two years ago, so a year is left on the 3-year property clock.';
-    lost=9880;lostD='104 weeks at $95 a week since he left, with no application in. It can\u2019t be backdated.';
-    ahead=79040;aheadD='At $95 a week for the 16 years until a 2\u2011year\u2011old turns&nbsp;18.';
+    houseTxt='12 months';houseD='Example: separated two years ago, so a year is left on the 3-year property clock. Add the date he left to see&nbsp;yours.';
+    weeks=104;
+    lostD='104 weeks, the example\u2019s two years since he left, at '+rate+'. It can\u2019t be&nbsp;backdated.';
   }
-  var miss=[];if(!c)miss.push('the date he left');if(!(wk>0))miss.push('your weekly figure');if(!yk.d)miss.push('your youngest child\u2019s date of birth');
-  $('wPill').textContent=mine?'Your numbers':'Example';$('wPill').className='wpill'+(mine?'':' ex');
-  $('wSub').innerHTML=(mine?'Worked out from the dates and weekly figure you entered. Nothing leaves this&nbsp;device.':'<b>Example:</b> $95 a week, a 2\u2011year\u2011old, separated two years ago. Add '+esc(andList(miss))+' <a href="#clocks">in the two clocks below</a> to see your&nbsp;own.');
-  $('wYear').textContent=mine?money(wk*52):'$4,940';$('wYearD').textContent=(mine?money(wk):'$95')+' a week \u00d7 52 weeks';
-  $('wHouse').textContent=houseTxt;$('wHouseD').textContent=houseD;
-  $('wLost').textContent=money(lost);$('wLostD').textContent=lostD;
+  if(hasDob){
+    var e18=addYears(yk.d,18);wa=Math.max(0,diffDays(t,e18)/7);
+    aheadD=wa>0?'At '+rate+', until your youngest turns 18 on '+fmtD(e18)+'. About '+int.format(Math.round(wa))+' more&nbsp;weeks.':'Your youngest has already turned&nbsp;18.';
+  }else{
+    wa=832;aheadD='At '+rate+' for the 16 years until the example 2\u2011year\u2011old turns&nbsp;18.';
+  }
+  var lost=W*weeks,ahead=W*wa;
+  var ex=[];if(!hasWk)ex.push('$95 a week');if(!hasDob)ex.push('2\u2011year\u2011old');if(!hasLeft)ex.push('two years since he left');
+  $('wPill').textContent=n===3?'Your numbers':n?'Partly yours':'Example';$('wPill').className='wpill'+(n?'':' ex');
+  $('wSub').innerHTML=n===3?'Worked out from the dates and weekly figure you entered. Nothing leaves this&nbsp;device.':
+    n?'Still using the example\u2019s '+esc(andList(ex))+'. Fill in the rest below. Nothing leaves this&nbsp;device.':
+    '<b>Example:</b> $95 a week, a 2\u2011year\u2011old, separated two years ago. Fill in the three boxes below to see your own. Nothing leaves this&nbsp;device.';
+  $('wYear').textContent=money(W*52);$('wYearD').textContent=(hasWk?money(wkIn)+' a week':'The example $95 a week')+' \u00d7 52 weeks';
+  $('wHouse').textContent=houseTxt;$('wHouseD').innerHTML=houseD;
+  $('wLost').textContent=money(lost);$('wLostD').innerHTML=lostD;
   $('wAhead').textContent=ahead>0?money(ahead):'\u2014';$('wAheadD').innerHTML=aheadD;
   if(ahead>0){var cents=79/ahead*10000;
     $('wCents').innerHTML='The Quiet Path costs about <em>'+centsTxt(cents)+'</em> for every $100 you\u2019re&nbsp;owed.';
     $('wPct').innerHTML='NZ$79 once, against '+money(ahead)+' still ahead. That\u2019s <b>'+pct2(79/ahead*100)+'</b> of&nbsp;it.';
-  }else{$('wCents').textContent='Add your youngest child\u2019s date of birth.';$('wPct').textContent='';}
+  }else{$('wCents').textContent='Your youngest has already turned 18.';$('wPct').textContent='';}
 }
+if($('wLeft'))$('wLeft').addEventListener('input',function(){S.left=this.value;save();renderAll();});
+if($('wWeekly'))$('wWeekly').addEventListener('input',function(){S.weekly=this.value;save();renderAll();});
+['wLeft','wWeekly','wKidDob'].forEach(function(id){var e=$(id);if(e)e.addEventListener('change',function(){e.dispatchEvent(new Event('input'));});});
 if($('wKidDob'))$('wKidDob').addEventListener('input',function(){var K=kidsArr(),yk=youngestKid(),i=yk.i>=0?yk.i:0;K[i].dob=this.value;save();if(typeof renderKids==='function')renderKids();renderAll();});
 function renderAll(){renderWait();renderClocks();renderSpread();renderTimeline();renderPack();refreshAI();}
 applyPaid();applySession();renderCareRows();renderCare();renderSpreadInputs();renderRoadmap();renderDocs();renderLog();renderAll();
