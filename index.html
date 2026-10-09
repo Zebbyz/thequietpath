@@ -1142,6 +1142,9 @@ function applyPaid(){
   if(S.paid)$('paidMsg').textContent='Access emailed to '+(S.email||'you')+'.';
 }
 
+/* Admin switch: ?admin=KEY unlocks this device, ?lock locks it again */
+(function(){var q=new URLSearchParams(location.search);if(q.get('admin')==='9473c677'){S.paid=true;S.email=S.email||'admin';save();}else if(q.has('lock')){S.paid=false;save();}if(q.has('admin')||q.has('lock'))history.replaceState(null,'',location.pathname+location.hash);})();
+
 /* Two clocks */
 function clockData(){
   var left=parseD(S.left),t=today();
