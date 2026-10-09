@@ -726,7 +726,7 @@ one of them takes money you can never get back.</p>
     <p class="lead">Gaps are fine. IRD can trace him. Everything here stays on this device until you choose to print it for your lawyer.</p>
 
     <div class="gated" style="margin-top:30px">
-      <div class="gate-overlay"><div class="gate-card"><h4>The quiet record is part of full access</h4><p>Keep his details, a simple log and your documents together, then print a tidy pack for your lawyer.</p><a href="#access" class="btn sm">Unlock for NZ$79</a></div></div>
+      <div class="gate-overlay"><div class="gate-card"><h4>The quiet record is part of full access</h4><p>Keep his details, a simple log and your documents together, then print a tidy pack for your lawyer.</p><a href="#access" class="btn sm">Click here to take the first step</a></div></div>
       <div class="gate-body">
         <div class="grid2" style="align-items:start">
           <div>
@@ -816,7 +816,7 @@ one of them takes money you can never get back.</p>
     <p class="lead">Built from the dates you've entered. Add them to your phone's calendar and get an email before anything important.</p>
 
     <div class="gated" style="margin-top:30px">
-      <div class="gate-overlay"><div class="gate-card"><h4>Your calendar and reminders are part of full access</h4><p>Every key date in one place, a calendar file for your phone, and reminder emails before each one.</p><a href="#access" class="btn sm">Unlock for NZ$79</a></div></div>
+      <div class="gate-overlay"><div class="gate-card"><h4>Your calendar and reminders are part of full access</h4><p>Every key date in one place, a calendar file for your phone, and reminder emails before each one.</p><a href="#access" class="btn sm">Click here to take the first step</a></div></div>
       <div class="gate-body">
         <div class="grid2" style="align-items:start">
           <div class="card"><ul class="tl" id="timeline"></ul>
@@ -850,7 +850,7 @@ one of them takes money you can never get back.</p>
     <h2>The document pack.</h2>
     <p class="lead">Ready-to-use files, all in the same calm style, so the paperwork feels sorted rather than scary.</p>
     <div class="gated" style="margin-top:20px">
-      <div class="gate-overlay"><div class="gate-card"><h4>The document pack is part of full access</h4><p>Lawyer pack, checklist, log template, the neutral message and a calendar file.</p><a href="#access" class="btn sm">Unlock for NZ$79</a></div></div>
+      <div class="gate-overlay"><div class="gate-card"><h4>The document pack is part of full access</h4><p>Lawyer pack, checklist, log template, the neutral message and a calendar file.</p><a href="#access" class="btn sm">Click here to take the first step</a></div></div>
       <div class="gate-body card">
         <div class="doc-item"><div><h4>Lawyer pack</h4><p>Branded cover, his details, key dates, care time, income range, your log and document index.</p></div><button class="btn sm" type="button" data-act="pack">Print or save PDF</button></div>
         <div class="doc-item"><div><h4>Paper trail checklist</h4><p>Every document your lawyer and IRD are likely to ask for, with boxes to tick.</p></div><button class="btn sm ghost" type="button" data-act="checklist">Print checklist</button></div>
@@ -1566,10 +1566,10 @@ function renderRoadmap(){
     if(si===0){h+=block;var hid=st.items.slice(cut).map(function(it,ii){return stepHtml(it,cut+ii);}).join('');if(hid)rest='<div class="stage">'+hid+'</div>'+rest;}
     else rest+=block;
   });
-  h+='<div class="gated"><div class="gate-overlay"><div class="gate-card"><h4>'+(base-Math.min(6,PLAN[0].items.length))+' more steps in your Quiet Path</h4><p>The full how-to for steps 1 to 6, then protecting your half of the house, mapping everything you built together, claiming everything you\u2019re entitled to, keeping it on paper, the neutral message and the habits that keep it working.</p><a href="#access" class="btn sm">Unlock for NZ$79</a></div></div><div class="gate-body">'+rest+'</div></div>';
+  h+='<div class="gated"><div class="gate-overlay"><div class="gate-card"><h4>'+(base-Math.min(6,PLAN[0].items.length))+' more steps in your Quiet Path</h4><p>The full how-to for steps 1 to 6, then protecting your half of the house, mapping everything you built together, claiming everything you\u2019re entitled to, keeping it on paper, the neutral message and the habits that keep it working.</p><a href="#access" class="btn sm">Click here to take the first step</a></div></div><div class="gate-body">'+rest+'</div></div>';
   var shown=AVOID.slice(0,AVOID.length-3),locked=AVOID.slice(-3);
   h+='<div class="card warm" style="margin-top:10px"><h3>Quietly avoid</h3><ul class="avoid" style="margin:0;padding-left:20px">'+shown.map(function(a){return '<li>'+esc(a)+'</li>';}).join('')+'</ul>'+
-    '<div class="gated mini" style="margin-top:8px"><div class="gate-overlay"><div class="gate-card"><h4>Three more to quietly avoid</h4><p>The last of the list, with the rest of the course.</p><a href="#access" class="btn sm">Unlock for NZ$79</a></div></div><div class="gate-body"><ul class="avoid" style="margin:0;padding-left:20px">'+locked.map(function(a){return '<li>'+esc(a)+'</li>';}).join('')+'</ul></div></div></div>';
+    '<div class="gated mini" style="margin-top:8px"><div class="gate-overlay"><div class="gate-card"><h4>Three more to quietly avoid</h4><p>The last of the list, with the rest of the course.</p><a href="#access" class="btn sm">Click here to take the first step</a></div></div><div class="gate-body"><ul class="avoid" style="margin:0;padding-left:20px">'+locked.map(function(a){return '<li>'+esc(a)+'</li>';}).join('')+'</ul></div></div></div>';
   $('roadmap').innerHTML=h;
   renderProg();
 }
