@@ -210,6 +210,31 @@ textarea{min-height:90px;resize:vertical}
 .seg button{border:0;background:transparent;font:700 .95rem/1 var(--sans);padding:12px 22px;border-radius:999px;cursor:pointer;color:var(--fg)}
 .seg button.on{background:var(--glass);color:var(--night)}
 
+/* What waiting has cost you */
+#wcost{margin-top:44px;background:#0B2226;border:1px solid var(--line);border-top:4px solid var(--amber);border-radius:var(--r);padding:34px 34px 30px;box-shadow:0 24px 60px rgba(4,20,23,.35)}
+#wcost .wpill{display:inline-block;font:700 1rem/1 var(--display);padding:9px 15px 8px;border-radius:999px;background:var(--amber);color:var(--night);margin:0 0 16px}
+#wcost .wpill.ex{background:transparent;color:var(--cream);border:1.5px solid var(--glass)}
+#wcost h3{font:700 clamp(1.8rem,3.4vw,2.5rem)/1.1 var(--display);letter-spacing:-.025em;color:var(--cream);margin:0 0 10px;text-wrap:balance}
+#wcost .wsub{font:400 1.12rem/1.5 var(--sans);color:#C6D3CE;margin:0 0 26px;max-width:44em;text-wrap:pretty}
+#wcost .wsub b{font-weight:560;color:var(--cream)}
+#wcost .wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+#wcost .wt{border-top:2px solid var(--line);padding-top:18px}
+#wcost .wt h4{font:650 1.2rem/1.25 var(--display);color:var(--cream);margin:0;text-wrap:pretty}
+#wcost .wt .wbig{display:block;font:700 clamp(2.4rem,4.6vw,3.3rem)/1 var(--display);letter-spacing:-.035em;color:var(--amber);margin:12px 0 10px;font-variant-numeric:tabular-nums}
+#wcost .wt.lost .wbig{color:#F08A6E}
+#wcost .wt p{font:400 1rem/1.45 var(--sans);color:#A9BAB4;margin:0;text-wrap:pretty}
+#wcost .wt p b{font-weight:560;color:var(--cream)}
+#wcost .wfee{margin-top:30px;background:var(--cream);color:var(--night);border-radius:16px;padding:28px 30px}
+#wcost .wfee p.wc{color:var(--night);font:700 clamp(1.9rem,4vw,2.9rem)/1.1 var(--display);letter-spacing:-.03em;margin:0 0 10px;text-wrap:balance}
+#wcost .wfee .wc em{font-style:normal;color:var(--amber-deep)}
+#wcost .wfee p{font:400 1.08rem/1.45 var(--sans);color:#33504D;margin:0;text-wrap:pretty}
+#wcost .wfee p b{font-weight:560;color:var(--night)}
+#wcost .wkid{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:0 0 24px}
+#wcost .wkid label{font:560 1.05rem/1.3 var(--sans);color:var(--cream)}
+#wcost .wkid input{max-width:220px}
+#wcost .wfine{font:400 .95rem/1.5 var(--sans);color:#A9BAB4;margin:18px 0 0;text-wrap:pretty}
+@media (max-width:860px){#wcost .wgrid{grid-template-columns:1fr;gap:14px}}
+@media (max-width:560px){#wcost{padding:26px 20px 22px;margin-top:34px}#wcost .wfee{padding:22px 20px}#wcost .wt .wbig{font-size:2.5rem}}
 /* Numbers sit on a rule, not in boxes */
 .stat{padding:20px 0 6px;border-top:2px solid var(--line)}
 .stat .v{font-family:var(--display);font-size:clamp(2.4rem,5.4vw,3.6rem);line-height:1;font-weight:700;letter-spacing:-.035em;display:block;margin:10px 0 10px;font-variant-numeric:tabular-nums;color:var(--fg)}
@@ -588,6 +613,20 @@ one of them takes money you can never get back.</p>
       </div>
     </div>
 
+
+    <div id="wcost" aria-live="polite">
+      <span class="wpill ex" id="wPill">Example</span>
+      <h3>What waiting has cost&nbsp;you</h3>
+      <p class="wsub" id="wSub"></p>
+      <div class="wkid"><label for="wKidDob">Your youngest child's date of&nbsp;birth</label><input type="date" id="wKidDob"></div>
+      <div class="wgrid">
+        <div class="wt"><h4>Time left to claim the&nbsp;house</h4><span class="wbig" id="wHouse">—</span><p id="wHouseD"></p></div>
+        <div class="wt lost"><h4>Child support already&nbsp;lost</h4><span class="wbig" id="wLost">—</span><p id="wLostD"></p></div>
+        <div class="wt"><h4>Still ahead of&nbsp;you</h4><span class="wbig" id="wAhead">—</span><p id="wAheadD"></p></div>
+      </div>
+      <div class="wfee"><p class="wc" id="wCents"></p><p id="wPct"></p></div>
+      <p class="wfine">At today's weekly figure. Child support is 18&nbsp;years of payments, and the amount changes as both your incomes change, so treat these as a guide, not an IRD&nbsp;assessment.</p>
+    </div>
     <p class="say" id="cSay"></p>
     <p class="note">For de facto couples, a court claim over relationship property generally has to be filed within 3 years of separating. Settling by agreement well before then is the low-conflict route. Child support runs from the day IRD receives the application and can't be backdated. General information only. Check your own dates with a family lawyer or Community Law.</p>
   </div>
@@ -1509,7 +1548,7 @@ document.querySelectorAll('[data-him]').forEach(function(el){el.value=S.him[el.d
 document.querySelectorAll('[data-her]').forEach(function(el){el.value=S.her[el.dataset.her]||'';el.addEventListener('input',function(){S.her[el.dataset.her]=el.value;save();renderPack();renderTimeline();refreshAI();if(el.dataset.her==='baby'){var sb=$('scriptBox');if(sb)sb.textContent='\u201c'+scriptText()+'\u201d';}});});
 var DOCS=[['title','Record of title for the house (from LINZ)'],['bc','Birth certificate for each child (from DIA)'],['tenancy','Tenancy agreements or bond receipts showing when you moved in together'],['sp','Sale and purchase agreement'],['settle','Settlement statement from the purchase'],['ks','KiwiSaver first-home withdrawal letters, or First Home grant'],['mortgage','Mortgage statements, before and since he left'],['rates','Rates notices and proof of payment'],['power','Power, internet and phone bills, showing whose name they are in'],['insure','Insurance policies for the house, contents, cars and life'],['cars','Car registration and any car finance papers'],['bank','Bank statements for joint and personal accounts'],['loans','Credit card, loan and finance company statements'],['repairs','Receipts for repairs and big purchases for the home'],['pay','Your payslips or proof of income'],['ird','IRD child support application confirmation, with the date received'],['irdl','IRD letters and assessments'],['agree','Any agreement you both signed about property, and your wills'],['cv','His CV, if you already have a copy'],['msgs','Screenshots of messages about money or arrangements'],['log','Your simple log of payments and contact']];
 function renderKids(){var el=$('kidList');if(!el)return;var K=kidsArr();el.innerHTML=K.map(function(k,i){return '<div class="kidrow"><div class="field"><input type="text" placeholder="First name" aria-label="Child '+(i+1)+' first name" data-kid="'+i+'" data-kk="name" value="'+esc(k.name)+'" autocomplete="off"></div><div class="field"><input type="date" aria-label="Child '+(i+1)+' date of birth" data-kid="'+i+'" data-kk="dob" value="'+esc(k.dob)+'"></div>'+(K.length>1?'<button type="button" class="kidx" data-kidx="'+i+'" aria-label="Remove this child">\u00d7</button>':'')+'</div>';}).join('');}
-function kidsChanged(){S.her.baby=(kidsArr()[0].name||'');save();renderPack();renderTimeline();refreshAI();var sb=$('scriptBox');if(sb)sb.textContent='\u201c'+scriptText()+'\u201d';}
+function kidsChanged(){S.her.baby=(kidsArr()[0].name||'');save();renderWait();renderPack();renderTimeline();refreshAI();var sb=$('scriptBox');if(sb)sb.textContent='\u201c'+scriptText()+'\u201d';}
 if($('kidList')){$('kidList').addEventListener('input',function(e){var t=e.target;if(t.dataset.kid==null)return;kidsArr()[+t.dataset.kid][t.dataset.kk]=t.value;kidsChanged();});
 $('kidList').addEventListener('click',function(e){var b=e.target.closest('[data-kidx]');if(!b)return;e.preventDefault();kidsArr().splice(+b.dataset.kidx,1);renderKids();kidsChanged();});
 $('addKid').addEventListener('click',function(e){e.preventDefault();kidsArr().push({name:'',dob:''});save();renderKids();});renderKids();}
@@ -1735,7 +1774,46 @@ $('resetProto').addEventListener('click',function(){S.paid=false;save();applyPai
 
 /* Init */
 $('leftDate').value=S.left;$('appliedDate').value=S.applied;$('weekly').value=S.weekly;
-function renderAll(){renderClocks();renderSpread();renderTimeline();renderPack();refreshAI();}
+
+/* What waiting has cost you */
+function monthsDays(a,b){if(b<=a)return {m:0,d:0};var m=(b.getFullYear()-a.getFullYear())*12+b.getMonth()-a.getMonth();if(addMonths(a,m)>b)m--;return {m:m,d:diffDays(addMonths(a,m),b)};}
+function mdTxt(o){var m=o.m,d=o.d;var mt=m?m+'\u00a0month'+(m===1?'':'s'):'',dt=d?d+'\u00a0day'+(d===1?'':'s'):'';return mt&&dt?mt+' and '+dt:(mt||dt||'0\u00a0days');}
+function youngestKid(){var K=kidsArr(),y=null,yi=-1;K.forEach(function(k,i){var d=parseD(k.dob);if(d&&(!y||d>y)){y=d;yi=i;}});return {d:y,i:yi};}
+function centsTxt(c){return c>=0.5?Math.round(c)+'c':'less than 1c';}
+function pct2(x){return x>=1?num.format(Math.round(x*10)/10)+'%':x.toPrecision(2)+'%';}
+function renderWait(){
+  if(!$('wcost'))return;
+  var c=clockData(),yk=youngestKid(),t=today(),wk=c?c.wk:0;
+  var ki=$('wKidDob');if(ki&&document.activeElement!==ki)ki.value=yk.d?iso(yk.d):'';
+  var mine=!!(c&&wk>0&&yk.d);
+  var houseTxt,houseD,lost,lostD,ahead,aheadD;
+  if(mine){
+    var md=monthsDays(t,c.deadline);
+    houseTxt=c.leftDays>0?(md.m>=1?md.m+(md.m===1?' month':' months'):md.d+(md.d===1?' day':' days')):'Passed';
+    houseD=c.leftDays>0?(md.d?mdTxt(md)+' until ':'Until ')+fmtD(c.deadline)+', 3\u00a0years after he left.':'The 3-year mark was '+fmtD(c.deadline)+'. Talk to a family lawyer this week about what can still be done.';
+    lost=c.gone;
+    lostD=(c.applied?int.format(Math.round(c.weeks))+' weeks between him leaving and IRD receiving your application, at '+money(wk)+' a week.':int.format(Math.round(c.weeks))+' weeks since he left, at '+money(wk)+' a week, and still counting until you apply.')+' It can\u2019t be backdated.';
+    var e18=addYears(yk.d,18),wa=Math.max(0,diffDays(t,e18)/7);
+    ahead=wk*wa;
+    aheadD=ahead>0?'At today\u2019s rate, until your youngest turns 18 on '+fmtD(e18)+'. About '+int.format(Math.round(wa))+' more weeks.':'Your youngest has already turned 18.';
+  }else{
+    houseTxt='12 months';houseD='Separated two years ago, so a year is left on the 3-year property clock.';
+    lost=9880;lostD='104 weeks at $95 a week since he left, with no application in. It can\u2019t be backdated.';
+    ahead=79040;aheadD='At $95 a week for the 16 years until a 2\u2011year\u2011old turns&nbsp;18.';
+  }
+  var miss=[];if(!c)miss.push('the date he left');if(!(wk>0))miss.push('your weekly figure');if(!yk.d)miss.push('your youngest child\u2019s date of birth');
+  $('wPill').textContent=mine?'Your numbers':'Example';$('wPill').className='wpill'+(mine?'':' ex');
+  $('wSub').innerHTML=mine?'Worked out from the dates and weekly figure you entered. Nothing leaves this&nbsp;device.':'<b>Example:</b> $95 a week, a 2\u2011year\u2011old, separated two years ago. Add '+esc(andList(miss))+' to see your&nbsp;own.';
+  $('wHouse').textContent=houseTxt;$('wHouseD').textContent=houseD;
+  $('wLost').textContent=money(lost);$('wLostD').textContent=lostD;
+  $('wAhead').textContent=ahead>0?money(ahead):'\u2014';$('wAheadD').innerHTML=aheadD;
+  if(ahead>0){var cents=79/ahead*10000;
+    $('wCents').innerHTML='The Quiet Path costs about <em>'+centsTxt(cents)+'</em> for every $100 '+(mine?'you\u2019re':'she\u2019s')+'&nbsp;owed.';
+    $('wPct').innerHTML='NZ$79 once, against '+money(ahead)+' still ahead. That\u2019s <b>'+pct2(79/ahead*100)+'</b> of&nbsp;it.';
+  }else{$('wCents').textContent='Add your youngest child\u2019s date of birth.';$('wPct').textContent='';}
+}
+if($('wKidDob'))$('wKidDob').addEventListener('input',function(){var K=kidsArr(),yk=youngestKid(),i=yk.i>=0?yk.i:0;K[i].dob=this.value;save();if(typeof renderKids==='function')renderKids();renderAll();});
+function renderAll(){renderWait();renderClocks();renderSpread();renderTimeline();renderPack();refreshAI();}
 applyPaid();applySession();renderCareRows();renderCare();renderSpreadInputs();renderRoadmap();renderDocs();renderLog();renderAll();
 if(location.hash==='#pay') openPay();
 if(location.hash==='#signin') openSign();
