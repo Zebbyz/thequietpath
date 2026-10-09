@@ -254,6 +254,7 @@ body:not(.paid) .gated > .gate-overlay{display:flex;position:absolute;inset:0;z-
 .step .dd{display:block;color:var(--muted);font-size:.95rem;margin-top:4px;max-width:46em}
 .step.done .t{text-decoration:line-through;text-decoration-color:rgba(143,191,179,.6);opacity:.7}
 .step.done .dd{opacity:.6}
+.tagx.now{background:#E8553B;color:#fff}
 .tagx{display:table;font:700 .64rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--night);background:var(--amber);padding:5px 8px;border-radius:999px;margin:0 0 8px}
 .script{font-family:var(--display);font-size:clamp(1.3rem,2.4vw,1.6rem);font-weight:350;line-height:1.35;letter-spacing:-.01em;padding:4px 0 4px 26px;border-left:3px solid var(--amber);margin:0 0 20px;max-width:30em}
 .avoid li{margin-bottom:8px}
@@ -1292,6 +1293,8 @@ var AIPROMPT="I've separated from my partner in New Zealand and need to build an
 var EXTRA={AIDATES:'<div class="ai" onclick="event.preventDefault()"><p class="ai-h">Let AI find the dates for you</p><p>Copy this prompt and paste it into an AI assistant that can read <b>your own</b> email and calendar, such as ChatGPT, Gemini, Copilot or Claude with your email connected. Never use his accounts.</p><pre class="ai-prompt">'+esc(AIPROMPT)+'</pre><button type="button" class="btn sm" data-act="copyai">Copy the prompt</button></div>'};
 var PLAN=[
  {when:'This week',title:'Lock in the start date',intro:'Support only runs from the day IRD receives the application. Every day of waiting is money gone for good.',items:[
+  ['Write down the key dates','When you started living together, when you bought, when he left. Under 3 years together, different contribution-based rules can apply, so your KiwiSaver deposit matters more.',2,0,'AIDATES'],
+  ['Diary the 3-year time limit','For de facto couples a court claim generally has to be filed within 3 years of separating. It\u2019s already on your calendar here.',2],
   ['Apply to Inland Revenue for child support','Online through myIR or by phone. A short, complete application today beats a perfect one next month.',1],
   ['Choose \u201cIRD collects\u201d for payments','IRD deducts from his wages or follows him up. You are not the debt collector.'],
   ['Gather what you know about him','Full name, date of birth, last address, employer, IRD number if you have it. Gaps are fine, IRD can trace him. Keep it in the quiet record.'],
@@ -1300,8 +1303,6 @@ var PLAN=[
   ['Answer every IRD follow-up fast','An incomplete application can lose the start date. Diary any deadline IRD gives you.']]},
  {when:'Now, in parallel',title:'Protect your half of the house',intro:'Your share of the house is likely your biggest asset. Relationship property is separate from child support, and it can be settled quietly by agreement.',items:[
   ['Book a family lawyer for relationship property','Any binding agreement needs independent legal advice for each of you anyway. Legal aid may be available. Community Law can point you to one.',1],
-  ['Write down the key dates','When you started living together, when you bought, when he left. Under 3 years together, different contribution-based rules can apply, so your KiwiSaver deposit matters more.',0,0,'AIDATES'],
-  ['Diary the 3-year time limit','For de facto couples a court claim generally has to be filed within 3 years of separating. It\u2019s already on your calendar here.'],
   ['Get the title and check how you own it','If you\u2019re joint tenants and either of you died, the whole house would pass to the survivor. Ask your lawyer about severing the joint tenancy.',0,['https://lrs.linz.govt.nz/search/','Order the title from LINZ Land Record Search']],
   ['Ask about a notice of claim on the title','Stops the house being sold or remortgaged behind your back. A protective step, not an attack.'],
   ['Collect the paper trail','KiwiSaver first-home withdrawal letter, sale and purchase agreement, settlement statement, mortgage statements, rates and insurance.'],
@@ -1333,7 +1334,7 @@ function renderRoadmap(){
   PLAN.forEach(function(st,si){
     var b0=base;base+=st.items.length;
     function stepHtml(it,ii){var id='s'+si+'_'+ii,on=!!S.ticks[id];
-      return '<label class="step'+(on?' done':'')+'"><input type="checkbox" data-tick="'+id+'"'+(on?' checked':'')+'><span class="no">'+(b0+ii+1)+'</span><span>'+(it[2]?'<span class="tagx">Most important</span>':'')+'<span class="t">'+esc(it[0])+'</span><span class="dd">'+esc(it[1])+'</span>'+(it[3]?'<a class="steplink" href="'+it[3][0]+'" target="_blank" rel="noopener">'+esc(it[3][1])+' \u2197</a>':'')+(it[4]&&EXTRA[it[4]]?EXTRA[it[4]]:'')+'</span></label>';}
+      return '<label class="step'+(on?' done':'')+'"><input type="checkbox" data-tick="'+id+'"'+(on?' checked':'')+'><span class="no">'+(b0+ii+1)+'</span><span>'+(it[2]?'<span class="tagx'+(it[2]===2?' now':'')+'">'+(it[2]===2?'Do this today, no delay':'Most important')+'</span>':'')+'<span class="t">'+esc(it[0])+'</span><span class="dd">'+esc(it[1])+'</span>'+(it[3]?'<a class="steplink" href="'+it[3][0]+'" target="_blank" rel="noopener">'+esc(it[3][1])+' \u2197</a>':'')+(it[4]&&EXTRA[it[4]]?EXTRA[it[4]]:'')+'</span></label>';}
     var cut=si===0?Math.max(0,st.items.length-2):st.items.length;
     var steps=st.items.slice(0,cut).map(stepHtml).join('');
     var block='<div class="stage"><div class="stage-head"><span class="when">'+esc(st.when)+'</span><h3>'+esc(st.title)+'</h3></div><p>'+esc(st.intro)+'</p>'+steps+'</div>';
@@ -1341,7 +1342,7 @@ function renderRoadmap(){
     if(si===0){h+=block;var hid=st.items.slice(cut).map(function(it,ii){return stepHtml(it,cut+ii);}).join('');if(hid)rest='<div class="stage">'+hid+'</div>'+rest;}
     else rest+=block;
   });
-  h+='<div class="gated"><div class="gate-overlay"><div class="gate-card"><h4>The rest of your course</h4><p>Protecting your half of the house, claiming everything you\u2019re entitled to, keeping it on paper, the neutral message and the habits that keep it working. 24 more steps.</p><a href="#access" class="btn sm">Unlock for NZ$79</a></div></div><div class="gate-body">'+rest+'</div></div>';
+  h+='<div class="gated"><div class="gate-overlay"><div class="gate-card"><h4>The rest of your course</h4><p>Protecting your half of the house, claiming everything you\u2019re entitled to, keeping it on paper, the neutral message and the habits that keep it working. '+(base-PLAN[0].items.length+2)+' more steps.</p><a href="#access" class="btn sm">Unlock for NZ$79</a></div></div><div class="gate-body">'+rest+'</div></div>';
   var shown=AVOID.slice(0,AVOID.length-3),locked=AVOID.slice(-3);
   h+='<div class="card warm" style="margin-top:10px"><h3>Quietly avoid</h3><ul class="avoid" style="margin:0;padding-left:20px">'+shown.map(function(a){return '<li>'+esc(a)+'</li>';}).join('')+'</ul>'+
     '<div class="gated mini" style="margin-top:8px"><div class="gate-overlay"><div class="gate-card"><h4>Three more to quietly avoid</h4><p>The last of the list, with the rest of the course.</p><a href="#access" class="btn sm">Unlock for NZ$79</a></div></div><div class="gate-body"><ul class="avoid" style="margin:0;padding-left:20px">'+locked.map(function(a){return '<li>'+esc(a)+'</li>';}).join('')+'</ul></div></div></div>';
