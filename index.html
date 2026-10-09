@@ -612,6 +612,11 @@ section.sec.opening{padding:72px 0 0;background:linear-gradient(180deg,var(--nig
 .opening p:last-child{margin-bottom:0}
 section.sec.opening + section.sec.hero{padding-top:96px}
 @media (max-width:640px){section.sec.opening{padding-top:48px}section.sec.opening + section.sec.hero{padding-top:64px}}
+
+footer .footnote{font:700 1.08rem/1.45 var(--display);color:#F1F5F3;margin:18px 0 10px}
+footer .footnote a{color:var(--amber);text-underline-offset:4px;margin-left:6px;white-space:nowrap}
+.termsnote{font:650 1rem/1.4 var(--display);margin:12px 0 0;color:var(--fg)}
+.termsnote a{color:inherit;text-decoration:underline;text-decoration-color:var(--amber);text-underline-offset:3px}
 </style>
 </head>
 <body>
@@ -1003,6 +1008,7 @@ one of them takes money you can never get back.</p>
       </ul>
       <div id="payArea">
         <button type="button" class="btn" id="openPay" style="width:100%;padding:18px">Get full access · NZ$79</button>
+        <p class="termsnote">By continuing you agree to the <a href="terms.html">Terms of&nbsp;use</a>.</p>
         <p class="small muted" style="margin:12px 0 0">Your access link is emailed to you straight away. The charge shows on your statement under a plain name, so it stays private.</p>
       </div>
       <div id="paidArea" style="display:none">
@@ -1099,6 +1105,7 @@ one of them takes money you can never get back.</p>
     <span class="wm"><span class="wm-q">the quiet</span> <span class="wm-p">path</span></span>
     <p style="margin-top:10px"><i>Let the system do the chasing. You keep the peace.</i></p>
     <p class="fine"><b>General information only, not legal advice.</b> Rules and entitlements change, so check the details for your situation with IRD, MSD, Community Law or a family lawyer. The Quiet Path is not part of Inland Revenue or any government agency. Any weekly child support figure shown is one you entered, not an IRD assessment.</p>
+    <p class="footnote">The Quiet Path gives information and tools, not legal&nbsp;advice. <a href="terms.html">Terms of&nbsp;use</a></p>
     <p class="small">Prototype · <button type="button" class="linkbtn" id="resetProto">Reset the prototype (lock it again)</button></p>
   </div>
 </footer>
@@ -1116,6 +1123,7 @@ one of them takes money you can never get back.</p>
       <div class="row"><div class="field"><label class="f" for="payExp">Expiry</label><input type="text" id="payExp" value="12 / 29"></div><div class="field"><label class="f" for="payCvc">CVC</label><input type="text" id="payCvc" value="123"></div></div>
       <p class="small" id="payErr" style="color:#A3361F;display:none">Please add an email so we can send your access link.</p>
       <button type="button" class="btn" id="doPay" style="width:100%;padding:17px">Pay NZ$79</button>
+      <p class="termsnote" style="text-align:center">By continuing you agree to the <a href="terms.html" target="_blank" rel="noopener">Terms of&nbsp;use</a>.</p>
       <p style="text-align:center;margin:14px 0 0"><button type="button" class="linkbtn small" data-close>Not now</button></p>
     </div>
     <div id="payStep2" style="display:none;text-align:center">

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#0E2A2F">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms of use · The Quiet Path</title>
+<meta name="description" content="Terms of use for The Quiet Path.">
+<meta name="robots" content="noindex">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E2A2F'/%3E%3Ctext x='15' y='42' font-family='Arial,sans-serif' font-weight='800' font-size='40' fill='%23F4EADB'%3Ep%3C/text%3E%3Crect x='13' y='49' width='38' height='5' rx='2.5' fill='%23F0A23B'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Newsreader:ital,opsz,wght@0,8..72,400;0,8..72,560;1,8..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0E2A2F;   /* main ground */
+  --deep:#173C42;    /* alternate bands */
+  --glass:#8FBFB3;   /* sea glass: labels, ticks, progress */
+  --cream:#F4EADB;   /* shell cream: type on dark, paper */
+  --amber:#F0A23B;   /* the one warm light */
+  --sand:#E9DCC6;    /* daylight bands */
+  --amber-deep:#9A520C;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --sans:"Newsreader",Georgia,serif;
+  --r:20px;
+  --max:1120px;
+  /* theme tokens (dark by default) */
+  --bg:var(--night);
+  --fg:var(--cream);
+  --muted:#A9BAB4;
+  --line:rgba(143,191,179,.22);
+  --panel:rgba(244,234,219,.05);
+  --label:var(--glass);
+  --accent:var(--amber);
+  --field:rgba(4,20,23,.32);
+  --field-line:rgba(143,191,179,.34);
+  --soft:rgba(143,191,179,.14);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--night);color:var(--fg);font:650 1.18rem/1.55 var(--display);letter-spacing:-.005em;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 26px}
+.wm{font-family:var(--display);font-size:1.6rem;letter-spacing:-.03em;color:var(--fg);text-decoration:none;white-space:nowrap;line-height:1;display:inline-block}
+.wm .wm-q{font-weight:300;font-style:normal;font-variation-settings:"wdth" 82;opacity:.9}
+.wm .wm-p{font-weight:800;font-style:normal;color:var(--fg);font-variation-settings:"wdth" 100;text-decoration:underline;text-decoration-color:var(--amber);text-decoration-thickness:.12em;text-underline-offset:.12em;text-decoration-skip-ink:none}
+.wm-line{display:block;font:600 .62rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--label);margin-top:8px}
+
+header.top{position:sticky;top:0;z-index:40;background:rgba(14,42,47,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(143,191,179,.14)}
+.top .wrap{display:flex;align-items:center;gap:22px;height:108px}
+.top nav{display:flex;gap:28px;align-items:center;margin-left:auto}
+.top nav a{color:var(--cream);text-decoration:none;font-size:1.35rem;font-weight:600;white-space:nowrap;opacity:.92}
+header.top .wm-line{display:block;font-family:var(--sans)}
+.top nav a:hover{opacity:1;color:var(--amber)}
+#quickExit{position:fixed;right:16px;bottom:16px;z-index:100;background:var(--cream);color:var(--night);border:0;border-radius:999px;padding:14px 20px;font:700 1rem/1 var(--display);touch-action:manipulation;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+#quickExit:hover{background:#fff}
+#quickExit small{display:block;font-weight:500;font-size:.78rem;opacity:.75;margin-top:4px}
+#hideCover{position:fixed;inset:0;z-index:2147483647;display:none;background:#fff;margin:0;font-family:Arial,Helvetica,sans-serif}
+#hideCover.on{display:block}
+#hideCover .hc-bar{height:56px;display:flex;align-items:center;padding:0 22px;color:#fff;font:700 21px/1 Arial,Helvetica,sans-serif;letter-spacing:-.01em}
+#hideCover.met{background:linear-gradient(180deg,#1d4b87 0,#1d4b87 30%,#417bba 60%,#417bba 100%)}
+#hideCover.met .hc-bar{background:#0f2a4f}
+#hideCover.goo .hc-bar{color:#5f6368;background:#fff;height:auto;padding:22px 22px 18px;border-bottom:1px solid #ebebeb}
+#hideCover .hc-q{flex:1;max-width:690px;border:1px solid #dfe1e5;border-radius:24px;padding:12px 20px;font:400 16px/1.2 Arial,sans-serif;color:#202124;box-shadow:0 1px 6px rgba(32,33,36,.18);margin-left:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#hideCover .hc-g{font:500 26px/1 Arial,sans-serif;color:#4285f4}
+#decoyFrame{position:fixed;inset:0;width:100%;height:100%;border:0;margin:0;padding:0;z-index:2147483646;opacity:0;pointer-events:none;background:#fff}
+#decoyFrame.on{opacity:1;pointer-events:auto}
+#hideCover.garden .hc-bar{background:#fff;color:#2f5a2a;border-bottom:1px solid #e3e3e3;height:80px}
+#hideCover.nzta .hc-bar{background:#fff;color:#14385c;border-bottom:4px solid #14385c;height:72px}
+:root{--dusk:url("data:image/webp;base64,UklGRkIcAABXRUJQVlA4IDYcAADwCgKdASoIB7EDPm02mUmvLCshILVIOeANiWlu4XGvKfsXu0LfjP/TNFaKNRpjPuHR0Kh1iOj09fq5+H4RmfX0wCn/CwX/4CBGZ06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnkJW/jbUzha3LWV9GxtqZwtblrK+jY21M4Wty1lfRsbamcLW5ayvo2NtTOFrctZX0bG2pnC1uWsrq04cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhwzmUjLsupd2XMuy6l3Zcy7LqXdlzLsupd2XMuy6l3Zcy7LqXdlzLsupd2XMuy6l3Zcy7LqXdlzLsupd2X69evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169evXr169ep4qooYFR/JbcGQnS10TcCo/ktuDITpa6JuBUfyW3BkJ0tdE3AqP5LbgyE6WuibgVH8ltwZCdLXRNwKj+S24MhOlrooIuZd2XMuy6l3Zcy7LqXdlzLsupd2XMuy6l3Zcy7LqXdlzLsupd2XMuy6l3Zcy7LqXdlzLsupd2XMu0r1acOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOHByl3Zcy7LqXdlzLsupd2XMuy6l3Zc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")}
+.wm{display:inline-flex;align-items:center;gap:14px}
+.wm-thumb{flex:none;width:66px;height:35px;border-radius:9px;background:#0E2A2F var(--dusk) 50% 72%/cover no-repeat;box-shadow:0 0 0 1px rgba(143,191,179,.25)}
+.wm-txt{display:inline-block}
+@media (max-width:520px){.wm{gap:9px}.wm-thumb{width:40px;height:22px;border-radius:6px}.top .wrap{gap:12px;padding:0 18px}}
+@media (max-width:350px){header.top .wm-line{display:none}}
+@media (max-width:420px){.top .wm{font-size:1.25rem}header.top .wm-line{letter-spacing:.1em;font-size:.56rem}}
+.top .back{margin-left:auto;font:700 1.15rem/1 var(--display);color:var(--cream);text-decoration:none;white-space:nowrap}
+.top .back:hover{color:var(--amber)}
+@media (max-width:520px){.top .wrap{height:66px;gap:12px;padding:0 18px}.top .wm{font-size:1.4rem}.top .back{font-size:1rem}}
+.terms{padding:72px 0 120px}
+.terms .col{max-width:44rem}
+.terms h1{font:780 clamp(2.4rem,6vw,4rem)/1.02 var(--display);letter-spacing:-.03em;color:var(--cream);margin:0 0 14px;font-variation-settings:"wdth" 92}
+.terms .upd{font:650 1.05rem/1.4 var(--display);color:var(--glass);margin:0 0 36px}
+.terms h2{font:760 clamp(1.45rem,2.6vw,1.8rem)/1.15 var(--display);letter-spacing:-.02em;color:var(--cream);margin:48px 0 12px;text-wrap:balance}
+.terms p,.terms li{color:#F1F5F3;margin:0 0 16px;text-wrap:pretty}
+.terms ul{padding-left:22px;margin:0 0 16px}
+.terms a{color:var(--amber);text-underline-offset:4px}
+.terms .lead{font-size:1.32rem;line-height:1.5}
+.terms .close{margin-top:56px;padding:28px 30px;border-radius:var(--r);background:rgba(244,234,219,.06);border-left:4px solid var(--amber);font:700 1.3rem/1.5 var(--display);color:var(--cream)}
+@media (max-width:640px){.terms{padding:44px 0 110px}body{font-size:1.1rem}.terms .close{padding:22px 20px}}
+</style>
+</head>
+<body>
+<div id="hideCover" aria-hidden="true"></div>
+<button id="quickExit" type="button" aria-label="Quick exit: leave this site now">Quick exit<small>or press Esc twice</small></button>
+
+<header class="top">
+  <div class="wrap">
+    <a href="/" class="wm" aria-label="The Quiet Path home"><span class="wm-thumb" aria-hidden="true"></span><span class="wm-txt"><span class="wm-q">the quiet</span> <span class="wm-p">path</span><span class="wm-line">Tracking what you’re owed</span></span></a>
+    <a class="back" href="/">Back to the&nbsp;site</a>
+  </div>
+</header>
+
+<main class="terms">
+  <div class="wrap"><div class="col">
+    <h1>Terms of use</h1>
+    <p class="upd">Last updated 9 October&nbsp;2026</p>
+
+    <p class="lead">These terms explain what The Quiet Path is, what it isn’t and how it works. By using the site, you agree to them. If you don’t agree, please don’t use&nbsp;it.</p>
+
+    <h2>What The Quiet Path does</h2>
+    <p>The Quiet Path collects, organises and displays information and calculators, so you can see where things stand, what’s missing and what may be&nbsp;owed.</p>
+    <p>It sets out a logical way forward and helps you understand the whole process, one step at a time. The information is drawn from publicly available sources, such as Inland Revenue (IRD), other government websites and free public&nbsp;websites.</p>
+
+    <h2>Information, not advice</h2>
+    <p>The Quiet Path doesn’t give advice of any kind. Nothing on the site is legal advice, a legal opinion or financial advice, and it isn’t a substitute for advice from a qualified professional who knows your&nbsp;situation.</p>
+    <p>The site never contacts anyone on your behalf. It doesn’t contact the other parent, IRD, your bank, a lawyer or anyone else. Any letter, summary or message it helps you prepare is a draft. You decide whether to use it, change it or send&nbsp;it.</p>
+    <p>The Quiet Path is not part of Inland Revenue or any government&nbsp;agency.</p>
+
+    <h2>Check before you act</h2>
+    <p>Rules, rates and processes change, and the information here may be out of date or incomplete. Before you act on anything, check it with IRD, Community Law or a&nbsp;lawyer.</p>
+    <p>Figures from the calculators are estimates and illustrations, based on what you enter. IRD makes the actual child support&nbsp;assessments.</p>
+
+    <h2>It runs automatically</h2>
+    <p>The site works automatically in your browser. No person reviews your information, and no one gives you individual feedback or advice through the&nbsp;site.</p>
+
+    <h2>Your information</h2>
+    <p>What you type into The Quiet Path, such as dates, names, notes, ticks and your log, is saved in your browser on this device. The site doesn’t send it to us or to anyone else, and we can’t see it. Documents you add to your folder also stay on this&nbsp;device.</p>
+    <p>A few things reach other services in the ordinary way websites work. The site is hosted by GitHub Pages and its fonts come from Google Fonts, and both receive standard web requests, such as your IP address, when a page loads. If you use Quick exit, the everyday page you’ve chosen may be loaded in the background so it can appear instantly, so that site receives a normal visit. Anything you copy out of the site, such as the AI prompt you paste into an AI assistant, is handled by the service you paste it&nbsp;into.</p>
+    <p>You can clear what the site has saved on this device at any time. On the main page, go to Keeping this private and choose “Clear everything The Quiet Path has saved&nbsp;here”.</p>
+
+    <h2>Payment and access</h2>
+    <p>Full access is a one-off payment of NZ$79, including GST, with no subscription. Access is unlocked in the browser on the device you use. It doesn’t carry over to another device or browser, and clearing this site’s saved data removes it on that&nbsp;device.</p>
+    <p>At the moment, checkout is in preview and no real payment is&nbsp;taken.</p>
+    <!-- GUY: Refund policy placeholder. No refund policy exists yet, so none is stated here. Add a short, plain refunds paragraph once you decide one. -->
+    <!-- GUY: When real payments go live (Stripe), replace the preview line above with how payment is processed (for example, that card details are handled by the payment provider and never seen by us) and how access is delivered. -->
+
+    <h2>Your decisions</h2>
+    <p>You’re responsible for your own decisions and for using the information lawfully. You use the site at your own&nbsp;risk.</p>
+
+    <h2>Our responsibility</h2>
+    <p>We work to keep The Quiet Path accurate and useful, but we can’t promise it is complete, current or free of errors, or that it suits your situation. To the extent the law allows, we aren’t liable for any loss or cost that comes from using the site or relying on its&nbsp;information.</p>
+    <p>Nothing in these terms limits any rights you have under New Zealand law that can’t be&nbsp;excluded.</p>
+
+    <h2>Free help</h2>
+    <ul>
+      <li><a href="https://communitylaw.org.nz/" target="_blank" rel="noopener">Community Law</a> gives free legal help and can point you to a family&nbsp;lawyer.</li>
+      <li><a href="https://www.ird.govt.nz/child-support" target="_blank" rel="noopener">Inland Revenue: child support</a> explains how child support works and how to&nbsp;apply.</li>
+    </ul>
+    <p>If you’re ever in danger, call&nbsp;111.</p>
+
+    <h2>Changes to these terms</h2>
+    <p>We may update these terms from time to time. The date at the top shows when they last&nbsp;changed.</p>
+
+    <p class="close">We wish you well on your path, and hope you receive what is due, for the benefit of your child or&nbsp;children.</p>
+  </div></div>
+</main>
+
+<script>
+(function(){
+"use strict";
+var S={};try{S=JSON.parse(localStorage.getItem('quietpath.v1')||'{}')||{};}catch(e){}
+if(!S.dv&&S.decoy==='met')S.decoy='garden';
+var $=function(id){return document.getElementById(id);};
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+var DECOYS={
+  garden:{url:'https://awapuni.co.nz/',title:'Plants Online NZ | New Zealand\u2019s Largest Range, Nationwide Direct Delivery',cls:'garden',bar:'Awapuni Nurseries',frame:true,icon:'https://awapuni.co.nz/favicon.png'},
+  met:{url:'https://www.metservice.com/national',title:'MetService - Te Ratonga Tirorangi',cls:'met',bar:'MetService'},
+  rubbish:{url:'https://www.google.co.nz/search?q=rubbish+and+recycling+collection+day',title:'rubbish and recycling collection day - Google Search',cls:'goo',q:'rubbish and recycling collection day'},
+  road:{url:'https://nzta.govt.nz/roadcode/general-road-code/about-driving/giving-way/giving-way-at-roundabouts',title:'Giving way at roundabouts | NZ Transport Agency Waka Kotahi',cls:'nzta',bar:'NZ Transport Agency Waka Kotahi'},
+  dinner:{url:'https://www.google.co.nz/search?q=easy+weeknight+dinner+ideas+nz',title:'easy weeknight dinner ideas nz - Google Search',cls:'goo',q:'easy weeknight dinner ideas nz'}
+};
+function decoy(){return DECOYS[S.decoy]||DECOYS.garden;}
+var d=decoy(),c=$('hideCover');
+c.className=d.cls;
+c.innerHTML=d.cls==='goo'?'<div class="hc-bar"><span class="hc-g">Google</span><span class="hc-q">'+esc(d.q)+'</span></div>':'<div class="hc-bar">'+esc(d.bar)+'</div>';
+var dFrame=null,dReady=false;
+setTimeout(function(){
+  var l=document.createElement('link');l.rel='preconnect';l.href=new URL(d.url).origin;document.head.appendChild(l);
+  if(d.frame){
+    var f=document.createElement('iframe');f.id='decoyFrame';f.setAttribute('aria-hidden','true');f.tabIndex=-1;f.inert=true;f.loading='eager';f.referrerPolicy='no-referrer';
+    f.setAttribute('sandbox','allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation');
+    f.onload=function(){dReady=true;};f.src=d.url;document.body.appendChild(f);dFrame=f;
+  }else{
+    try{if(HTMLScriptElement.supports&&HTMLScriptElement.supports('speculationrules')){var sr=document.createElement('script');sr.type='speculationrules';sr.textContent=JSON.stringify({prefetch:[{source:'list',urls:[d.url],eagerness:'immediate'}]});document.head.appendChild(sr);}
+    else{var lp=document.createElement('link');lp.rel='prefetch';lp.as='document';lp.href=d.url;document.head.appendChild(lp);}}catch(e){}
+  }
+},d.frame?1500:600);
+function exitNow(){
+  if(d.frame&&dFrame&&dReady){
+    if(dFrame.classList.contains('on'))return;
+    try{
+      dFrame.inert=false;dFrame.removeAttribute('aria-hidden');dFrame.classList.add('on');
+      [].forEach.call(document.body.children,function(el){if(el!==dFrame)el.style.display='none';});
+      document.title=d.title;
+      document.querySelectorAll('link[rel~="icon"]').forEach(function(l){l.href=d.icon;});
+      try{history.replaceState(null,'','/');history.pushState({qp:1},'','/');}catch(e){}
+    }catch(e){}
+    var gone=false;
+    function swap(){if(gone)return;gone=true;window.location.replace(d.url);}
+    document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')swap();});
+    window.addEventListener('pagehide',swap);
+    window.addEventListener('popstate',swap);
+    window.addEventListener('blur',function(){setTimeout(function(){if(document.activeElement!==dFrame)swap();},0);});
+    return;
+  }
+  try{c.classList.add('on');document.title=d.title;document.body.style.overflow='hidden';}catch(e){}
+  window.location.replace(d.url);
+}
+$('quickExit').addEventListener('click',exitNow);
+var lastEsc=0;
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var n=Date.now();if(n-lastEsc<800)exitNow();lastEsc=n;}});
+})();
+</script>
+</body>
+</html>
