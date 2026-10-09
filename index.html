@@ -273,7 +273,8 @@ body:not(.paid) .gated > .gate-overlay{display:flex;position:absolute;inset:0;z-
 .step.done .t{text-decoration:line-through;text-decoration-color:rgba(143,191,179,.6);opacity:.7}
 .step.done .dd{opacity:.6}
 .tagx.now{background:#E8553B;color:#fff}
-.tagx{display:table;font:700 .64rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--night);background:var(--amber);padding:5px 8px;border-radius:999px;margin:0 0 8px}
+.tagx.now::before{content:"";width:7px;height:7px;border-radius:50%;background:#fff;flex:none;box-shadow:0 0 0 3px rgba(255,255,255,.25)}
+.tagx{display:flex;width:max-content;align-items:center;gap:8px;font:700 .7rem/1 var(--display);font-stretch:100%;letter-spacing:.09em;text-transform:uppercase;color:var(--night);background:var(--amber);padding:7px 13px 6px;border-radius:999px;margin:0 0 10px}
 .script{font-family:var(--display);font-size:clamp(1.3rem,2.4vw,1.6rem);font-weight:350;line-height:1.35;letter-spacing:-.01em;padding:4px 0 4px 26px;border-left:3px solid var(--amber);margin:0 0 20px;max-width:30em}
 .avoid li{margin-bottom:8px}
 .docdrop{display:block;border:2px dashed var(--field-line);border-radius:var(--r);padding:30px;text-align:center;background:var(--field);cursor:pointer;transition:border-color .2s,background .2s}
@@ -425,7 +426,8 @@ footer .linkbtn{color:var(--amber)}
 #roadmap .step .no{font-size:1.8rem;width:1.5em}
 #roadmap .step .t{font-size:1.42rem;font-weight:700;color:#F6F1E8}
 #roadmap .step .dd{font-size:1.18rem;font-weight:560;color:#D2DDD9;line-height:1.55}
-#roadmap .tagx{font-size:.8rem;padding:6px 12px}
+#roadmap .tagx{font-size:.76rem;padding:8px 14px 7px}
+#roadmap .tagx.now{padding-left:11px}
 #roadmap .ai{font-size:1.14rem;font-weight:560;color:#E6EEEA}
 #roadmap .ai-h{font-size:1.45rem}
 #roadmap .ai-note{font-size:1rem;font-weight:600;opacity:1}
