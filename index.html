@@ -645,6 +645,31 @@ section.sec.privzone{background:linear-gradient(180deg,#0B2328 0%,var(--night) 1
 .prefuge{font:700 1.2rem/1.45 var(--display);color:#F1F5F3;margin:30px 0 0;max-width:40em}
 .prefuge a{color:var(--amber)}
 @media (max-width:760px){.pgrid{grid-template-columns:1fr;gap:16px}.pcard{padding:24px 20px}.pcard p{font-size:1.14rem}}
+
+/* If you need help now */
+.helpnow{margin:0 0 64px;padding:40px 38px;border-radius:var(--r);background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.03));border:1.5px solid rgba(255,255,255,.18)}
+.helpnow h2{font:760 clamp(2.2rem,4.6vw,3.2rem)/1.05 var(--display);margin:0 0 14px;color:#fff;text-wrap:balance}
+.hn-lead{font:650 1.28rem/1.5 var(--display);color:#F4F7F5;margin:0 0 26px;max-width:38em;text-wrap:pretty}
+.hn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+.hn-card{display:flex;flex-direction:column;align-items:flex-start;gap:10px;background:rgba(10,24,30,.55);border:1.5px solid rgba(255,255,255,.16);border-radius:18px;padding:24px 22px}
+.hn-card h3{font:760 1.6rem/1.15 var(--display);color:#fff;margin:4px 0 0;text-wrap:balance}
+.hn-card p{font:650 1.2rem/1.5 var(--display);color:#F4F7F5;margin:0;text-wrap:pretty}
+.hn-card p b{font-weight:800}
+.hn-card .hn-small{font-size:1.08rem;color:#DCE6E3;border-left:2px solid var(--amber);padding-left:12px;margin-top:4px}
+.hn-card a{color:var(--amber);font-weight:750;text-underline-offset:4px}
+.hn-call{display:inline-block;font:800 1.3rem/1.2 var(--display);color:#14232A!important;background:var(--amber);text-decoration:none;border-radius:999px;padding:13px 20px;margin-top:6px}
+.hn-call{white-space:nowrap}.hn-alt{font:700 1.05rem/1.3 var(--display);color:#DCE6E3;margin-top:-2px}
+.hn-call.hn-text{background:#F4F7F5;margin-top:0}
+.hn-link{font:750 1.1rem/1.4 var(--display);margin-top:auto;padding-top:6px}
+.hn-111{border:3px solid #E8553B;background:rgba(232,85,59,.14)}
+.hn-111 h3{color:#FFB3A3;font-size:clamp(1.7rem,3vw,2.1rem)}
+.hn-111 p{max-width:44em}
+.hn-111 .hn-call{background:#E8553B;color:#fff!important}
+@media (max-width:980px){.hn-grid{grid-template-columns:1fr}}
+@media (max-width:640px){.helpnow{padding:28px 18px;margin-bottom:48px}.hn-card{padding:22px 18px}}
+.refuge .lead{max-width:30em}
+.refuge-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.refuge-btns a.btn{margin-top:0}
 </style>
 </head>
 <body>
@@ -677,8 +702,8 @@ section.sec.privzone{background:linear-gradient(180deg,#0B2328 0%,var(--night) 1
 <section class="sec opening" id="opening">
   <div class="wrap">
     <h2>When men become fathers, some step up. Others step&nbsp;away.</h2>
-    <p>When he steps away, the cost doesn't leave with him. It stays with you, week after week, in food, school shoes and&nbsp;rent.</p>
-    <p>The Quiet Path brings together the information, the steps and the tools to find what he owes and get it back. Calmly, privately and thoroughly, without him knowing until you're&nbsp;ready.</p>
+    <p>If he chooses to step away, the&nbsp;cost doesn't leave with&nbsp;him. It&nbsp;stays with you, week after week, in food, school shoes and&nbsp;rent.</p>
+    <p>The Quiet Path brings together the&nbsp;information, the&nbsp;steps and the&nbsp;tools to find what he owes and get it back. Calmly, privately and thoroughly, without him knowing until you're&nbsp;ready.</p>
   </div>
 </section>
 
@@ -782,7 +807,7 @@ one of them takes money you can never get back.</p>
       <div class="pcard"><span class="ppill">Money</span><h3>Your own account</h3><p>Have your pay, Working for Families and child support go into an account in your name only, with its own login and passcode. Keep the statements in your own email, not one he can see.</p></div>
       <div class="pcard"><span class="ppill">Money</span><h3>Before you tell the bank</h3><p>Don't close a joint account or tell the bank you've separated until you know what it does to your loan or mortgage. Banks act when they see a risk.</p><p>If the bank thinks the mortgage can't be paid, because he's living in the house, you're paying rent somewhere else and he isn't paying child support, it can start steps to protect itself, and&nbsp;that can end with the house being sold. Talk to your family lawyer first.</p></div>
     </div>
-    <p class="prefuge">For more on staying safe, see <a href="https://womensrefuge.org.nz/" target="_blank" rel="noopener">Women's Refuge NZ: help and online safety ↗</a>. If&nbsp;you're ever in danger, call&nbsp;111.</p>
+    <p class="prefuge">For more on staying safe, see <a href="https://womensrefuge.org.nz/" target="_blank" rel="noopener">Women's Refuge NZ: help and online safety ↗</a>. If&nbsp;you're ever in danger, call&nbsp;<a href="tel:111">111</a>. <a href="#helpnow">More help, day and&nbsp;night</a></p>
   </div>
 </section>
 
@@ -1096,6 +1121,16 @@ one of them takes money you can never get back.</p>
 <!-- 11. WHO CAN HELP -->
 <section class="sec deep" id="help">
   <div class="wrap">
+    <div class="helpnow" id="helpnow">
+      <h2>If you need help now.</h2>
+      <p class="hn-lead">You don't have to face this alone. These services are free and confidential, and you can contact them whenever you&nbsp;need.</p>
+      <div class="hn-card hn-111"><span class="ppill now">Immediate danger</span><h3>Call 111 and ask for the&nbsp;Police</h3><p>If you or your children are in danger right now, call 111. If it isn't safe to speak, press 55 on a mobile, or any number on a landline, to be put through to the&nbsp;Police.</p><a class="hn-call" href="tel:111">Call 111</a></div>
+      <div class="hn-grid">
+        <div class="hn-card"><span class="ppill">Open 24 hours</span><h3>Women's Refuge</h3><p>A free 24-hour crisis line, safe houses, and advocates who help women and children make a plan to leave safely, find somewhere to live and get a&nbsp;protection&nbsp;order.</p><a class="hn-call" href="tel:0800733843">Call 0800 733 843</a><span class="hn-alt">That's 0800 REFUGE</span><p class="hn-small">Look for the <b>Shielded Site</b> icon at the bottom of many New Zealand websites. It opens a private way to contact Women's Refuge that won't show in your browser history. <a href="https://womensrefuge.org.nz/staying-safe-online/" target="_blank" rel="noopener">About the Shielded Site ↗</a></p><a class="hn-link" href="https://womensrefuge.org.nz/" target="_blank" rel="noopener">womensrefuge.org.nz ↗</a></div>
+        <div class="hn-card"><span class="ppill">Open 24/7</span><h3>Shine helpline</h3><p>Free, confidential family violence support by phone or live webchat. They can help you understand what's happening, sort through your options and plan to be&nbsp;safer.</p><a class="hn-call" href="tel:0508744633">Call 0508 744 633</a><a class="hn-link" href="https://www.2shine.org.nz/what-we-do/shine-helpline" target="_blank" rel="noopener">Shine helpline and webchat ↗</a></div>
+        <div class="hn-card"><span class="ppill">Someone to talk to</span><h3>Lifeline</h3><p>Free, confidential support from trained counsellors when things feel like too much, by phone or&nbsp;text.</p><a class="hn-call" href="tel:0800543354">Call 0800 543 354</a><span class="hn-alt">That's 0800 LIFELINE</span><a class="hn-call hn-text" href="sms:4357">Text HELP (4357)</a><a class="hn-link" href="https://www.lifeline.org.nz/" target="_blank" rel="noopener">lifeline.org.nz ↗</a></div>
+      </div>
+    </div>
     <h2>Free and official.</h2>
     <div class="grid2" style="margin-top:28px">
       <div class="card contact"><h3>Inland Revenue</h3><p>Child support, Working for Families, Best Start, paid parental leave.</p><a href="https://www.ird.govt.nz" target="_blank" rel="noopener">ird.govt.nz ↗</a></div>
@@ -1111,9 +1146,9 @@ one of them takes money you can never get back.</p>
 
 <section class="refuge" id="refuge">
   <div class="wrap">
-    <h2>Part of every fee goes to Pet&nbsp;Refuge.</h2>
-    <p class="lead">The New Zealand charity that looks after pets when someone has to leave home to be safe.</p>
-    <a class="btn" href="https://www.petrefuge.org.nz/" target="_blank" rel="noopener">Visit Pet Refuge</a>
+    <h2>Part of every fee goes to Pet&nbsp;Refuge and&nbsp;Shine.</h2>
+    <p class="lead"><b>Pet Refuge</b> looks after pets when someone has to leave home to be safe. <b>Shine</b> supports people living with family violence, with a free helpline open day and&nbsp;night.</p>
+    <div class="refuge-btns"><a class="btn" href="https://www.petrefuge.org.nz/" target="_blank" rel="noopener">Visit Pet Refuge</a><a class="btn" href="https://www.2shine.org.nz/" target="_blank" rel="noopener">Visit Shine</a></div>
   </div>
 </section>
 
