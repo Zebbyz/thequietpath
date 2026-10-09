@@ -459,6 +459,15 @@ footer .linkbtn{color:var(--amber)}
 #roadmap p,#roadmap .dd,#roadmap .t{text-wrap:pretty}
 body:not(.paid) #roadmap .lockd{display:block;filter:blur(6px);opacity:.55;pointer-events:none;user-select:none}
 
+#roadmap .brief{background:linear-gradient(160deg,rgba(242,160,60,.14),rgba(242,160,60,.04));border:1px solid rgba(242,160,60,.45);border-radius:20px;padding:34px 36px 32px;margin:8px 0 46px}
+#roadmap .brief h3{font:700 clamp(1.7rem,3vw,2.3rem)/1.15 var(--display);letter-spacing:-.02em;color:#F6F1E8;margin:0 0 14px;text-wrap:balance}
+#roadmap .brief p{font-size:1.2rem;font-weight:560;color:#E1EAE6;line-height:1.55;margin:0 0 18px;max-width:40em;text-wrap:pretty}
+#roadmap .brief ul{list-style:none;padding:0;margin:4px 0 24px;display:grid;grid-template-columns:1fr 1fr;gap:12px 28px}
+#roadmap .brief li{position:relative;padding-left:30px;font:600 1.12rem/1.35 var(--display);color:#F6F1E8}
+#roadmap .brief li::before{content:"";position:absolute;left:0;top:.38em;width:14px;height:14px;border-radius:50%;background:#F2A03C}
+#roadmap .brief .btn{margin-top:4px}
+body.paid #roadmap .brief{display:none}
+@media (max-width:620px){#roadmap .brief{padding:24px 20px}#roadmap .brief ul{grid-template-columns:1fr}#roadmap .brief p{font-size:1.04rem}}
 #roadmap .legend{font-size:1.08rem;font-weight:600;color:#E6EEEA;gap:12px 26px}
 #roadmap .legend i{width:16px;height:16px}
 #roadmap .stage-head .when{font-size:.88rem;padding:10px 16px 9px}
@@ -1471,6 +1480,9 @@ function renderRoadmap(){
   var h='',rest='';
   var base=0;
   h+='<div class="legend">'+Object.keys(CATNAMES).map(function(k){return '<span class="c-'+k+'"><i></i>'+CATNAMES[k]+'</span>';}).join('')+'</div>';
+  var tot=PLAN.reduce(function(n,st){return n+st.items.length;},0);
+  var AREAS=['The house, the title and the mortgage','Bank accounts, cards and loans','KiwiSaver and first-home grants','Insurance on the house, contents, cars and lives','Power, internet, phone and rates','Cars, car finance and big purchases','Child support through IRD','Every agreement, written or not'];
+  h+='<div class="brief"><h3>'+tot+' steps through everything you built together</h3><p>This plan goes through your life together piece by piece, so nothing you\u2019re owed is missed. It follows every place your two lives crossed&nbsp;over.</p><ul>'+AREAS.map(function(a){return '<li>'+esc(a)+'</li>';}).join('')+'</ul><p>Each step tells you what to find, who to ask and what to keep. Steps 1 to 6 are below. Unlock all&nbsp;'+tot+' and the full how-to for&nbsp;NZ$79.</p><a href="#access" class="btn">Unlock all '+tot+' steps</a></div>';
   PLAN.forEach(function(st,si){
     var b0=base;base+=st.items.length;
     function stepHtml(it,ii){var id='s'+si+'_'+ii,on=!!S.ticks[id];
