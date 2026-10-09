@@ -194,7 +194,7 @@ section.sec{padding:128px 0;background:var(--bg);color:var(--fg);position:relati
 
 label.f,span.f{display:block;font-weight:700;font-size:.93rem;margin:0 0 7px;color:var(--fg)}
 .hint{display:block;font-weight:400;color:var(--muted);font-size:.85rem;margin-top:2px}
-input[type=text],input[type=date],input[type=number],input[type=email],input[type=password],select,textarea{width:100%;font:inherit;font-size:1rem;color:var(--fg);background:var(--field);border:1.5px solid var(--field-line);border-radius:12px;padding:12px 14px;min-height:50px}
+input[type=text],input[type=date],input[type=number],input[type=email],input[type=tel],input[type=password],select,textarea{width:100%;font:inherit;font-size:1rem;color:var(--fg);background:var(--field);border:1.5px solid var(--field-line);border-radius:12px;padding:12px 14px;min-height:50px}
 input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
 select option{background:#173C42;color:#F4EADB}
 .sec.day select option,.modal select option{background:#fff;color:#12302F}
@@ -440,6 +440,8 @@ footer .linkbtn{color:var(--amber)}
 }
 @media (min-width:900px){.lead br{display:inline}}
 
+.safebox{border-left:4px solid var(--glass);background:rgba(143,191,179,.12);padding:14px 16px;border-radius:0 10px 10px 0;font:400 1.12rem/1.45 var(--sans);color:var(--fg);margin:2px 0 16px;text-wrap:pretty}
+.safebox b{font:700 1.15rem/1.3 var(--display);display:block;margin-bottom:3px}
 .warnbox{border-left:4px solid #E8553B;background:rgba(232,85,59,.1);padding:12px 14px;border-radius:0 8px 8px 0;font-size:.98rem;margin:0 0 16px;text-wrap:pretty}
 .warnbox b{color:#FF9A85}
 .himwrap{max-width:620px;margin:0 0 44px}
@@ -643,13 +645,18 @@ one of them takes money you can never get back.</p>
     <div class="himwrap">
           <div class="card himcard">
         <h3>About him</h3>
-        <p class="small muted" style="margin:-4px 0 14px">Just his name and ID details.</p>
+        <p class="small muted" style="margin:-4px 0 14px">Just his name, ID and contact details.</p>
         <div class="field"><label class="f" for="h_name">Full name</label><input type="text" id="h_name" data-him="name" autocomplete="off"></div>
         <div class="field"><label class="f" for="h_aka">Other names he uses<span class="hint">Nicknames, previous surnames</span></label><input type="text" id="h_aka" data-him="aka" autocomplete="off"></div>
         <div class="row">
           <div class="field"><label class="f" for="h_dob">Date of birth</label><input type="date" id="h_dob" data-him="dob"></div>
           <div class="field"><label class="f" for="h_ird">IRD number, if known</label><input type="text" id="h_ird" data-him="ird" inputmode="numeric" placeholder="e.g. 123-456-789" autocomplete="off"></div>
         </div>
+        <div class="row">
+          <div class="field"><label class="f" for="h_phone">His mobile number</label><input type="tel" id="h_phone" data-him="phone" inputmode="tel" placeholder="e.g. 021 123 4567" autocomplete="off"></div>
+          <div class="field"><label class="f" for="h_email">His email address</label><input type="email" id="h_email" data-him="email" placeholder="e.g. name@example.com" autocomplete="off"></div>
+        </div>
+        <div class="safebox"><b>He will never know.</b> Searching your own email for his number or address happens only in your account. Nothing is sent to him or anyone&nbsp;else.</div>
         <p class="small muted" style="margin:0 0 14px">That's all you need here. The AI prompt in step 1 below searches your own email for the rest, such as his work, address, cars and accounts.</p>
         <div class="warnbox"><b>Don't look him up on LinkedIn.</b> If you view his profile while signed in, LinkedIn can show him exactly who looked. If your lawyer's firm looks, he gets a clear warning that you've seen a lawyer. If you need his work history, use a CV you already have, or ask your lawyer how they want to handle it.</div>
       </div>
@@ -1403,6 +1410,9 @@ function aiPrompt(){
   if(aka)look.push(aka);
   if(kid)kidList().forEach(function(x){if((x.name||'').trim())look.push(x.name.trim());});
   if(addr)look.push('his address, '+addr);
+  var ph=t(H.phone),em=t(H.email);
+  if(ph)look.push('his mobile number, '+ph);
+  if(em)look.push('his email address, '+em);
   if(lived)dates.push('We started living together around '+fmtD(lived)+'. Check emails and events from six months either side to confirm the real date.');
   if(bought)dates.push('We bought the house around '+fmtD(bought)+'. Look closely at the months before it for the offer, finance and KiwiSaver withdrawals.');
   if(left)dates.push('He moved out around '+fmtD(left)+'. Look closely at the weeks either side.');
@@ -1410,6 +1420,7 @@ function aiPrompt(){
   var extra='';
   if(intro.length)extra+=intro.join(' ')+'\n\n';
   if(look.length)extra+='Search for anything that mentions '+(look.length>1?look.slice(0,-1).join(', ')+' or '+look[look.length-1]:look[0])+'.\n\n';
+  if(ph||em)extra+='Also search my email and messages for '+(ph&&em?'his mobile number ('+ph+') and his email address ('+em+')':ph?'his mobile number ('+ph+')':'his email address ('+em+')')+'. Include messages he sent from them and anything that lists them, such as bills, bank or IRD letters.\n\n';
   if(dates.length)extra+='What I already know, roughly:\n- '+dates.join('\n- ')+'\n\n';
   if(extra){var cut=out.indexOf('Please search');out=out.slice(0,cut)+'\n\n'+extra+out.slice(cut);}
   return out;
@@ -1571,7 +1582,7 @@ function packHTML(){
    '<div class="rule"></div><span class="eyebrow">Summary for legal advice</span><h2>Relationship property<br>&amp; child support, <i>in brief</i>.</h2>'+
    '<dl>'+kv('Prepared for',Y.lawyer)+kv('Prepared by',Y.name)+kv('Regarding',H.name)+kv(kidList().length>1?'Children':'Child',andList(kidList().map(function(k){var nm=(k.name||'').trim(),d=parseD(k.dob);return nm+(d?' (born '+fmtD(d)+')':'');}).filter(Boolean)))+kv('Date',fmtD(today()))+'</dl>'+
    '<div class="foot"><span>Confidential. Prepared by the client from her own notes, for her lawyer.</span><span>General information, not legal advice.</span></div></div>'+
-   '<div class="pk-sec">'+head+'<h3>What I\u2019m asking for</h3>'+letterHTML()+'</div>'+'<div class="pk-sec"><h3><b>1.</b> The other party</h3><dl class="kv">'+kv('Full name',H.name)+kv('Other names',H.aka)+kv('Date of birth',parseD(H.dob)?fmtD(parseD(H.dob))+(ageTxt(H.dob)?' ('+ageTxt(H.dob)+')':''):'')+kv('IRD number',H.ird)+'</dl></div>'+'<div class="pk-sec"><h3><b>2.</b> Key dates</h3><dl class="kv">'+kv('Met',fmtD(parseD(Y.met)))+kv('Relationship became intimate',fmtD(parseD(Y.intim)))+kv('Started living together',fmtD(parseD(Y.lived)))+kv('How we lived together',livedTxt())+kv('Bought the house',fmtD(parseD(Y.bought)))+kv('Separated (he left)',c?fmtD(c.left):'')+kv('IRD received application',appliedTxt)+kv('3-year property mark',c?fmtD(c.deadline)+(c.leftDays>=0?' ('+int.format(c.leftDays)+' days away)':' (passed)'):'')+'</dl></div>'+
+   '<div class="pk-sec">'+head+'<h3>What I\u2019m asking for</h3>'+letterHTML()+'</div>'+'<div class="pk-sec"><h3><b>1.</b> The other party</h3><dl class="kv">'+kv('Full name',H.name)+kv('Other names',H.aka)+kv('Date of birth',parseD(H.dob)?fmtD(parseD(H.dob))+(ageTxt(H.dob)?' ('+ageTxt(H.dob)+')':''):'')+kv('IRD number',H.ird)+((H.phone||'').trim()?kv('Mobile',H.phone):'')+((H.email||'').trim()?kv('Email',H.email):'')+'</dl></div>'+'<div class="pk-sec"><h3><b>2.</b> Key dates</h3><dl class="kv">'+kv('Met',fmtD(parseD(Y.met)))+kv('Relationship became intimate',fmtD(parseD(Y.intim)))+kv('Started living together',fmtD(parseD(Y.lived)))+kv('How we lived together',livedTxt())+kv('Bought the house',fmtD(parseD(Y.bought)))+kv('Separated (he left)',c?fmtD(c.left):'')+kv('IRD received application',appliedTxt)+kv('3-year property mark',c?fmtD(c.deadline)+(c.leftDays>=0?' ('+int.format(c.leftDays)+' days away)':' (passed)'):'')+'</dl></div>'+
    
    '<div class="pk-sec"><h3><b>3.</b> Care pattern</h3><dl class="kv">'+kv('Current pattern',careTxt)+kv('Hours per year',S.sees==='yes'?int.format(care.yr)+' hours (about '+num.format(care.days)+' days, '+pctTxt(care.share)+' of the year)':'0')+kv('Overnights per year',S.sees==='yes'?String(care.nights):'0')+'</dl></div>'+
    '<div class="pk-sec"><h3><b>4.</b> Income range (estimates)</h3><p class="small muted">His income is not known. These are her guesses. Weekly figures, where shown, were entered by her from IRD\u2019s estimator and are not an assessment.</p><dl class="kv">'+spreadRows+'</dl></div>'+
