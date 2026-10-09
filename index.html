@@ -190,6 +190,10 @@ textarea{min-height:90px;resize:vertical}
 .aim{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-family:var(--display);font-size:1.35rem;font-weight:600}
 .aim b{color:var(--amber)}
 .aim span{display:block;font-family:var(--sans);font-size:.9rem;font-weight:400;color:var(--muted);margin-top:4px}
+.ai{margin-top:12px;font-size:.95rem}
+.ai summary{cursor:pointer;color:var(--accent);font-weight:600}
+.ai ul{margin:8px 0 10px;padding-left:20px}
+.ai li{margin:3px 0}
 .steplink{display:inline-block;margin-top:8px;color:var(--accent);font-weight:600;text-underline-offset:4px}
 .stat.clay{border-top-color:var(--amber)}
 .stat.clay .v{color:var(--accent)}
@@ -1285,6 +1289,7 @@ function renderSpread(){
 }
 
 /* Roadmap */
+var EXTRA={AIDATES:'<details class="ai" onclick="event.stopPropagation()"><summary>Let AI search your email for the dates</summary><p>Ask an AI assistant you trust to go through <b>your own</b> email and calendar and list every date it finds, with the email it came from. It saves weeks of scrolling. Look for:</p><ul><li>When you moved in together: tenancy agreements, bond receipts, change-of-address emails</li><li>Buying the house: offers, the sale and purchase agreement, settlement date, lawyer emails</li><li>KiwiSaver first-home withdrawals and any First Home grant used for the deposit</li><li>Mortgage approvals, bank letters and refix dates, and whose names are on the loan</li><li>Weddings, engagements and family events you went to as a couple</li><li>Anniversaries you celebrated, and holidays you booked together: flights, hotels, Airbnb</li><li>Your calendar, Google Calendar or Outlook: shared events and invites from both families</li><li>Cars owned in your name, his name or both: registration emails, finance and purchase receipts</li><li>Insurance: house, contents, car and life, and whose names are on each policy</li><li>Joint bank accounts, credit cards, loans and finance company accounts</li><li>Bills in whose name: power, internet, phone and rates</li><li>Pregnancy, scans, the birth and Plunket appointments</li><li>Big purchases and renovations for the home, and who paid</li><li>Messages around the day he left</li></ul><p class="small">Try asking: \u201cSearch my email and calendar for anything that shows when we moved in together, bought the house, used KiwiSaver, went to events as a couple, and owned cars or insurance together. List each date with the email it came from.\u201d Only use your own accounts, never his.</p></details>'};
 var PLAN=[
  {when:'This week',title:'Lock in the start date',intro:'Support only runs from the day IRD receives the application. Every day of waiting is money gone for good.',items:[
   ['Apply to Inland Revenue for child support','Online through myIR or by phone. A short, complete application today beats a perfect one next month.',1],
@@ -1295,7 +1300,7 @@ var PLAN=[
   ['Answer every IRD follow-up fast','An incomplete application can lose the start date. Diary any deadline IRD gives you.']]},
  {when:'Now, in parallel',title:'Protect your half of the house',intro:'Your share of the house is likely your biggest asset. Relationship property is separate from child support, and it can be settled quietly by agreement.',items:[
   ['Book a family lawyer for relationship property','Any binding agreement needs independent legal advice for each of you anyway. Legal aid may be available. Community Law can point you to one.',1],
-  ['Write down the key dates','When you started living together, when you bought, when he left. Under 3 years together, different contribution-based rules can apply, so your KiwiSaver deposit matters more.'],
+  ['Write down the key dates','When you started living together, when you bought, when he left. Under 3 years together, different contribution-based rules can apply, so your KiwiSaver deposit matters more.',0,0,'AIDATES'],
   ['Diary the 3-year time limit','For de facto couples a court claim generally has to be filed within 3 years of separating. It\u2019s already on your calendar here.'],
   ['Get the title and check how you own it','If you\u2019re joint tenants and either of you died, the whole house would pass to the survivor. Ask your lawyer about severing the joint tenancy.',0,['https://lrs.linz.govt.nz/search/','Order the title from LINZ Land Record Search']],
   ['Ask about a notice of claim on the title','Stops the house being sold or remortgaged behind your back. A protective step, not an attack.'],
@@ -1328,7 +1333,7 @@ function renderRoadmap(){
   PLAN.forEach(function(st,si){
     var b0=base;base+=st.items.length;
     function stepHtml(it,ii){var id='s'+si+'_'+ii,on=!!S.ticks[id];
-      return '<label class="step'+(on?' done':'')+'"><input type="checkbox" data-tick="'+id+'"'+(on?' checked':'')+'><span class="no">'+(b0+ii+1)+'</span><span>'+(it[2]?'<span class="tagx">Most important</span>':'')+'<span class="t">'+esc(it[0])+'</span><span class="dd">'+esc(it[1])+'</span>'+(it[3]?'<a class="steplink" href="'+it[3][0]+'" target="_blank" rel="noopener">'+esc(it[3][1])+' \u2197</a>':'')+'</span></label>';}
+      return '<label class="step'+(on?' done':'')+'"><input type="checkbox" data-tick="'+id+'"'+(on?' checked':'')+'><span class="no">'+(b0+ii+1)+'</span><span>'+(it[2]?'<span class="tagx">Most important</span>':'')+'<span class="t">'+esc(it[0])+'</span><span class="dd">'+esc(it[1])+'</span>'+(it[3]?'<a class="steplink" href="'+it[3][0]+'" target="_blank" rel="noopener">'+esc(it[3][1])+' \u2197</a>':'')+(it[4]&&EXTRA[it[4]]?EXTRA[it[4]]:'')+'</span></label>';}
     var cut=si===0?Math.max(0,st.items.length-2):st.items.length;
     var steps=st.items.slice(0,cut).map(stepHtml).join('');
     var block='<div class="stage"><div class="stage-head"><span class="when">'+esc(st.when)+'</span><h3>'+esc(st.title)+'</h3></div><p>'+esc(st.intro)+'</p>'+steps+'</div>';
