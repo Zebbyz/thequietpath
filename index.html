@@ -1409,7 +1409,7 @@ function loadFrame(d){
   var f=document.createElement('iframe');
   f.id='decoyFrame';f.setAttribute('aria-hidden','true');f.tabIndex=-1;f.inert=true;f.loading='eager';
   f.referrerPolicy='no-referrer';
-  f.setAttribute('sandbox','allow-scripts allow-same-origin allow-forms allow-popups');
+  f.setAttribute('sandbox','allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation');
   f.onload=function(){dReady=true;};
   f.src=d.url;
   document.body.appendChild(f);dFrame=f;
@@ -1434,13 +1434,21 @@ function warmDecoy(){
 function exitNow(){
   var d=decoy();
   if(d.frame&&dFrame&&dReady){
+    if(dFrame.classList.contains('on'))return;
     try{
       dFrame.inert=false;dFrame.removeAttribute('aria-hidden');dFrame.classList.add('on');
       [].forEach.call(document.body.children,function(el){if(el!==dFrame)el.style.display='none';});
       document.title=d.title;
       document.querySelectorAll('link[rel~="icon"]').forEach(function(l){l.href=d.icon;});
+      try{history.replaceState(null,'','/');history.pushState({qp:1},'','/');}catch(e){}
     }catch(e){}
-    setTimeout(function(){window.location.replace(d.url);},450);
+    /* Leave the shown page alone. Swap to the real site only when nobody can see the swap. */
+    var gone=false;
+    function swap(){if(gone)return;gone=true;window.location.replace(d.url);}
+    document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')swap();});
+    window.addEventListener('pagehide',swap);
+    window.addEventListener('popstate',swap);
+    window.addEventListener('blur',function(){setTimeout(function(){if(document.activeElement!==dFrame)swap();},0);});
     return;
   }
   try{$('hideCover').classList.add('on');document.title=d.title;document.body.style.overflow='hidden';}catch(e){}
