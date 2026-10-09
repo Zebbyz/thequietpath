@@ -192,6 +192,7 @@ textarea{min-height:90px;resize:vertical}
 .aim span{display:block;font-family:var(--sans);font-size:.9rem;font-weight:400;color:var(--muted);margin-top:4px}
 .ai{margin-top:14px;font-size:.95rem;cursor:auto}
 .ai-h{font-family:var(--display);font-weight:700;font-size:1.2rem;color:var(--amber);margin:0 0 6px}
+.ai-note{font-size:.88rem;color:var(--amber);opacity:.9;margin:8px 0 0}
 .ai-prompt{white-space:pre-wrap;font:400 .9rem/1.5 var(--sans);background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:10px;padding:16px 18px;max-height:320px;overflow:auto;margin:10px 0 12px;color:var(--fg)}
 .steplink{display:inline-block;margin-top:8px;color:var(--accent);font-weight:600;text-underline-offset:4px}
 .stat.clay{border-top-color:var(--amber)}
@@ -1303,7 +1304,34 @@ var CATS={'house':['Write down the key dates','Diary the 3-year time limit','Boo
 function catOf(t){for(var k in CATS){if(CATS[k].indexOf(t)>-1)return k;}return 'help';}
 var CATNAMES={house:'House and property',ird:'IRD and child support',money:'Money you can claim',record:'Keeping it on paper',help:'Help and support'};
 var AIPROMPT="I've separated from my partner in New Zealand and need to build an accurate timeline for my family lawyer and for Inland Revenue. Please search my email (including attachments) and my calendar, such as Google Calendar or Outlook, and find anything that shows the following:\n\n1. When we started living together: tenancy agreements, bond receipts, change-of-address emails.\n2. Buying our house: offers, the sale and purchase agreement, the settlement date, and emails from lawyers.\n3. KiwiSaver first-home withdrawals or First Home grants used for the deposit, and whose KiwiSaver they came from.\n4. Mortgage approvals, bank letters and refix dates, and whose names are on the loan.\n5. Weddings, engagements and family events we went to as a couple.\n6. Anniversaries we celebrated, and holidays or trips we booked together: flights, hotels, Airbnb.\n7. Shared calendar events, and invites from either family that name us both.\n8. Cars owned in my name, his name or both: registration emails, car finance and purchase receipts.\n9. Insurance for the house, contents, cars and life, and whose names are on each policy.\n10. Joint bank accounts, credit cards, loans and finance company accounts.\n11. Power, internet, phone and rates bills, and whose name each is in.\n12. Pregnancy, scans, the birth and Plunket appointments.\n13. Big purchases or renovations for the home, and who paid for them.\n14. Messages around the day he moved out.\n\nFor each thing you find, give me the date, a one-line description, whose names are on it, and the subject line and sender of the email (or the calendar entry) it came from. Put everything in one list in date order, oldest first. Then list anything important you could not find, so I know what to look for elsewhere.";
-var EXTRA={AIDATES:'<div class="ai" onclick="event.preventDefault()"><p class="ai-h">Let AI find the dates for you</p><p>Copy this prompt and paste it into an AI assistant that can read <b>your own</b> email and calendar, such as ChatGPT, Gemini, Copilot or Claude with your email connected. Never use his accounts.</p><pre class="ai-prompt">'+esc(AIPROMPT)+'</pre><button type="button" class="btn sm" data-act="copyai">Copy the prompt</button></div>'};
+
+function aiPrompt(){
+  var Y=S.her||{},H=S.him||{},t=function(v){return (v||'').trim();};
+  var me=t(Y.name),him=t(H.name),aka=t(H.aka),kid=t(Y.baby),addr=t(H.addr);
+  var lived=parseD(Y.lived),bought=parseD(Y.bought),left=parseD(S.left);
+  var intro=[],look=[],dates=[];
+  if(me)intro.push('My name is '+me+'.');
+  if(him)intro.push('My former partner is '+him+(aka?', who also goes by '+aka:'')+'.');
+  else if(aka)intro.push('My former partner also goes by '+aka+'.');
+  if(kid)intro.push('Our child is '+kid+'.');
+  if(him){var fn=him.split(' ')[0];if(fn!==him)look.push(fn);look.push(him);}
+  if(aka)look.push(aka);
+  if(kid)look.push(kid);
+  if(addr)look.push('his address, '+addr);
+  if(lived)dates.push('We started living together around '+fmtD(lived)+'. Check emails and events from six months either side to confirm the real date.');
+  if(bought)dates.push('We bought the house around '+fmtD(bought)+'. Look closely at the months before it for the offer, finance and KiwiSaver withdrawals.');
+  if(left)dates.push('He moved out around '+fmtD(left)+'. Look closely at the weeks either side.');
+  var out=AIPROMPT;
+  var extra='';
+  if(intro.length)extra+=intro.join(' ')+'\n\n';
+  if(look.length)extra+='Search for anything that mentions '+(look.length>1?look.slice(0,-1).join(', ')+' or '+look[look.length-1]:look[0])+'.\n\n';
+  if(dates.length)extra+='What I already know, roughly:\n- '+dates.join('\n- ')+'\n\n';
+  if(extra){var cut=out.indexOf('Please search');out=out.slice(0,cut)+'\n\n'+extra+out.slice(cut);}
+  return out;
+}
+function aiFilled(){var Y=S.her||{},H=S.him||{};return !!((Y.name||'').trim()||(H.name||'').trim()||(Y.baby||'').trim()||Y.lived||Y.bought||S.left);}
+function refreshAI(){var p=$('aiPrompt');if(p)p.textContent=aiPrompt();var h=$('aiHint');if(h)h.textContent=aiFilled()?'This prompt already includes the names and dates you have entered, and it updates as you add more.':'The prompt gets sharper as you add names and dates further down the page. It rewrites itself to search for them.';}
+var EXTRA={AIDATES:'<div class="ai" onclick="event.preventDefault()"><p class="ai-h">Let AI find the dates for you</p><p>Copy this prompt and paste it into an AI assistant that can read <b>your own</b> email and calendar, such as ChatGPT, Gemini, Copilot or Claude with your email connected. Never use his accounts.</p><p class="ai-note" id="aiHint"></p><pre class="ai-prompt" id="aiPrompt">'+esc(aiPrompt())+'</pre><button type="button" class="btn sm" data-act="copyai">Copy the prompt</button></div>'};
 var PLAN=[
  {when:'This week',title:'Lock in the start date',intro:'Support only runs from the day IRD receives the application. Every day of waiting is money gone for good.',items:[
   ['Write down the key dates','When you started living together, when you bought, when he left. Under 3 years together, different contribution-based rules can apply, so your KiwiSaver deposit matters more.',2,0,'AIDATES'],
@@ -1367,8 +1395,8 @@ function renderProg(){var total=0,done=0;PLAN.forEach(function(st,si){st.items.f
 $('roadmap').addEventListener('change',function(e){var id=e.target.dataset.tick;if(!id)return;S.ticks[id]=e.target.checked;save();e.target.closest('.step').classList.toggle('done',e.target.checked);renderProg();renderPack();});
 
 /* Quiet record */
-document.querySelectorAll('[data-him]').forEach(function(el){el.value=S.him[el.dataset.him]||'';var f=function(){S.him[el.dataset.him]=el.value;save();renderPack();};el.addEventListener('input',f);el.addEventListener('change',f);});
-document.querySelectorAll('[data-her]').forEach(function(el){el.value=S.her[el.dataset.her]||'';el.addEventListener('input',function(){S.her[el.dataset.her]=el.value;save();renderPack();renderTimeline();if(el.dataset.her==='baby'){var sb=$('scriptBox');if(sb)sb.textContent='\u201c'+scriptText()+'\u201d';}});});
+document.querySelectorAll('[data-him]').forEach(function(el){el.value=S.him[el.dataset.him]||'';var f=function(){S.him[el.dataset.him]=el.value;save();renderPack();refreshAI();};el.addEventListener('input',f);el.addEventListener('change',f);});
+document.querySelectorAll('[data-her]').forEach(function(el){el.value=S.her[el.dataset.her]||'';el.addEventListener('input',function(){S.her[el.dataset.her]=el.value;save();renderPack();renderTimeline();refreshAI();if(el.dataset.her==='baby'){var sb=$('scriptBox');if(sb)sb.textContent='\u201c'+scriptText()+'\u201d';}});});
 function sizeFmt(b){return b>1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB';}
 function addDocs(files){var n=files.length;Array.prototype.forEach.call(files,function(f){S.docs.push({name:f.name,size:f.size,type:f.type||'',added:iso(today())});});save();renderDocs();renderPack();toast(n+' document'+(n>1?'s':'')+' added to your folder');}
 function renderDocs(){$('docList').innerHTML=S.docs.map(function(d,i){return '<li><span>'+esc(d.name)+' <span class="muted">· '+sizeFmt(d.size)+'</span></span><button type="button" class="linkbtn small" data-deldoc="'+i+'">Remove</button></li>';}).join('');}
@@ -1515,7 +1543,7 @@ $('signGoogle').addEventListener('click',function(){
 
 document.addEventListener('click',function(e){
   var a=e.target.closest('[data-act]');
-  if(a){var k=a.dataset.act;if(k==='copy')copyScript();else if(k==='copyai')copyText(AIPROMPT,'Prompt copied');else if(k==='pack')printThis(packHTML());else if(k==='checklist')printThis(checklistHTML());else if(k==='csv')csv();else if(k==='ics')makeICS();return;}
+  if(a){var k=a.dataset.act;if(k==='copy')copyScript();else if(k==='copyai')copyText(aiPrompt(),'Prompt copied');else if(k==='pack')printThis(packHTML());else if(k==='checklist')printThis(checklistHTML());else if(k==='csv')csv();else if(k==='ics')makeICS();return;}
   if(e.target.closest('.gate-card .btn, .top .btn.get, #openPay')){e.preventDefault();openPay();}
 });
 modal.addEventListener('click',function(e){if(e.target===modal||e.target.hasAttribute('data-close')){var wasPaid=$('payStep2').style.display==='block';closePay();if(wasPaid)$('course').scrollIntoView();}});
@@ -1538,7 +1566,7 @@ $('resetProto').addEventListener('click',function(){S.paid=false;save();applyPai
 
 /* Init */
 $('leftDate').value=S.left;$('appliedDate').value=S.applied;$('weekly').value=S.weekly;
-function renderAll(){renderClocks();renderSpread();renderTimeline();renderPack();}
+function renderAll(){renderClocks();renderSpread();renderTimeline();renderPack();refreshAI();}
 applyPaid();applySession();renderCareRows();renderCare();renderSpreadInputs();renderRoadmap();renderDocs();renderLog();renderAll();
 if(location.hash==='#pay') openPay();
 if(location.hash==='#signin') openSign();
