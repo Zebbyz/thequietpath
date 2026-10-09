@@ -1803,7 +1803,7 @@ function renderWait(){
   }
   var miss=[];if(!c)miss.push('the date he left');if(!(wk>0))miss.push('your weekly figure');if(!yk.d)miss.push('your youngest child\u2019s date of birth');
   $('wPill').textContent=mine?'Your numbers':'Example';$('wPill').className='wpill'+(mine?'':' ex');
-  $('wSub').innerHTML=mine?'Worked out from the dates and weekly figure you entered. Nothing leaves this&nbsp;device.':'<b>Example:</b> $95 a week, a 2\u2011year\u2011old, separated two years ago. Add '+esc(andList(miss))+' to see your&nbsp;own.';
+  $('wSub').innerHTML=(mine?'<b>'+esc(money(wk))+' a week is '+esc(money(wk*52))+' a&nbsp;year.</b> Worked out from the dates and weekly figure you entered. Nothing leaves this&nbsp;device.':'<b>Example:</b> $95 a week, a 2\u2011year\u2011old, separated two years ago. <b>$95 a week is $4,940 a&nbsp;year.</b> Add '+esc(andList(miss))+' to see your&nbsp;own.');
   $('wHouse').textContent=houseTxt;$('wHouseD').textContent=houseD;
   $('wLost').textContent=money(lost);$('wLostD').textContent=lostD;
   $('wAhead').textContent=ahead>0?money(ahead):'\u2014';$('wAheadD').innerHTML=aheadD;
