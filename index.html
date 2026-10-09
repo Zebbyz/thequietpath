@@ -457,6 +457,8 @@ footer .linkbtn{color:var(--amber)}
 @media (max-width:600px){.paper .dc{columns:1}}
 /* roadmap: larger, more solid text */
 #roadmap p,#roadmap .dd,#roadmap .t{text-wrap:pretty}
+body:not(.paid) #roadmap .lockd{display:block;filter:blur(6px);opacity:.55;pointer-events:none;user-select:none}
+
 #roadmap .legend{font-size:1.08rem;font-weight:600;color:#E6EEEA;gap:12px 26px}
 #roadmap .legend i{width:16px;height:16px}
 #roadmap .stage-head .when{font-size:.88rem;padding:10px 16px 9px}
@@ -1472,15 +1474,15 @@ function renderRoadmap(){
   PLAN.forEach(function(st,si){
     var b0=base;base+=st.items.length;
     function stepHtml(it,ii){var id='s'+si+'_'+ii,on=!!S.ticks[id];
-      return '<label class="step c-'+catOf(it[0])+(on?' done':'')+'"><input type="checkbox" data-tick="'+id+'"'+(on?' checked':'')+'><span class="no">'+(b0+ii+1)+'</span>'+(it[2]&&!on?'<span class="chev" aria-hidden="true"><i></i><i></i><i></i></span>':'')+'<span>'+(it[2]?'<span class="tagx'+(it[2]===2?' now':'')+'">'+(it[2]===2?'Do this today, no delay':'Most important')+'</span>':'')+'<span class="t">'+esc(it[0])+'</span><span class="dd">'+esc(it[1])+'</span>'+(it[3]?'<a class="steplink" href="'+it[3][0]+'" target="_blank" rel="noopener">'+esc(it[3][1])+' \u2197</a>':'')+(it[4]&&EXTRA[it[4]]?EXTRA[it[4]]:'')+'</span></label>';}
-    var cut=si===0?Math.max(0,st.items.length-2):st.items.length;
+      return '<label class="step c-'+catOf(it[0])+(on?' done':'')+'"><input type="checkbox" data-tick="'+id+'"'+(on?' checked':'')+'><span class="no">'+(b0+ii+1)+'</span>'+(it[2]&&!on?'<span class="chev" aria-hidden="true"><i></i><i></i><i></i></span>':'')+'<span>'+(it[2]?'<span class="tagx'+(it[2]===2?' now':'')+'">'+(it[2]===2?'Do this today, no delay':'Most important')+'</span>':'')+'<span class="t">'+esc(it[0])+'</span><span class="lockd"><span class="dd">'+esc(it[1])+'</span>'+(it[3]?'<a class="steplink" href="'+it[3][0]+'" target="_blank" rel="noopener">'+esc(it[3][1])+' \u2197</a>':'')+(it[4]&&EXTRA[it[4]]?EXTRA[it[4]]:'')+'</span></span></label>';}
+    var cut=si===0?Math.min(6,st.items.length):st.items.length;
     var steps=st.items.slice(0,cut).map(stepHtml).join('');
     var block='<div class="stage"><div class="stage-head"><span class="when'+(si===0?' now':'')+'">'+esc(st.when)+'</span><h3>'+esc(st.title)+'</h3></div><p>'+esc(st.intro)+'</p>'+steps+'</div>';
     if(si===3)block+='<div class="stage"><h3>The message</h3><p class="muted">Optional. One short text, then let IRD do the talking.</p><blockquote class="script" id="scriptBox">\u201c'+esc(scriptText())+'\u201d</blockquote><button type="button" class="btn ghost sm" data-act="copy">Copy message</button></div>';
     if(si===0){h+=block;var hid=st.items.slice(cut).map(function(it,ii){return stepHtml(it,cut+ii);}).join('');if(hid)rest='<div class="stage">'+hid+'</div>'+rest;}
     else rest+=block;
   });
-  h+='<div class="gated"><div class="gate-overlay"><div class="gate-card"><h4>The rest of your course</h4><p>Protecting your half of the house, claiming everything you\u2019re entitled to, keeping it on paper, the neutral message and the habits that keep it working. '+(base-PLAN[0].items.length+2)+' more steps.</p><a href="#access" class="btn sm">Unlock for NZ$79</a></div></div><div class="gate-body">'+rest+'</div></div>';
+  h+='<div class="gated"><div class="gate-overlay"><div class="gate-card"><h4>'+(base-Math.min(6,PLAN[0].items.length))+' more steps in your plan</h4><p>The full how-to for steps 1 to 6, then protecting your half of the house, claiming everything you\u2019re entitled to, keeping it on paper, the neutral message and the habits that keep it working.</p><a href="#access" class="btn sm">Unlock for NZ$79</a></div></div><div class="gate-body">'+rest+'</div></div>';
   var shown=AVOID.slice(0,AVOID.length-3),locked=AVOID.slice(-3);
   h+='<div class="card warm" style="margin-top:10px"><h3>Quietly avoid</h3><ul class="avoid" style="margin:0;padding-left:20px">'+shown.map(function(a){return '<li>'+esc(a)+'</li>';}).join('')+'</ul>'+
     '<div class="gated mini" style="margin-top:8px"><div class="gate-overlay"><div class="gate-card"><h4>Three more to quietly avoid</h4><p>The last of the list, with the rest of the course.</p><a href="#access" class="btn sm">Unlock for NZ$79</a></div></div><div class="gate-body"><ul class="avoid" style="margin:0;padding-left:20px">'+locked.map(function(a){return '<li>'+esc(a)+'</li>';}).join('')+'</ul></div></div></div>';
