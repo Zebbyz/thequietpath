@@ -215,24 +215,24 @@ textarea{min-height:90px;resize:vertical}
 #wcost .wpill{display:inline-block;font:700 1rem/1 var(--display);padding:9px 15px 8px;border-radius:999px;background:var(--amber);color:var(--night);margin:0 0 16px}
 #wcost .wpill.ex{background:transparent;color:var(--cream);border:1.5px solid var(--glass)}
 #wcost h3{font:700 clamp(1.8rem,3.4vw,2.5rem)/1.1 var(--display);letter-spacing:-.025em;color:var(--cream);margin:0 0 10px;text-wrap:balance}
-#wcost .wsub{font:400 1.12rem/1.5 var(--sans);color:#C6D3CE;margin:0 0 26px;max-width:44em;text-wrap:pretty}
+#wcost .wsub{font:560 1.22rem/1.5 var(--sans);color:#E1EAE6;margin:0 0 26px;max-width:44em;text-wrap:pretty}
 #wcost .wsub b{font-weight:560;color:var(--cream)}
 #wcost .wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 #wcost .wt{border-top:2px solid var(--line);padding-top:18px}
 #wcost .wt h4{font:650 1.2rem/1.25 var(--display);color:var(--cream);margin:0;text-wrap:pretty}
 #wcost .wt .wbig{display:block;font:700 clamp(2.4rem,4.6vw,3.3rem)/1 var(--display);letter-spacing:-.035em;color:var(--amber);margin:12px 0 10px;font-variant-numeric:tabular-nums}
 #wcost .wt.lost .wbig{color:#F08A6E}
-#wcost .wt p{font:400 1rem/1.45 var(--sans);color:#A9BAB4;margin:0;text-wrap:pretty}
+#wcost .wt p{font:560 1.18rem/1.45 var(--sans);color:#E1EAE6;margin:0;text-wrap:pretty}
 #wcost .wt p b{font-weight:560;color:var(--cream)}
 #wcost .wfee{margin-top:30px;background:var(--cream);color:var(--night);border-radius:16px;padding:28px 30px}
 #wcost .wfee p.wc{color:var(--night);font:700 clamp(1.9rem,4vw,2.9rem)/1.1 var(--display);letter-spacing:-.03em;margin:0 0 10px;text-wrap:balance}
 #wcost .wfee .wc em{font-style:normal;color:var(--amber-deep)}
-#wcost .wfee p{font:400 1.08rem/1.45 var(--sans);color:#33504D;margin:0;text-wrap:pretty}
+#wcost .wfee p{font:560 1.2rem/1.45 var(--sans);color:#14302E;margin:0;text-wrap:pretty}
 #wcost .wfee p b{font-weight:560;color:var(--night)}
 #wcost .wkid{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:0 0 24px}
-#wcost .wkid label{font:560 1.05rem/1.3 var(--sans);color:var(--cream)}
-#wcost .wkid input{max-width:220px}
-#wcost .wfine{font:400 .95rem/1.5 var(--sans);color:#A9BAB4;margin:18px 0 0;text-wrap:pretty}
+#wcost .wkid label{font:560 1.2rem/1.3 var(--sans);color:#F6F1E8}
+#wcost .wkid input{max-width:240px;font-size:1.15rem}
+#wcost .wfine{font:560 1.15rem/1.5 var(--sans);color:#E1EAE6;margin:18px 0 0;text-wrap:pretty}
 @media (max-width:860px){#wcost .wgrid{grid-template-columns:1fr;gap:14px}}
 @media (max-width:560px){#wcost{padding:26px 20px 22px;margin-top:34px}#wcost .wfee{padding:22px 20px}#wcost .wt .wbig{font-size:2.5rem}}
 /* Numbers sit on a rule, not in boxes */
@@ -1808,7 +1808,7 @@ function renderWait(){
   $('wLost').textContent=money(lost);$('wLostD').textContent=lostD;
   $('wAhead').textContent=ahead>0?money(ahead):'\u2014';$('wAheadD').innerHTML=aheadD;
   if(ahead>0){var cents=79/ahead*10000;
-    $('wCents').innerHTML='The Quiet Path costs about <em>'+centsTxt(cents)+'</em> for every $100 '+(mine?'you\u2019re':'she\u2019s')+'&nbsp;owed.';
+    $('wCents').innerHTML='The Quiet Path costs about <em>'+centsTxt(cents)+'</em> for every $100 you\u2019re&nbsp;owed.';
     $('wPct').innerHTML='NZ$79 once, against '+money(ahead)+' still ahead. That\u2019s <b>'+pct2(79/ahead*100)+'</b> of&nbsp;it.';
   }else{$('wCents').textContent='Add your youngest child\u2019s date of birth.';$('wPct').textContent='';}
 }
