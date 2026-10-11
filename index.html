@@ -718,6 +718,37 @@ html:not(.lite) .lite-only{display:none!important}
 .payhave .linkbtn,.footcode .linkbtn,.gate-have .linkbtn{font-weight:700;text-align:left}
 .gate-have{margin:12px 0 0;font:700 .98rem/1.35 var(--display)}
 .footcode{font-family:var(--display)}
+/* Relationship property section */
+.rpzone{background:linear-gradient(180deg,rgba(232,131,111,.07),rgba(14,42,47,0) 60%)}
+.rpzone h2{font:760 clamp(2.2rem,5vw,3.6rem)/1.05 var(--display);letter-spacing:-.03em;color:var(--cream);margin:0 0 18px;text-wrap:balance;max-width:20em}
+.rpzone .lead{font:650 clamp(1.2rem,2.1vw,1.45rem)/1.45 var(--display);color:#F1F5F3;opacity:1;max-width:36em;margin:0;text-wrap:pretty}
+.rp-pick{margin:30px 0 8px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.rp-pick .rp-q{flex:1 0 100%;font:760 1.35rem/1.2 var(--display);color:var(--cream);margin:0 0 4px}
+.rp-pick label{display:flex;align-items:center;gap:10px;font:750 1.15rem/1.25 var(--display);color:#F4F7F5;border:1.5px solid var(--glass);border-radius:999px;padding:12px 18px;cursor:pointer;background:rgba(244,234,219,.04)}
+.rp-pick label:has(input:checked){background:var(--amber);border-color:var(--amber);color:#14232A}
+.rp-pick input{width:20px;height:20px;accent-color:#14232A;margin:0;flex:none}
+.rpzone .pcard ul.rp-list,.rpzone .pcard ol.rp-ways{margin:0 0 14px;padding-left:22px}
+.rpzone .pcard li{font:650 1.15rem/1.45 var(--display);color:#F1F5F3;margin:0 0 9px;text-wrap:pretty}
+.rpzone .pcard li b{font-weight:800}
+.rpzone .rp-wide{grid-column:1/-1}
+.rpzone .rp-time{border-color:rgba(232,85,59,.6);background:rgba(232,85,59,.08)}
+.rpzone.rp-is-settle .rp-joint{display:none}
+.rp-steps{margin-top:26px;padding:30px}
+.rp-steps h3{font:760 clamp(1.5rem,2.6vw,1.9rem)/1.15 var(--display);color:var(--cream);margin:0 0 8px;text-wrap:balance}
+.rp-steps .rp-sub{font:650 1.12rem/1.45 var(--display);color:#DCE7E3;margin:0 0 16px}
+.rpstep{display:flex;gap:14px;align-items:flex-start;padding:16px 4px;border-top:1px solid var(--line);cursor:pointer}
+.rpstep:last-child{border-bottom:1px solid var(--line)}
+.rpstep input{width:24px;height:24px;margin:3px 0 0;accent-color:var(--amber);flex:none}
+.rpstep .rpn{flex:none;width:1.6em;font:760 1.3rem/1.1 var(--display);color:var(--amber);text-align:right}
+.rpstep .rpt{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:4px}
+.rpstep .rpt b{font:760 1.22rem/1.25 var(--display);color:var(--cream)}
+.rpstep .rpt span{font:650 1.1rem/1.45 var(--display);color:#E3ECE9;text-wrap:pretty}
+.rpstep .rpt a{color:var(--amber);font-weight:750}
+.rpstep.done .rpt b{text-decoration:line-through;text-decoration-color:var(--amber);opacity:.8}
+.rp-steps textarea{width:100%;font:650 1.1rem/1.45 var(--display)}
+.rp-src{font:650 1.05rem/1.6 var(--display);color:#E3ECE9;margin:24px 0 0}
+.rp-src a{color:var(--amber)}
+@media (max-width:760px){.rp-steps{padding:22px 18px}.rp-pick label{width:100%}}
 </style>
 </head>
 <body>
@@ -907,6 +938,78 @@ one of them takes money you can never get back.</p>
   </div>
 </section>
 
+<!-- 2b. RELATIONSHIP PROPERTY -->
+<section class="sec rpzone" id="property">
+  <div class="wrap">
+    <span class="ppill">House and property</span>
+    <h2>If you own property together, or just need a property&nbsp;settlement.</h2>
+    <p class="lead">This part is for anyone separating in New Zealand, with or without children, whoever you are. It sets out how a relationship property settlement usually works, in plain words, with links to the official&nbsp;sources.</p>
+
+    <div class="rp-pick" id="rpPick" role="radiogroup" aria-label="Which fits you best?">
+      <p class="rp-q">Which fits you best?</p>
+      <label><input type="radio" name="rpPath" value="joint"> We own property&nbsp;together</label>
+      <label><input type="radio" name="rpPath" value="settle"> I just need a property&nbsp;settlement</label>
+      <label><input type="radio" name="rpPath" value=""> Show me&nbsp;everything</label>
+    </div>
+
+    <div class="pgrid">
+      <div class="pcard"><span class="ppill">What counts</span><h3>Relationship property usually&nbsp;includes</h3>
+        <ul class="rp-list">
+          <li>The family home and its contents, other land or buildings, and vehicles</li>
+          <li>Joint bank accounts, and anything owned jointly or in equal shares</li>
+          <li>KiwiSaver and other super contributions made during the relationship</li>
+          <li>Family businesses and investments built with family income</li>
+          <li>Income earned during the relationship, and any increase in value of relationship&nbsp;property</li>
+        </ul>
+        <p class="small">The family home and family chattels usually count no matter whose name they're in or who paid for&nbsp;them.</p>
+      </div>
+      <div class="pcard"><span class="ppill">Usually kept separate</span><h3>Separate property</h3>
+        <ul class="rp-list">
+          <li>Gifts and inheritances given to one of you</li>
+          <li>Heirlooms and taonga</li>
+          <li>Property from before the relationship, except the family&nbsp;home</li>
+        </ul>
+        <p class="small">Separate property can become relationship property if it gets mixed in, for example an inheritance used to pay down the&nbsp;mortgage.</p>
+      </div>
+      <div class="pcard"><span class="ppill">Debts count too</span><h3>Relationship debts and personal&nbsp;debts</h3>
+        <p>Relationship debts include joint debts, joint business debts, and debts taken on to buy, improve or maintain relationship property, run the household or bring up your&nbsp;children.</p>
+        <p class="small">Personal debts, such as debts from before the relationship or after it ended, stay with the person who took them&nbsp;on.</p>
+      </div>
+      <div class="pcard rp-joint"><span class="ppill">Owning it together</span><h3>Both names on the&nbsp;title</h3>
+        <p>If you're both on the title, you own the property together. Community Law explains the two usual ways: as <b>joint tenants</b>, where you own the whole property together, or as <b>tenants in common</b>, where you each own a share, such as half&nbsp;each.</p>
+        <p>The title shows which. If you're both on the mortgage, the Ministry of Justice suggests talking to your bank about your repayments and responsibilities after you&nbsp;separate.</p>
+      </div>
+      <div class="pcard rp-wide"><span class="ppill">Three ways to settle</span><h3>How a settlement usually&nbsp;happens</h3>
+        <ol class="rp-ways">
+          <li><b>Agree between yourselves.</b> The court doesn't have to be involved. For the agreement to be enforceable through the court, it must be in writing and you must both have had independent legal advice, so each of you sees your own&nbsp;lawyer.</li>
+          <li><b>Mediation.</b> If you're using Family Dispute Resolution to agree how you'll care for your children, you can also talk about dividing property if it helps you agree on that plan. Write down what you agree and both get independent legal&nbsp;advice.</li>
+          <li><b>The Family Court.</b> If you can't agree, or an agreement is unfair or breaks down, you can apply to the Family Court. It identifies the relationship property, looks at the valuations you both give it and decides how it's divided, in a Relationship Property&nbsp;Order.</li>
+        </ol>
+        <p class="small">The general rule is an equal share when a relationship has lasted at least three years. Shorter relationships can have different rules, so check your situation with Community Law or a&nbsp;lawyer.</p>
+      </div>
+      <div class="pcard rp-time"><span class="ppill now">Time limits</span><h3>Applying to the Family&nbsp;Court</h3>
+        <p>The Ministry of Justice says to apply <b>within 1 year of your divorce</b>, or <b>within 3 years from the end of a de facto relationship</b>. You can ask the court for permission if you miss the&nbsp;deadline.</p>
+        <p class="small">Applying costs $816, and you can ask for the fee to be waived. Source: <a href="https://www.justice.govt.nz/family/separation-divorce/divide-relationship-property/apply-to-divide/" target="_blank" rel="noopener">Apply to divide relationship property&nbsp;↗</a></p>
+      </div>
+      <div class="pcard"><span class="ppill">Dates that matter</span><h3>Separation date and value&nbsp;date</h3>
+        <p>Your shares are worked out at the date the relationship ended. The value of the property is generally worked out at the date of a court hearing, unless the court sets another&nbsp;date.</p>
+        <p class="small">If you can't agree on what something is worth, Community Law says independent valuations are&nbsp;important.</p>
+      </div>
+    </div>
+
+    <div class="rp-steps card">
+      <span class="ppill">Your steps</span>
+      <h3 id="rpStepsTitle">What to gather, one step at a&nbsp;time</h3>
+      <p class="rp-sub" id="rpStepsSub">Tick each one as you go. Your ticks and notes go into your lawyer summary&nbsp;pack.</p>
+      <div id="rpSteps"></div>
+      <div class="field" style="margin:22px 0 0"><label class="f" for="rpNotes">Your list of assets and debts<span class="hint">One per line, with whose name it's in and the balance or value at the separation date if you know it. It stays on this&nbsp;device.</span></label><textarea id="rpNotes" rows="6" placeholder="House, both names, mortgage with the bank&#10;Car, my name&#10;KiwiSaver, mine&#10;Credit card, his name"></textarea></div>
+    </div>
+
+    <p class="rp-src"><b>Sources.</b> <a href="https://www.justice.govt.nz/family/separation-divorce/divide-relationship-property/" target="_blank" rel="noopener">Ministry of Justice: Divide relationship property&nbsp;↗</a> · <a href="https://www.justice.govt.nz/family/relationship-property/understand-relationship-property/" target="_blank" rel="noopener">Understand relationship property&nbsp;↗</a> · <a href="https://www.justice.govt.nz/family/separation-divorce/divide-relationship-property/apply-to-divide/" target="_blank" rel="noopener">Apply to divide&nbsp;↗</a> · <a href="https://communitylaw.org.nz/community-law-manual/chapter-12-relationships-and-break-ups/dividing-your-property-when-you-split-up-relationship-property/" target="_blank" rel="noopener">Community Law manual: relationship property&nbsp;↗</a></p>
+    <p class="note">General information only, not legal advice. Every situation is different. Check yours with <a href="https://communitylaw.org.nz/" target="_blank" rel="noopener">Community Law</a>, which gives free legal help, or a family&nbsp;lawyer.</p>
+  </div>
+</section>
+
 <!-- 3. TIME TOGETHER -->
 <section class="sec" id="care">
   <div class="wrap">
@@ -1012,6 +1115,7 @@ one of them takes money you can never get back.</p>
               <div class="field"><label class="f" for="y_start">When you moved in together</label><select id="y_start" data-her="start"><option value="">Choose one</option><option value="iRent">He moved into a place I was renting</option><option value="iOwn">He moved into a home I owned</option><option value="heRent">I moved into a place he was renting</option><option value="heOwn">I moved into a home he owned</option><option value="newRent">We rented a new place together</option><option value="newBuy">We bought a home together from the start</option><option value="family">We lived with family</option></select></div>
               <div class="field"><label class="f" for="y_then">What happened after that</label><select id="y_then" data-her="then"><option value="">Choose one</option><option value="bought">We later bought a home together</option><option value="boughtMe">I later bought a home in my name</option><option value="boughtHim">He later bought a home in his name</option><option value="stayed">We stayed where we were</option><option value="rented">We kept renting</option></select></div>
               <div class="field"><label class="f" for="y_titled">Whose name is the house in now?</label><select id="y_titled" data-her="titled"><option value="">Choose one</option><option value="both">Both of us</option><option value="me">Just me</option><option value="him">Just him</option><option value="unsure">I'm not sure</option><option value="none">We don't own a home</option></select></div>
+              <div class="field"><label class="f" for="y_prop">Your property situation<span class="hint">This tailors the property steps and your lawyer&nbsp;pack.</span></label><select id="y_prop" data-her="prop"><option value="">Choose one</option><option value="joint">We own property together</option><option value="settle">I just need a property settlement</option></select></div>
               <div class="row">
                 <div class="field"><label class="f" for="y_lived">Started living together</label><input type="date" id="y_lived" data-her="lived"></div>
                 <div class="field"><label class="f" for="y_bought">Bought the house</label><input type="date" id="y_bought" data-her="bought"></div>
@@ -2073,11 +2177,12 @@ function packHTML(){
    '<div class="pk-sec">'+head+'<h3>What I\u2019m asking for</h3>'+letterHTML()+'</div>'+'<div class="pk-sec"><h3><b>1.</b> The other party</h3><dl class="kv">'+kv('Full name',H.name)+kv('Other names',H.aka)+kv('Date of birth',parseD(H.dob)?fmtD(parseD(H.dob))+(ageTxt(H.dob)?' ('+ageTxt(H.dob)+')':''):'')+kv('IRD number',H.ird)+((H.phone||'').trim()?kv('Mobile',H.phone):'')+((H.email||'').trim()?kv('Email',H.email):'')+'</dl></div>'+'<div class="pk-sec"><h3><b>2.</b> Key dates</h3><dl class="kv">'+kv('Met',fmtD(parseD(Y.met)))+kv('Relationship became intimate',fmtD(parseD(Y.intim)))+kv('Started living together',fmtD(parseD(Y.lived)))+kv('How we lived together',livedTxt())+kv('Bought the house',fmtD(parseD(Y.bought)))+kv('Separated (he left)',c?fmtD(c.left):'')+kv('IRD received application',appliedTxt)+kv('3-year property mark',c?fmtD(c.deadline)+(c.leftDays>=0?' ('+int.format(c.leftDays)+' days away)':' (passed)'):'')+'</dl></div>'+
    
    '<div class="pk-sec"><h3><b>3.</b> Money, property and everything else</h3>'+(builtFacts().length?'<ul style="margin:0;padding-left:20px">'+builtFacts().map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>':'<p class="muted">Not filled in yet.</p>')+'</div>'+
-   '<div class="pk-sec"><h3><b>4.</b> Care pattern</h3><dl class="kv">'+kv('Current pattern',careTxt)+kv('Hours per year',S.sees==='yes'?int.format(care.yr)+' hours (about '+num.format(care.days)+' days, '+pctTxt(care.share)+' of the year)':'0')+kv('Overnights per year',S.sees==='yes'?String(care.nights):'0')+'</dl></div>'+
-   '<div class="pk-sec"><h3><b>5.</b> Income range (estimates)</h3><p class="small muted">His income is not known. These are her guesses. Weekly figures, where shown, were entered by her from IRD\u2019s estimator and are not an assessment.</p><dl class="kv">'+spreadRows+'</dl></div>'+
-   '<div class="pk-sec"><h3><b>6.</b> Log of payments and contact</h3>'+logRows+'</div>'+
-   '<div class="pk-sec"><h3><b>7.</b> Document checklist</h3>'+docsHTML()+'<p style="margin-top:16px"><b>Files in my folder</b></p>'+docRows+'</div>'+
-   '<div class="pk-sec"><h3><b>8.</b> Progress</h3><p>'+done+' of '+total+' steps completed.'+(open.length?' Still open from the first three stages:':'')+'</p>'+(open.length?'<ul style="margin:0;padding-left:20px">'+open.map(function(o){return '<li>'+esc(o)+'</li>';}).join('')+'</ul>':'')+'<p class="small muted" style="margin-top:22px">General information only, not legal advice. Child support amounts are set by Inland Revenue.</p></div>'+
+   '<div class="pk-sec"><h3><b>4.</b> Relationship property settlement</h3>'+rpPackHTML()+'</div>'+
+   '<div class="pk-sec"><h3><b>5.</b> Care pattern</h3><dl class="kv">'+kv('Current pattern',careTxt)+kv('Hours per year',S.sees==='yes'?int.format(care.yr)+' hours (about '+num.format(care.days)+' days, '+pctTxt(care.share)+' of the year)':'0')+kv('Overnights per year',S.sees==='yes'?String(care.nights):'0')+'</dl></div>'+
+   '<div class="pk-sec"><h3><b>6.</b> Income range (estimates)</h3><p class="small muted">His income is not known. These are her guesses. Weekly figures, where shown, were entered by her from IRD\u2019s estimator and are not an assessment.</p><dl class="kv">'+spreadRows+'</dl></div>'+
+   '<div class="pk-sec"><h3><b>7.</b> Log of payments and contact</h3>'+logRows+'</div>'+
+   '<div class="pk-sec"><h3><b>8.</b> Document checklist</h3>'+docsHTML()+'<p style="margin-top:16px"><b>Files in my folder</b></p>'+docRows+'</div>'+
+   '<div class="pk-sec"><h3><b>9.</b> Progress</h3><p>'+done+' of '+total+' steps completed.'+(open.length?' Still open from the first three stages:':'')+'</p>'+(open.length?'<ul style="margin:0;padding-left:20px">'+open.map(function(o){return '<li>'+esc(o)+'</li>';}).join('')+'</ul>':'')+'<p class="small muted" style="margin-top:22px">General information only, not legal advice. Child support amounts are set by Inland Revenue.</p></div>'+
   '</div>';
 }
 function renderPack(){$('packView').innerHTML=packHTML();}
@@ -2351,7 +2456,49 @@ if($('wKidDob'))$('wKidDob').addEventListener('input',function(){var K=kidsArr()
     }catch(e){intro.style.display='none';root.classList.add('intro-done');var f=$('introFly');if(f)f.remove();}
   }
 })();
-function renderAll(){renderWait();renderClocks();renderSpread();renderTimeline();renderPack();refreshAI();}
+/* Relationship property path */
+var RP_STEPS=[
+ ['list','all','List everything you own and owe','The house and any other land, vehicles, bank accounts, KiwiSaver and other super, insurance policies, any business, and every debt. Note whose name each one is&nbsp;in.'],
+ ['sepdate','all','Write down the date you separated','Your shares in relationship property are worked out at the date the relationship&nbsp;ended.'],
+ ['title','joint','Get a copy of the record of title','It shows whose names are on it and whether you own it as joint tenants or tenants in common. You can order one from Land Information&nbsp;NZ.','https://lrs.linz.govt.nz/search/'],
+ ['mortgage','joint','Get your mortgage statements','The statement closest to your separation date and the latest one. Talk to your bank about your repayments and responsibilities from&nbsp;here.'],
+ ['value','all','Get current values','A valuation or appraisal for the house, and a fair figure for vehicles and anything else of value. If you can\u2019t agree on a value, independent valuations&nbsp;help.'],
+ ['balances','all','Get balances at the separation date','Bank, savings, credit card, loan and KiwiSaver statements showing the balance around the date you&nbsp;separated.'],
+ ['joint','all','Check everything you hold together','Joint bank accounts, credit and store cards, loans, hire purchase, insurance and automatic payments. Make sure regular bills keep being&nbsp;paid.'],
+ ['costs','joint','Keep a record of who pays what','Mortgage, rates, insurance and repairs since you separated, with dates and amounts. Your lawyer will likely ask for&nbsp;it.'],
+ ['separate','all','Note anything that may be separate','Gifts, inheritances, heirlooms and taonga, and things from before the relationship. Keep the paperwork that shows where they came&nbsp;from.'],
+ ['advice','all','Get your own legal advice before you sign','For an agreement to be enforceable through the court, it must be in writing and you must both have had independent legal advice. Community Law can help you find a&nbsp;lawyer.','https://communitylaw.org.nz/'],
+ ['limit','all','Check your time limit','Within 1 year of a divorce, or 3 years from the end of a de facto relationship, if it goes to the Family&nbsp;Court.','https://www.justice.govt.nz/family/separation-divorce/divide-relationship-property/apply-to-divide/']
+];
+function rpState(){if(!S.rp||typeof S.rp!=='object')S.rp={t:{},n:''};if(!S.rp.t)S.rp.t={};return S.rp;}
+function rpPath(){return (S.her&&S.her.prop)||'';}
+function rpVisible(){var p=rpPath();return RP_STEPS.filter(function(s){return s[1]==='all'||!p||p===s[1];});}
+function renderRP(){
+  var box=$('rpSteps');if(!box)return;var R=rpState(),p=rpPath();
+  document.querySelectorAll('#rpPick input[name=rpPath]').forEach(function(i){i.checked=i.value===p;});
+  var z=$('property');if(z){z.classList.toggle('rp-is-settle',p==='settle');}
+  $('rpStepsTitle').innerHTML=p==='joint'?'Your steps for property you own&nbsp;together':p==='settle'?'Your steps for a property&nbsp;settlement':'What to gather, one step at a&nbsp;time';
+  box.innerHTML=rpVisible().map(function(s,i){var on=!!R.t[s[0]];
+    return '<label class="rpstep'+(on?' done':'')+'"><input type="checkbox" data-rp="'+s[0]+'"'+(on?' checked':'')+'><span class="rpn">'+(i+1)+'</span><span class="rpt"><b>'+s[2]+'</b><span>'+s[3]+(s[4]?' <a href="'+s[4]+'" target="_blank" rel="noopener">Open&nbsp;↗</a>':'')+'</span></span></label>';}).join('');
+  var n=$('rpNotes');if(n&&document.activeElement!==n)n.value=R.n||'';
+}
+function rpPackHTML(){
+  var R=rpState(),p=rpPath(),vis=rpVisible(),done=vis.filter(function(s){return R.t[s[0]];}),open=vis.filter(function(s){return !R.t[s[0]];});
+  var strip=function(h){var d=document.createElement('div');d.innerHTML=h;return d.textContent;};
+  var lines=(R.n||'').split('\n').map(function(l){return l.trim();}).filter(Boolean);
+  return '<dl class="kv">'+kv('Situation',p==='joint'?'We own property together':p==='settle'?'I need a property settlement':'Not chosen yet')+kv('Steps done',done.length+' of '+vis.length)+'</dl>'+
+   (done.length?'<p style="margin-top:12px"><b>Done</b></p><ul style="margin:0;padding-left:20px">'+done.map(function(s){return '<li>'+esc(strip(s[2]))+'</li>';}).join('')+'</ul>':'')+
+   (open.length?'<p style="margin-top:12px"><b>Still to do</b></p><ul style="margin:0;padding-left:20px">'+open.map(function(s){return '<li>'+esc(strip(s[2]))+'</li>';}).join('')+'</ul>':'')+
+   '<p style="margin-top:12px"><b>Assets and debts (my list)</b></p>'+(lines.length?'<ul style="margin:0;padding-left:20px">'+lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('')+'</ul>':'<p class="muted">Not filled in yet.</p>');
+}
+(function(){
+  var pick=$('rpPick');if(!pick)return;
+  pick.addEventListener('change',function(e){var i=e.target;if(i.name!=='rpPath')return;S.her.prop=i.value;save();var sel=$('y_prop');if(sel)sel.value=i.value;renderRP();try{renderPack();}catch(x){}});
+  $('rpSteps').addEventListener('change',function(e){var c=e.target;if(!c.dataset||!c.dataset.rp)return;rpState().t[c.dataset.rp]=c.checked;save();c.closest('.rpstep').classList.toggle('done',c.checked);try{renderPack();}catch(x){}});
+  $('rpNotes').addEventListener('input',function(){rpState().n=this.value;save();try{renderPack();}catch(x){}});
+  var sel=$('y_prop');if(sel)sel.addEventListener('change',function(){renderRP();});
+})();
+function renderAll(){renderRP();renderWait();renderClocks();renderSpread();renderTimeline();renderPack();refreshAI();}
 applyPaid();applySession();renderCareRows();renderCare();renderSpreadInputs();renderRoadmap();renderDocs();renderLog();renderAll();
 if(location.hash==='#pay'){var ac=$('access');if(ac)ac.scrollIntoView();}
 if(location.hash==='#signin') openSign();
