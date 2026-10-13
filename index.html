@@ -685,6 +685,8 @@ html.tqp-locked body{overflow:hidden}
 .tqpcount .tc-num{font:900 clamp(3.6rem,13vw,8.5rem)/1 var(--display);letter-spacing:-.03em;color:var(--amber);margin:0;font-variant-numeric:tabular-nums}
 .tqpcount .tc-label{font:800 clamp(1.25rem,3vw,2rem)/1.3 var(--display);color:#FFFFFF;margin:14px auto 0;max-width:30em}
 @media (max-width:640px){.tqpcount{margin-bottom:36px}}
+.tqpcount .tc-days{font:800 clamp(1.6rem,4.2vw,2.8rem)/1.1 var(--display);color:#FFFFFF;margin:10px 0 0}
+.tqpcount .tc-dnum{font:900 clamp(3.2rem,10vw,6.5rem)/1 var(--display);color:var(--amber);letter-spacing:-.03em;font-variant-numeric:tabular-nums;vertical-align:-.12em}
 .footpolicy{margin:28px 0 8px;max-width:46rem}
 .footpolicy h3{font:700 1.3rem/1.3 var(--display);color:#F1F5F3;margin:22px 0 6px}
 .footpolicy p{font:600 1.08rem/1.5 var(--display);color:#F1F5F3;margin:0}
@@ -868,11 +870,11 @@ var el=document.getElementById('tcTotal'),dl=document.getElementById('tcDays');i
 var fmt=new Intl.NumberFormat('en-NZ',{style:'currency',currency:'NZD',maximumFractionDigits:0});
 function nzDays(){var p=new Intl.DateTimeFormat('en-CA',{timeZone:'Pacific/Auckland',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()).split('-');
   return Math.round((Date.UTC(+p[0],+p[1]-1,+p[2])-Date.UTC(2026,9,11))/86400000);}
-var d=nzDays();if(d>=1)dl.textContent=' in '+d+(d===1?'\u00a0day':'\u00a0days');
+var D=Math.max(0,nzDays()),dw=document.getElementById('tcDaysWord'),dr=document.getElementById('tcDaysRow');if(D<1){dr.hidden=true;}dl.textContent=D;dw.textContent=D===1?'day':'days';
 var shown=0;
 function animate(to){var from=shown,t0=null,dur=1800;
-  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=fmt.format(to);shown=to;return;}
-  function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=fmt.format(Math.round(from+(to-from)*e));if(k<1)requestAnimationFrame(step);else shown=to;}
+  var dFrom=from===0?0:D;if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=fmt.format(to);dl.textContent=D;shown=to;return;}
+  function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=fmt.format(Math.round(from+(to-from)*e));dl.textContent=Math.round(dFrom+(D-dFrom)*e);if(k<1)requestAnimationFrame(step);else shown=to;}
   requestAnimationFrame(step);}
 function go(extra){animate(TQP_BASE+(extra||0));}
 var started=false;
@@ -883,7 +885,8 @@ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es
 </script>
 <section class="savesline" id="savesline"><div class="tqpcount" id="tqpCount" aria-live="polite">
   <p class="tc-num"><span id="tcTotal">$655,000</span></p>
-  <p class="tc-label">Located so far by women using The Quiet Path<span id="tcDays"></span></p>
+  <p class="tc-days" id="tcDaysRow">located in <span class="tc-dnum" id="tcDays">2</span> <span id="tcDaysWord">days</span></p>
+  <p class="tc-label">by women using The Quiet&nbsp;Path</p>
 </div><div class="wrap">
   <h2><span class="sl1">We don't save you money.</span> <span class="sl2">We show you how to stop losing&nbsp;it.</span></h2>
   <p>Don't lose up to 18 years of child support, or your fair share of the home and everything you built together. Know what you're owed and take the right steps, in the right order, before time runs&nbsp;out.</p>
