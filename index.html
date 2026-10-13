@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en-NZ">
 <head>
+<script>try{if(localStorage.getItem('quietpath.vault'))document.documentElement.classList.add('tqp-locked');}catch(e){}</script>
 <meta charset="utf-8">
 <meta name="theme-color" content="#0E2A2F">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -654,6 +655,29 @@ section.sec.pets{background:#F6EFE3!important;color:#0A2125}
 section.sec.opening{padding-bottom:96px}
 #savesline + section.sec.hero{padding-top:96px}
 @media (max-width:640px){section.sec.opening{padding-bottom:64px}#savesline + section.sec.hero{padding-top:64px}}
+html.tqp-locked body > *:not(#tqpLock):not(#quickExit){visibility:hidden!important}
+html.tqp-locked body{overflow:hidden}
+.tqplock{position:fixed;inset:0;z-index:99;background:#0A2125;color:#FFFFFF;display:flex;align-items:center;justify-content:center;padding:24px;overflow:auto}
+.tqpl-box{width:100%;max-width:30rem}
+.tqplock h2{font:800 clamp(1.8rem,5vw,2.4rem)/1.15 var(--display,system-ui);margin:0 0 12px;color:#FFFFFF}
+.tqplock p{font:600 1.08rem/1.5 var(--display,system-ui);color:#F1F5F3;margin:0 0 14px}
+.tqplock label,.pincard label.f{display:block;font:700 1.05rem/1.3 var(--display,system-ui);margin:16px 0 6px}
+.tqplock input,.pincard input{width:100%;box-sizing:border-box;font:600 1.2rem/1.2 var(--display,system-ui);padding:14px 16px;border-radius:10px;border:2px solid #F0A23B;background:#FFFFFF;color:#0A2125}
+.tqpl-btn{display:block;width:100%;margin-top:20px;padding:16px;border:0;border-radius:999px;background:#F0A23B;color:#0A2125;font:800 1.15rem/1 var(--display,system-ui);cursor:pointer}
+.tqpl-btn:disabled{opacity:.7}
+.tqpl-link{display:block;margin:18px auto 0;background:none;border:0;color:#F0A23B;font:700 1.05rem/1.3 var(--display,system-ui);text-decoration:underline;cursor:pointer}
+.tqpl-err,.pin-err{color:#FFB4A8!important;font-weight:700;min-height:1em;margin:10px 0 0!important}
+.pin-err{color:#B3261E!important}
+.tqpl-code{font:800 clamp(1.3rem,4.6vw,1.9rem)/1.3 ui-monospace,Menlo,monospace!important;letter-spacing:.06em;background:#FFF8EC;color:#0A2125!important;padding:16px 18px;border-radius:10px;text-align:center;word-break:break-word}
+.tqpl-warn{border-left:6px solid #F0A23B;padding-left:14px}
+.pincard .pin-btns{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.pin-codebox{margin-top:12px;background:#0A2125;color:#FFFFFF;padding:20px;border-radius:12px}
+.pin-codebox h2{color:#FFFFFF;margin:0 0 10px}
+.pin-codebox p{color:#F1F5F3}
+.pin-codebox .tqpl-err{color:#FFB4A8!important}
+.pincard [hidden],.tqplock [hidden]{display:none!important}
+.pin-codebox h2{font-size:1.7rem!important}
+.pin-codebox label{display:block;font:700 1.05rem/1.3 var(--display,system-ui);margin:16px 0 6px;color:#FFFFFF}
 .footpolicy{margin:28px 0 8px;max-width:46rem}
 .footpolicy h3{font:700 1.3rem/1.3 var(--display);color:#F1F5F3;margin:22px 0 6px}
 .footpolicy p{font:600 1.08rem/1.5 var(--display);color:#F1F5F3;margin:0}
@@ -912,10 +936,11 @@ one of them takes money you can never get back.</p>
       <h3>Shared and synced accounts</h3>
       <p>If you share an Apple, Google or Microsoft account with your child's father, or have ever signed in on his phone, tablet, laptop or car, your texts, codes, emails and browsing can show up on his devices. Check this first, and use a device and account that only you use.</p>
       <p>This is why we suggest changing all your passwords and always using two-factor authentication (2FA). Turn on 2FA for your email, Apple or Google account, bank and IRD, and have the codes sent to a phone only you use, not a shared number or email. If changing things might alert your child's father, wait until it's safe to do&nbsp;it.</p>
-      <h3>Your PIN and private backup (coming soon)</h3>
-      <p><b>Coming soon. These features aren't available yet.</b></p>
-      <p>You'll be able to lock The Quiet Path with your own PIN, so it asks for it every time it opens. You'll also be able to back up your information to us safely. It's scrambled on your own device with your password and your PIN before it leaves, and both are needed to open it. We store the backup but can never read it. Only you can read it, and only with your password and PIN.</p>
-      <p class="keycallout"><b>If you lose your password or PIN, we&nbsp;can't reset it or get your information back. That isn't a flaw, it's the proof: if we&nbsp;could open it for you, someone else could too.</b> Write them down and keep them somewhere safe that only you know, not on a shared device or&nbsp;account.</p>
+      <h3>Your PIN lock and private backup</h3>
+      <p><b>The PIN lock is available now.</b> You can lock The Quiet Path with your own password and PIN, so it asks for both every time it opens. Everything saved here is scrambled on your device and only opens with both. Turn it on under Lock with a PIN, in Online and data&nbsp;privacy.</p>
+      <p>When you set it up, you get a recovery code. Write it down and keep it somewhere safe. If you forget your PIN, you can reset it with your password and your recovery code, and you'll get a new recovery code&nbsp;then.</p>
+      <p><b>Private backup is coming soon.</b> You'll be able to back up your information to us safely. It's scrambled on your own device before it leaves. We store the backup but can never read it. Only you can read it, and only with your password and&nbsp;PIN.</p>
+      <p class="keycallout"><b>If you lose your password, or lose both your PIN and your recovery code, we&nbsp;can't reset it or get your information back. That isn't a flaw, it's the proof: if we&nbsp;could open it for you, someone else could too.</b> Write them down and keep them somewhere safe that only you know, not on a shared device or&nbsp;account.</p>
       <h3>Quick exit</h3>
       <p>The Quick exit button in the corner leaves this page straight away, and the back button won't bring it back. On a computer, pressing Esc twice does the same.</p>
       <h3>Information, not legal advice</h3>
@@ -951,6 +976,7 @@ one of them takes money you can never get back.</p>
         <label><input type="radio" name="decoy" value="dinner"> A Google search for easy dinner&nbsp;ideas</label>
       </div></div>
       <div class="pcard"><span class="ppill">Your phone and browser</span><h3>Use a private window</h3><p>Private browsing doesn't keep history on the device. In Chrome it's <b>New Incognito window</b>. On an iPhone in Safari, tap the tabs button and choose <b>Private</b>. On Android, open Chrome's menu and choose <b>New Incognito tab</b>.</p><p class="small muted">It won't hide what you do from a work or school network, or from spyware on the device.</p></div>
+      <div class="pcard pincard" id="pinCard"><h3>Lock with a PIN</h3><div class="pin-body"><p>Loading…</p></div></div>
       <div class="pcard"><span class="ppill">Your phone and browser</span><h3>Clear just this site</h3><p>You don't need to wipe everything, which can look unusual. Open your browser history, search for <b>The Quiet Path</b> and delete only those entries.</p><p>This site also saves your notes on this device. <button type="button" class="linkbtn" id="wipe">Clear everything The Quiet Path has saved here</button></p></div>
       <div class="pcard"><span class="ppill">Your phone and browser</span><h3>Shared devices</h3><p>On a shared computer or tablet, use your own login or a private window. Check what's open before you hand a phone over, and turn off message previews on your lock screen.</p></div>
       <div class="pcard"><span class="ppill">Your accounts</span><h3>Change every password</h3><p>Every site and every account. Start with your email, because every other password can be reset through it. Then do your banks, credit cards, finance company accounts, phone, power, internet, council, myIR, MyMSD, KiwiSaver, Apple or Google, and social media.</p><p>Use a different password for each one, and nothing the father could guess. A password manager, in the next card, makes this the easy&nbsp;part.</p></div>
@@ -1437,10 +1463,11 @@ one of them takes money you can never get back.</p>
       <h3>Shared and synced accounts</h3>
       <p>If you share an Apple, Google or Microsoft account with your child's father, or have ever signed in on his phone, tablet, laptop or car, your texts, codes, emails and browsing can show up on his devices. Check this first, and use a device and account that only you use.</p>
       <p>This is why we suggest changing all your passwords and always using two-factor authentication (2FA). Turn on 2FA for your email, Apple or Google account, bank and IRD, and have the codes sent to a phone only you use, not a shared number or email. If changing things might alert your child's father, wait until it's safe to do&nbsp;it.</p>
-      <h3>Your PIN and private backup (coming soon)</h3>
-      <p><b>Coming soon. These features aren't available yet.</b></p>
-      <p>You'll be able to lock The Quiet Path with your own PIN, so it asks for it every time it opens. You'll also be able to back up your information to us safely. It's scrambled on your own device with your password and your PIN before it leaves, and both are needed to open it. We store the backup but can never read it. Only you can read it, and only with your password and PIN.</p>
-      <p class="keycallout"><b>If you lose your password or PIN, we&nbsp;can't reset it or get your information back. That isn't a flaw, it's the proof: if we&nbsp;could open it for you, someone else could too.</b> Write them down and keep them somewhere safe that only you know, not on a shared device or&nbsp;account.</p>
+      <h3>Your PIN lock and private backup</h3>
+      <p><b>The PIN lock is available now.</b> You can lock The Quiet Path with your own password and PIN, so it asks for both every time it opens. Everything saved here is scrambled on your device and only opens with both. Turn it on under Lock with a PIN, in Online and data&nbsp;privacy.</p>
+      <p>When you set it up, you get a recovery code. Write it down and keep it somewhere safe. If you forget your PIN, you can reset it with your password and your recovery code, and you'll get a new recovery code&nbsp;then.</p>
+      <p><b>Private backup is coming soon.</b> You'll be able to back up your information to us safely. It's scrambled on your own device before it leaves. We store the backup but can never read it. Only you can read it, and only with your password and&nbsp;PIN.</p>
+      <p class="keycallout"><b>If you lose your password, or lose both your PIN and your recovery code, we&nbsp;can't reset it or get your information back. That isn't a flaw, it's the proof: if we&nbsp;could open it for you, someone else could too.</b> Write them down and keep them somewhere safe that only you know, not on a shared device or&nbsp;account.</p>
       <h3>Quick exit</h3>
       <p>The Quick exit button in the corner leaves this page straight away, and the back button won't bring it back. On a computer, pressing Esc twice does the same.</p>
       <h3>Information, not legal advice</h3>
@@ -1521,7 +1548,163 @@ one of them takes money you can never get back.</p>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div id="printArea"></div>
 <script>
+/* The Quiet Path PIN lock. Everything happens on this device. No keys or readable data ever leave it. */
 (function(){
+"use strict";
+var KEY='quietpath.v1',VKEY='quietpath.vault',FKEY='quietpath.lockfail',ITER=600000;
+var C=window.crypto&&window.crypto.subtle;
+var te=new TextEncoder(),td=new TextDecoder();
+var mem=null,vault=null,dek=null,chain=Promise.resolve(),started=false;
+function b64(u){var s='';u=new Uint8Array(u);for(var i=0;i<u.length;i++)s+=String.fromCharCode(u[i]);return btoa(s);}
+function ub64(s){var b=atob(s),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u;}
+function rnd(n){return crypto.getRandomValues(new Uint8Array(n));}
+function readVault(){try{var v=JSON.parse(localStorage.getItem(VKEY)||'null');return v&&v.v===1?v:null;}catch(e){return null;}}
+var AL='0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+function newCode(){var b=rnd(20),s='';for(var i=0;i<20;i++){s+=AL[b[i]&31];if(i%5===4&&i<19)s+='-';}return s;}
+function normCode(s){return String(s||'').toUpperCase().replace(/[OI L]/g,function(c){return c==='O'?'0':(c===' '?'':'1');}).replace(/[^0-9A-Z]/g,'');}
+function kek(secret,salt){return C.importKey('raw',te.encode(secret),'PBKDF2',false,['deriveKey']).then(function(k){return C.deriveKey({name:'PBKDF2',hash:'SHA-256',salt:salt,iterations:ITER},k,{name:'AES-GCM',length:256},false,['wrapKey','unwrapKey']);});}
+function wrap(key,w){var iv=rnd(12);return C.wrapKey('raw',key,w,{name:'AES-GCM',iv:iv}).then(function(ct){return {iv:b64(iv),ct:b64(ct)};});}
+function unwrap(o,w){return C.unwrapKey('raw',ub64(o.ct),w,{name:'AES-GCM',iv:ub64(o.iv)},{name:'AES-GCM',length:256},true,['encrypt','decrypt']);}
+function enc(str){var iv=rnd(12);return C.encrypt({name:'AES-GCM',iv:iv},dek,te.encode(str)).then(function(ct){return {iv:b64(iv),ct:b64(ct)};});}
+function dec(o,k){return C.decrypt({name:'AES-GCM',iv:ub64(o.iv)},k,ub64(o.ct)).then(function(p){return td.decode(p);});}
+function pwPin(pw,pin){return 'pp\u0000'+pw+'\u0000'+pin;}
+function pwCode(pw,code){return 'rc\u0000'+pw+'\u0000'+normCode(code);}
+function persist(){var v=vault;return enc(mem==null?'{}':mem).then(function(d){v.data=d;v.updated=new Date().toISOString();localStorage.setItem(VKEY,JSON.stringify(v));});}
+/* Storage used by the app. Plain localStorage unless the PIN lock is on. */
+window.TQPStore={
+  locked:function(){return !!readVault();},
+  get:function(){return vault?mem:localStorage.getItem(KEY);},
+  set:function(v){if(!vault){localStorage.setItem(KEY,v);return;}mem=v;chain=chain.then(persist).catch(function(){});},
+  remove:function(){localStorage.removeItem(KEY);localStorage.removeItem(VKEY);localStorage.removeItem(FKEY);vault=null;mem=null;},
+  flush:function(){return chain;}
+};
+function fails(){try{return JSON.parse(localStorage.getItem(FKEY)||'{"n":0,"t":0}');}catch(e){return {n:0,t:0};}}
+function waitMs(){var f=fails();return Math.max(0,f.t-Date.now());}
+function fail(){var f=fails();f.n++;var d=f.n<3?0:Math.min(900000,5000*Math.pow(2,f.n-3));f.t=Date.now()+d;localStorage.setItem(FKEY,JSON.stringify(f));return d;}
+function okReset(){localStorage.removeItem(FKEY);}
+/* Public API */
+var L=window.TQPLock={
+  setup:function(pw,pin){
+    var code=newCode(),sp=rnd(16),sr=rnd(16),k=null,plain=localStorage.getItem(KEY)||'{}';
+    return C.generateKey({name:'AES-GCM',length:256},true,['encrypt','decrypt']).then(function(g){k=g;return Promise.all([kek(pwPin(pw,pin),sp),kek(pwCode(pw,code),sr)]);})
+    .then(function(ws){return Promise.all([wrap(k,ws[0]),wrap(k,ws[1])]);})
+    .then(function(w){dek=k;vault={v:1,kdf:{alg:'PBKDF2-SHA256',iter:ITER},saltPw:b64(sp),saltRc:b64(sr),wPw:w[0],wRc:w[1],data:null};mem=plain;return persist();})
+    .then(function(){localStorage.removeItem(KEY);okReset();return code;});
+  },
+  unlock:function(pw,pin){
+    var v=readVault();if(!v)return Promise.reject('none');
+    var w=waitMs();if(w>0)return Promise.reject({wait:w});
+    return kek(pwPin(pw,pin),ub64(v.saltPw)).then(function(k){return unwrap(v.wPw,k);}).then(function(k){dek=k;return dec(v.data,k);})
+    .then(function(p){vault=v;mem=p;okReset();return true;},function(){return Promise.reject({wait:fail(),bad:true});});
+  },
+  recover:function(pw,code,newPin){
+    var v=readVault();if(!v)return Promise.reject('none');
+    var w=waitMs();if(w>0)return Promise.reject({wait:w});
+    var k;
+    return kek(pwCode(pw,code),ub64(v.saltRc)).then(function(r){return unwrap(v.wRc,r);}).then(function(x){k=x;return dec(v.data,k);})
+    .then(function(p){
+      var nc=newCode(),sp=rnd(16),sr=rnd(16);
+      return Promise.all([kek(pwPin(pw,newPin),sp),kek(pwCode(pw,nc),sr)]).then(function(ws){return Promise.all([wrap(k,ws[0]),wrap(k,ws[1])]);})
+      .then(function(wr){v.saltPw=b64(sp);v.saltRc=b64(sr);v.wPw=wr[0];v.wRc=wr[1];vault=v;dek=k;mem=p;return persist();}).then(function(){okReset();return nc;});
+    },function(){return Promise.reject({wait:fail(),bad:true});});
+  },
+  turnOff:function(pw,pin){
+    var v=readVault();if(!v)return Promise.resolve();
+    return kek(pwPin(pw,pin),ub64(v.saltPw)).then(function(k){return unwrap(v.wPw,k);}).then(function(k){return dec(v.data,k);})
+    .then(function(p){return chain.then(function(){localStorage.setItem(KEY,mem!=null?mem:p);localStorage.removeItem(VKEY);okReset();vault=null;mem=null;});},function(){return Promise.reject({bad:true});});
+  },
+  exportBlob:function(){return localStorage.getItem(VKEY);},
+  start:function(){
+    if(started)return;started=true;
+    if(!readVault()||!C){window.__tqpMain();return;}
+    showLock();
+  }
+};
+/* Lock screen UI */
+function el(h){var d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;}
+function fmtWait(ms){var s=Math.ceil(ms/1000);return s>=60?Math.ceil(s/60)+' minutes':s+' seconds';}
+function exit(){window.location.replace('https://www.google.co.nz/');}
+var escT=0;function escH(e){if(e.key==='Escape'){var n=Date.now();if(n-escT<800)exit();escT=n;}}
+function showLock(){
+  document.documentElement.classList.add('tqp-locked');
+  var ov=el('<div id="tqpLock" class="tqplock" role="dialog" aria-modal="true" aria-labelledby="tqpLockH"><div class="tqpl-box">'+
+   '<div id="tqplUnlock"><h2 id="tqpLockH">The Quiet Path is locked</h2><p>Enter your password and PIN to open it.</p>'+
+   '<label for="tqplPw">Password</label><input id="tqplPw" type="password" autocomplete="current-password">'+
+   '<label for="tqplPin">PIN</label><input id="tqplPin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="off">'+
+   '<p class="tqpl-err" id="tqplErr" role="alert"></p><button class="tqpl-btn" id="tqplGo" type="button">Unlock</button>'+
+   '<button class="tqpl-link" id="tqplForgot" type="button">Forgot your PIN?</button></div>'+
+   '<div id="tqplRec" hidden><h2>Reset your PIN</h2><p>Enter your password and your recovery code, then choose a new PIN. You\u2019ll get a new recovery code afterwards.</p>'+
+   '<label for="tqplRPw">Password</label><input id="tqplRPw" type="password" autocomplete="current-password">'+
+   '<label for="tqplRCode">Recovery code</label><input id="tqplRCode" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXX-XXXXX-XXXXX-XXXXX">'+
+   '<label for="tqplRPin">New PIN (4 to 8 digits)</label><input id="tqplRPin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="off">'+
+   '<p class="tqpl-err" id="tqplRErr" role="alert"></p><button class="tqpl-btn" id="tqplRGo" type="button">Reset PIN and unlock</button>'+
+   '<button class="tqpl-link" id="tqplBack" type="button">Back</button></div>'+
+   '<div id="tqplNew" hidden></div>'+
+   '</div></div>');
+  document.body.appendChild(ov);
+  document.addEventListener('keydown',escH);
+  var qx=document.getElementById('quickExit');if(qx)qx.addEventListener('click',exit);
+  var $=function(i){return document.getElementById(i);};
+  function busy(b,btn,t){btn.disabled=b;btn.textContent=b?'Checking\u2026':t;}
+  function errMsg(e,el){if(e&&e.wait){el.textContent=(e.bad?'That didn\u2019t match. ':'')+'Please wait '+fmtWait(e.wait)+' before trying again. Your information is safe and hasn\u2019t been changed.';}else if(e&&e.bad){el.textContent='That didn\u2019t match. Check your password and PIN and try again.';}else el.textContent='Something went wrong. Nothing has been changed.';}
+  function done(){document.removeEventListener('keydown',escH);if(qx)qx.removeEventListener('click',exit);ov.remove();document.documentElement.classList.remove('tqp-locked');window.__tqpMain();}
+  $('tqplGo').onclick=function(){var b=this;busy(true,b,'Unlock');$('tqplErr').textContent='';L.unlock($('tqplPw').value,$('tqplPin').value).then(done,function(e){busy(false,b,'Unlock');errMsg(e,$('tqplErr'));});};
+  $('tqplPin').onkeydown=function(e){if(e.key==='Enter')$('tqplGo').click();};
+  $('tqplForgot').onclick=function(){$('tqplUnlock').hidden=true;$('tqplRec').hidden=false;$('tqplRPw').focus();};
+  $('tqplBack').onclick=function(){$('tqplRec').hidden=true;$('tqplUnlock').hidden=false;};
+  $('tqplRGo').onclick=function(){var b=this,np=$('tqplRPin').value;$('tqplRErr').textContent='';
+    if(!/^\d{4,8}$/.test(np)){$('tqplRErr').textContent='Your new PIN needs to be 4 to 8 digits.';return;}
+    if(normCode($('tqplRCode').value).length!==20){$('tqplRErr').textContent='Your recovery code has 20 letters and numbers.';return;}
+    busy(true,b,'Reset PIN and unlock');
+    L.recover($('tqplRPw').value,$('tqplRCode').value,np).then(function(nc){
+      $('tqplRec').hidden=true;var n=$('tqplNew');n.hidden=false;showCode(n,nc,done);
+    },function(e){busy(false,b,'Reset PIN and unlock');var m=$('tqplRErr');if(e&&e.wait)errMsg(e,m);else if(e&&e.bad)m.textContent='That didn\u2019t match. Check your password and recovery code.';else errMsg(e,m);});};
+  setTimeout(function(){$('tqplPw').focus();},50);
+}
+/* Recovery code screen, shared by setup and reset */
+function showCode(box,code,next){
+  var last=code.slice(-5);
+  box.innerHTML='<h2>Your recovery code</h2><p class="tqpl-code" id="tqplCode">'+code+'</p>'+
+   '<p class="tqpl-warn"><b>Write this down now and keep it somewhere safe that only you know.</b> We can\u2019t see it and we can\u2019t recover it. If you forget your PIN, you\u2019ll need your password and this code to reset it. This is the only time it\u2019s shown.</p>'+
+   '<label for="tqplConf">To check you\u2019ve written it down, type the last group of five</label><input id="tqplConf" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="5">'+
+   '<p class="tqpl-err" id="tqplCErr" role="alert"></p><button class="tqpl-btn" id="tqplCGo" type="button">I\u2019ve written it down</button>';
+  var go=box.querySelector('#tqplCGo');
+  go.onclick=function(){if(normCode(box.querySelector('#tqplConf').value)!==last){box.querySelector('#tqplCErr').textContent='That doesn\u2019t match the last group. Check what you wrote down.';return;}next();};
+}
+/* Settings card: set up, lock now, turn off */
+window.TQPLockUI=function(){
+  var card=document.getElementById('pinCard');if(!card)return;
+  var body=card.querySelector('.pin-body');
+  function render(){
+    if(TQPStore.locked()){
+      body.innerHTML='<p><b>The PIN lock is on.</b> The Quiet Path asks for your password and PIN each time it opens.</p><div class="pin-btns"><button class="btn" type="button" id="pinLockNow">Lock now</button><button class="linkbtn" type="button" id="pinOff">Turn off the PIN lock</button></div><div id="pinOffBox" hidden><label class="f" for="pinOffPw">Password</label><input id="pinOffPw" type="password" autocomplete="current-password"><label class="f" for="pinOffPin">PIN</label><input id="pinOffPin" type="password" inputmode="numeric" maxlength="8"><p class="pin-err" id="pinOffErr"></p><button class="btn" type="button" id="pinOffGo">Turn off and keep my information</button></div>';
+      body.querySelector('#pinLockNow').onclick=function(){TQPStore.flush().then(function(){location.reload();});};
+      body.querySelector('#pinOff').onclick=function(){body.querySelector('#pinOffBox').hidden=false;};
+      body.querySelector('#pinOffGo').onclick=function(){var b=this;b.disabled=true;L.turnOff(body.querySelector('#pinOffPw').value,body.querySelector('#pinOffPin').value).then(function(){location.reload();},function(){b.disabled=false;body.querySelector('#pinOffErr').textContent='That didn\u2019t match. Nothing has been changed.';});};
+    }else{
+      body.innerHTML='<p>Lock The Quiet Path with a password and a PIN. Everything saved here is scrambled on this device and only opens with both. It\u2019s off unless you turn it on.</p><button class="btn" type="button" id="pinStart">Lock with a PIN</button><div id="pinSetup" hidden><label class="f" for="pinPw">Choose a password (at least 8 characters)</label><input id="pinPw" type="password" autocomplete="new-password"><label class="f" for="pinPw2">Type the password again</label><input id="pinPw2" type="password" autocomplete="new-password"><label class="f" for="pinPin">Choose a PIN (4 to 8 digits)</label><input id="pinPin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="off"><label class="f" for="pinPin2">Type the PIN again</label><input id="pinPin2" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="off"><p class="pin-err" id="pinErr" role="alert"></p><button class="btn" type="button" id="pinGo">Set up the PIN lock</button></div><div id="pinCodeBox" class="pin-codebox" hidden></div>';
+      body.querySelector('#pinStart').onclick=function(){this.hidden=true;body.querySelector('#pinSetup').hidden=false;body.querySelector('#pinPw').focus();};
+      body.querySelector('#pinGo').onclick=function(){
+        var q=function(i){return body.querySelector('#'+i).value;},err=body.querySelector('#pinErr'),b=this;err.textContent='';
+        if(q('pinPw').length<8)return err.textContent='Your password needs at least 8 characters.';
+        if(q('pinPw')!==q('pinPw2'))return err.textContent='The two passwords don\u2019t match.';
+        if(!/^\d{4,8}$/.test(q('pinPin')))return err.textContent='Your PIN needs to be 4 to 8 digits.';
+        if(q('pinPin')!==q('pinPin2'))return err.textContent='The two PINs don\u2019t match.';
+        b.disabled=true;b.textContent='Setting up\u2026';
+        L.setup(q('pinPw'),q('pinPin')).then(function(code){
+          body.querySelector('#pinSetup').hidden=true;var cb=body.querySelector('#pinCodeBox');cb.hidden=false;
+          showCode(cb,code,function(){render();});
+        },function(){b.disabled=false;b.textContent='Set up the PIN lock';err.textContent='Something went wrong. Nothing has been changed.';});
+      };
+    }
+  }
+  render();
+};
+})();
+
+</script>
+<script>
+window.__tqpMain=function(){
 "use strict";
 /* Swap this for the Stripe Checkout URL when the second Stripe account is connected. */
 var CHECKOUT_URL = '#pay';
@@ -1532,11 +1715,11 @@ function defaults(){return {paid:false,email:'',session:null,left:'',applied:'',
   spread:[{inc:90000,wk:''},{inc:110000,wk:''},{inc:130000,wk:''}],
   ticks:{},tv:3,him:{},her:{},log:[],docs:[],rem:{m6:false,m3:true,m1:true,wk:true},remEmail:'',discreet:true,decoy:'garden'};}
 var S;
-try{S=Object.assign(defaults(),JSON.parse(localStorage.getItem(KEY)||'{}'));}catch(e){S=defaults();}
-if(S.tv!==2){var nt={};Object.keys(S.ticks||{}).forEach(function(k){var m=/^s(\d+)_(\d+)$/.exec(k);nt[m&&+m[1]>=2?'s'+(+m[1]+1)+'_'+m[2]:k]=S.ticks[k];});S.ticks=nt;S.tv=2;try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
-if(S.tv===2){var nt3={};Object.keys(S.ticks||{}).forEach(function(k){var m=/^s0_(\d+)$/.exec(k);nt3[m?'s0_'+(+m[1]+1):k]=S.ticks[k];});S.ticks=nt3;S.tv=3;try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+try{S=Object.assign(defaults(),JSON.parse(TQPStore.get()||'{}'));}catch(e){S=defaults();}
+if(S.tv!==2){var nt={};Object.keys(S.ticks||{}).forEach(function(k){var m=/^s(\d+)_(\d+)$/.exec(k);nt[m&&+m[1]>=2?'s'+(+m[1]+1)+'_'+m[2]:k]=S.ticks[k];});S.ticks=nt;S.tv=2;try{TQPStore.set(JSON.stringify(S));}catch(e){}}
+if(S.tv===2){var nt3={};Object.keys(S.ticks||{}).forEach(function(k){var m=/^s0_(\d+)$/.exec(k);nt3[m?'s0_'+(+m[1]+1):k]=S.ticks[k];});S.ticks=nt3;S.tv=3;try{TQPStore.set(JSON.stringify(S));}catch(e){}}
 if(!S.dv){if(S.decoy==='met')S.decoy='garden';S.dv=1;}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function save(){try{TQPStore.set(JSON.stringify(S));}catch(e){}}
 var $=function(id){return document.getElementById(id);};
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 var nzd=new Intl.NumberFormat('en-NZ',{style:'currency',currency:'NZD',maximumFractionDigits:0});
@@ -2492,7 +2675,7 @@ document.addEventListener('keydown',function(e){
 
 
 /* Privacy / reset */
-$('wipe').addEventListener('click',function(){if(confirm('Clear everything The Quiet Path has saved on this device? This removes your ticks, notes, log and access in this browser.')){try{localStorage.removeItem(KEY);}catch(e){}location.reload();}});
+$('wipe').addEventListener('click',function(){if(confirm('Clear everything The Quiet Path has saved on this device? This removes your ticks, notes, log and access in this browser.')){try{TQPStore.remove();}catch(e){}location.reload();}});
 
 
 /* Init */
@@ -2663,7 +2846,9 @@ window.addEventListener('hashchange',function(){
   if(location.hash==='#pay'){var ac=$('access');if(ac)ac.scrollIntoView();}
   if(location.hash==='#signin') openSign();
 });
-})();
+if(window.TQPLockUI)TQPLockUI();
+};
+TQPLock.start();
 </script>
 </body>
 </html>
