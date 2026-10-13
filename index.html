@@ -1668,7 +1668,7 @@ function showLock(){
 function showCode(box,code,next){
   var last=code.slice(-5);
   box.innerHTML='<h2>Your recovery code</h2><p class="tqpl-code" id="tqplCode">'+code+'</p>'+
-   '<p class="tqpl-warn"><b>Write this down now and keep it somewhere safe that only you know.</b> We can\u2019t see it and we can\u2019t recover it. If you forget your PIN, you\u2019ll need your password and this code to reset it. This is the only time it\u2019s shown.</p>'+
+   '<p class="tqpl-warn"><b>Write this down now and keep it somewhere safe that only you know.</b> We can\u2019t see it and we can\u2019t recover it. If you forget your PIN, you\u2019ll need your password and this code to reset it. This is the only time it\u2019s shown.</p><p class="tqpl-warn">Keep it somewhere safe and private, away from your phone. On its own it can\u2019t open anything, it also needs your password.</p>'+
    '<label for="tqplConf">To check you\u2019ve written it down, type the last group of five</label><input id="tqplConf" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="5">'+
    '<p class="tqpl-err" id="tqplCErr" role="alert"></p><button class="tqpl-btn" id="tqplCGo" type="button">I\u2019ve written it down</button>';
   var go=box.querySelector('#tqplCGo');
