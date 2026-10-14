@@ -885,8 +885,8 @@ html:not(.lite) .lite-only{display:none!important}
     <a href="#top" class="wm" id="wmBadge" aria-label="The Quiet Path home"><span class="wm-thumb" aria-hidden="true"></span><span class="wm-txt"><span class="wm-q">the quiet</span> <span class="wm-p">path</span><span class="wm-line">Tracking what you’re owed</span></span></a>
     <nav aria-label="Sections">
       <a href="#clocks">Two clocks</a>
-      <a href="#course">The steps</a>
       <a href="#record">Your record</a>
+      <a href="#course">The steps</a>
       <div class="navdrop"><a href="#help">Help</a><div class="navsub"><a href="#faq">FAQ</a></div></div>
     </nav>
     <button type="button" class="nav-sign" id="signBtn">Sign in</button>
@@ -1286,35 +1286,6 @@ one of them takes money you can never get back.</p>
 </section>
 
 <!-- 5. YOUR COURSE -->
-<section class="sec" id="course">
-  <div class="wrap">
-    <h2>One step at a time. Tick as you go.</h2>
-    <p class="lead">Your ticks are saved on this device, so you can close the page and pick up where you left off.</p>
-    <div class="prog"><div class="bar"><i id="pBar"></i></div><b id="pTxt">0 of 0 done</b></div>
-    <div class="himwrap">
-          <div class="card himcard">
-        <h3>About the father</h3>
-        <p class="small muted" style="margin:-4px 0 14px">Just the father's name, ID and contact details.</p>
-        <div class="field"><label class="f" for="h_name">Full name</label><input type="text" id="h_name" data-him="name" autocomplete="off"></div>
-        <div class="field"><label class="f" for="h_aka">Other names the father uses<span class="hint">Nicknames, previous surnames</span></label><input type="text" id="h_aka" data-him="aka" autocomplete="off"></div>
-        <div class="row">
-          <div class="field"><label class="f" for="h_dob">Date of birth</label><input type="date" id="h_dob" data-him="dob"></div>
-          <div class="field"><label class="f" for="h_ird">IRD number, if known</label><input type="text" id="h_ird" data-him="ird" inputmode="numeric" placeholder="e.g. 123-456-789" autocomplete="off"></div>
-        </div>
-        <div class="row">
-          <div class="field"><label class="f" for="h_phone">The father's mobile number</label><input type="tel" id="h_phone" data-him="phone" inputmode="tel" placeholder="e.g. 021 123 4567" autocomplete="off"></div>
-          <div class="field"><label class="f" for="h_email">The father's email address</label><input type="email" id="h_email" data-him="email" placeholder="e.g. name@example.com" autocomplete="off"></div>
-        </div>
-        <div class="safebox"><b>The father will never know.</b> Searching your own email for the father's number or address happens only in your account. Nothing is sent to the father or anyone&nbsp;else.</div>
-        <p class="small muted" style="margin:0 0 14px">That's all you need here. The AI prompt in step 2 below searches your own email for the rest, such as the father's work, address, cars and accounts.</p>
-        <div class="warnbox"><b>DO NOT look the father up on LinkedIn.</b> If you view his profile while signed in, LinkedIn can show him exactly who looked. If your lawyer's firm looks, he gets a clear warning that you've seen a lawyer. If&nbsp;you need his work history, use a CV you already have, or ask your lawyer how they want to handle it.</div>
-      </div>
-    </div>
-    <div id="roadmap"></div>
-  </div>
-</section>
-
-<!-- 6. THE QUIET RECORD -->
 <section class="sec deep" id="record">
   <div class="wrap">
     <h2>What you know about your child's father, kept in one place.</h2>
@@ -1427,6 +1398,37 @@ one of them takes money you can never get back.</p>
     </div>
   </div>
 </section>
+
+<section class="sec" id="course">
+  <div class="wrap">
+    <h2>One step at a time. Tick as you go.</h2>
+    <p class="lead">Your ticks are saved on this device, so you can close the page and pick up where you left off.</p>
+    <div class="prog"><div class="bar"><i id="pBar"></i></div><b id="pTxt">0 of 0 done</b></div>
+    <div class="himwrap">
+          <div class="card himcard">
+        <h3>About the father</h3>
+        <p class="small muted" style="margin:-4px 0 14px">Just the father's name, ID and contact details.</p>
+        <div class="field"><label class="f" for="h_name">Full name</label><input type="text" id="h_name" data-him="name" autocomplete="off"></div>
+        <div class="field"><label class="f" for="h_aka">Other names the father uses<span class="hint">Nicknames, previous surnames</span></label><input type="text" id="h_aka" data-him="aka" autocomplete="off"></div>
+        <div class="row">
+          <div class="field"><label class="f" for="h_dob">Date of birth</label><input type="date" id="h_dob" data-him="dob"></div>
+          <div class="field"><label class="f" for="h_ird">IRD number, if known</label><input type="text" id="h_ird" data-him="ird" inputmode="numeric" placeholder="e.g. 123-456-789" autocomplete="off"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label class="f" for="h_phone">The father's mobile number</label><input type="tel" id="h_phone" data-him="phone" inputmode="tel" placeholder="e.g. 021 123 4567" autocomplete="off"></div>
+          <div class="field"><label class="f" for="h_email">The father's email address</label><input type="email" id="h_email" data-him="email" placeholder="e.g. name@example.com" autocomplete="off"></div>
+        </div>
+        <div class="safebox"><b>The father will never know.</b> Searching your own email for the father's number or address happens only in your account. Nothing is sent to the father or anyone&nbsp;else.</div>
+        <p class="small muted" style="margin:0 0 14px">That's all you need here. The AI prompt in step 2 below searches your own email for the rest, such as the father's work, address, cars and accounts.</p>
+        <div class="warnbox"><b>DO NOT look the father up on LinkedIn.</b> If you view his profile while signed in, LinkedIn can show him exactly who looked. If your lawyer's firm looks, he gets a clear warning that you've seen a lawyer. If&nbsp;you need his work history, use a CV you already have, or ask your lawyer how they want to handle it.</div>
+      </div>
+    </div>
+    <div id="roadmap"></div>
+  </div>
+</section>
+
+<!-- 6. THE QUIET RECORD -->
+
 
 <!-- 7. ON THE CALENDAR -->
 <section class="sec" id="dates">
