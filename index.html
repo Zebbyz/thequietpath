@@ -699,6 +699,15 @@ html.tqp-locked body{overflow:hidden}
 .savesline .tqpcount .tc-num{font-size:clamp(3.2rem,11vw,7rem)!important}
 .savesline .tqpcount .tc-cs{margin-top:22px!important}
 @media (max-width:640px){.savesline .tqpcount{margin:22px auto 22px!important}}
+.billing{margin:18px 0 22px;padding:22px 22px 18px;border:3px solid var(--amber);border-radius:16px;background:#0A2125;color:#FFFFFF;text-align:left}
+.billing .bill-h{font:800 clamp(1.5rem,3.2vw,2rem)/1.15 var(--display);color:#FFFFFF;margin:0 0 14px}
+.bill-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
+.bill-grid li{display:flex;gap:10px;align-items:flex-start;font:700 1.08rem/1.3 var(--display);color:#FFFFFF}
+.bill-grid .bi{flex:none;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font:900 1rem/1 system-ui,sans-serif}
+.bill-grid .yes .bi{background:#F0A23B;color:#0A2125}
+.bill-grid .no .bi{background:#FFFFFF;color:#0A2125}
+.billing .bill-note{font:600 1rem/1.4 var(--display);color:#F1F5F3;margin:16px 0 0}
+@media (max-width:520px){.bill-grid{grid-template-columns:1fr}}
 .footpolicy{margin:28px 0 8px;max-width:46rem}
 .footpolicy h3{font:700 1.3rem/1.3 var(--display);color:#F1F5F3;margin:22px 0 6px}
 .footpolicy p{font:600 1.08rem/1.5 var(--display);color:#F1F5F3;margin:0}
@@ -1188,7 +1197,7 @@ one of them takes money you can never get back.</p>
     </div>
 
     <p class="rp-src"><b>Sources.</b> <a href="https://www.justice.govt.nz/family/separation-divorce/divide-relationship-property/" target="_blank" rel="noopener">Ministry of Justice: Divide relationship property&nbsp;↗</a> · <a href="https://www.justice.govt.nz/family/relationship-property/understand-relationship-property/" target="_blank" rel="noopener">Understand relationship property&nbsp;↗</a> · <a href="https://www.justice.govt.nz/family/separation-divorce/divide-relationship-property/apply-to-divide/" target="_blank" rel="noopener">Apply to divide&nbsp;↗</a> · <a href="https://communitylaw.org.nz/community-law-manual/chapter-12-relationships-and-break-ups/dividing-your-property-when-you-split-up-relationship-property/" target="_blank" rel="noopener">Community Law manual: relationship property&nbsp;↗</a></p>
-    <p class="note">General information only, not legal advice. Every situation is different. Check yours with <a href="https://communitylaw.org.nz/" target="_blank" rel="noopener">Community Law</a>, which gives free legal help, or a family&nbsp;lawyer.</p>
+    <p class="note">General information only, not legal or financial advice. Every situation is different. Check yours with <a href="https://communitylaw.org.nz/" target="_blank" rel="noopener">Community Law</a>, which gives free legal help, or a family&nbsp;lawyer.</p>
   </div>
 </section>
 
@@ -1425,11 +1434,22 @@ one of them takes money you can never get back.</p>
     <div style="text-align:center;max-width:620px;margin:0 auto 34px">
       <h2>Everything, for one small payment.</h2>
       <p class="muted">You don't have to ring every lawyer in the book, hoping one of them will sit down and figure this out for you and your child for free. One simple set fee. Solid information, so you can get your ducks in a row, get on the path, and go in already set and informed.</p>
-      <p class="muted">No subscription, no upsells. Seeing it clearly, the two clocks and a taste of the calculators stay free for everyone.</p>
+      <p class="muted">Seeing it clearly, the two clocks and a taste of the calculators stay free for everyone.</p>
     </div>
     <div class="price-card">
       <div class="price">NZ$79 <small>once</small></div>
-      <p class="muted" style="margin:0">One payment, yours to keep.</p>
+      <div class="billing">
+        <h3 class="bill-h">One payment. That's it.</h3>
+        <ul class="bill-grid">
+          <li class="yes"><span class="bi" aria-hidden="true">&#10003;</span>One-off NZ$79, no subscription</li>
+          <li class="no"><span class="bi" aria-hidden="true">&#10005;</span>No hourly rate</li>
+          <li class="no"><span class="bi" aria-hidden="true">&#10005;</span>No extra fees, ever</li>
+          <li class="no"><span class="bi" aria-hidden="true">&#10005;</span>No GST</li>
+          <li class="no"><span class="bi" aria-hidden="true">&#10005;</span>Not legal advice</li>
+          <li class="no"><span class="bi" aria-hidden="true">&#10005;</span>Not financial advice</li>
+        </ul>
+        <p class="bill-note">Information and tools only. Part of every fee goes to Pet Refuge and&nbsp;Shine.</p>
+      </div>
       <ul class="ticks">
         <li>Solid information, so you walk in set and informed</li>
         <li>The full step-by-step course, saved as you&nbsp;tick</li>
@@ -1447,7 +1467,7 @@ one of them takes money you can never get back.</p>
         <p class="payhave"><button type="button" class="linkbtn" data-show-code>Already paid? Enter your unlock&nbsp;code</button></p>
       </div>
       <div id="paidArea" style="display:none">
-        <div class="card soft" style="text-align:left"><b>You're in.</b> Everything is unlocked on this&nbsp;device. <span id="paidMsg"></span></div>
+        <div class="card soft" style="text-align:left"><b>You're in.</b> Everything is unlocked on this&nbsp;device. <span id="paidMsg"></span><br><b>One-off NZ$79, paid once. No hourly rate, no extra fees, no GST. Information only, not legal or financial advice.</b></div>
       </div>
     </div>
   </div>
@@ -1521,7 +1541,7 @@ one of them takes money you can never get back.</p>
       <h3>Information, not legal advice</h3>
       <p>The Quiet Path brings publicly available information together in one place. Its calculators help you work out the amounts that may apply to you, and it sets out the steps in a clear, logical order so you know what to do next and when. The Quiet Path is not a law firm and does not give legal advice. For advice on your own situation, talk to a lawyer or your local Community Law centre.</p>
     </div>
-    <p class="fine"><b>General information only, not legal advice.</b> Rules and entitlements change, so check the details for your situation with IRD, MSD, Community Law or a family lawyer. The Quiet Path is not part of Inland Revenue or any government agency. Any weekly child support figure shown is one you entered, not an IRD assessment.</p>
+    <p class="fine"><b>General information only, not legal or financial advice.</b> Rules and entitlements change, so check the details for your situation with IRD, MSD, Community Law or a family lawyer. The Quiet Path is not part of Inland Revenue or any government agency. Any weekly child support figure shown is one you entered, not an IRD assessment.</p>
     <p class="footnote">The Quiet Path gives information and tools, not legal&nbsp;advice. <a href="terms.html">Terms of&nbsp;use</a></p>
     <p class="small footcode"><button type="button" class="linkbtn" data-show-code>Already paid? Enter your unlock&nbsp;code</button></p>
   </div>
@@ -1559,6 +1579,7 @@ one of them takes money you can never get back.</p>
       <p class="pcode" id="paidCode"></p>
       <button type="button" class="btn ghost pwide" id="copyCode">Copy code</button>
       <p class="pnote">Keep this code somewhere private (not a shared note). You can use it to unlock on another device or after clearing this&nbsp;site.</p>
+      <p class="pnote"><b>One-off NZ$79, paid once. No hourly rate, no extra fees, no GST. Information only, not legal or financial advice.</b></p>
       <button type="button" class="btn pwide" data-close data-go-course>Start with your course</button>
     </div>
     <div class="pstate" data-st="code">
@@ -2534,7 +2555,7 @@ function packHTML(){
    '<div class="cover">'+WM+'<span class="wm-line" style="display:block">Tracking what you’re owed</span>'+
    '<div class="rule"></div><span class="eyebrow">Summary for legal advice</span><h2>Relationship property<br>&amp; child support, <i>in brief</i>.</h2>'+
    '<dl>'+kv('Prepared for',Y.lawyer)+kv('Prepared by',Y.name)+kv('Regarding',H.name)+kv(kidList().length>1?'Children':'Child',andList(kidList().map(function(k){var nm=(k.name||'').trim(),d=parseD(k.dob);return nm+(d?' (born '+fmtD(d)+')':'');}).filter(Boolean)))+kv('Date',fmtD(today()))+'</dl>'+
-   '<div class="foot"><span>Confidential. Prepared by the client from her own notes, for her lawyer.</span><span>General information, not legal advice.</span></div></div>'+
+   '<div class="foot"><span>Confidential. Prepared by the client from her own notes, for her lawyer.</span><span>General information, not legal or financial advice.</b></div></div>'+
    '<div class="pk-sec">'+head+'<h3>What I\u2019m asking for</h3>'+letterHTML()+'</div>'+'<div class="pk-sec"><h3><b>1.</b> The other party</h3><dl class="kv">'+kv('Full name',H.name)+kv('Other names',H.aka)+kv('Date of birth',parseD(H.dob)?fmtD(parseD(H.dob))+(ageTxt(H.dob)?' ('+ageTxt(H.dob)+')':''):'')+kv('IRD number',H.ird)+((H.phone||'').trim()?kv('Mobile',H.phone):'')+((H.email||'').trim()?kv('Email',H.email):'')+'</dl></div>'+'<div class="pk-sec"><h3><b>2.</b> Key dates</h3><dl class="kv">'+kv('Met',fmtD(parseD(Y.met)))+kv('Relationship became intimate',fmtD(parseD(Y.intim)))+kv('Started living together',fmtD(parseD(Y.lived)))+kv('How we lived together',livedTxt())+kv('Bought the house',fmtD(parseD(Y.bought)))+kv('Separated (the father left)',c?fmtD(c.left):'')+kv('IRD received application',appliedTxt)+kv('3-year property mark',c?fmtD(c.deadline)+(c.leftDays>=0?' ('+int.format(c.leftDays)+' days away)':' (passed)'):'')+'</dl></div>'+
    
    '<div class="pk-sec"><h3><b>3.</b> Money, property and everything else</h3>'+(builtFacts().length?'<ul style="margin:0;padding-left:20px">'+builtFacts().map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>':'<p class="muted">Not filled in yet.</p>')+'</div>'+
@@ -2543,13 +2564,13 @@ function packHTML(){
    '<div class="pk-sec"><h3><b>6.</b> Income range (estimates)</h3><p class="small muted">The father\u2019s income is not known. These are her guesses. Weekly figures, where shown, were entered by her from IRD\u2019s estimator and are not an assessment.</p><dl class="kv">'+spreadRows+'</dl></div>'+
    '<div class="pk-sec"><h3><b>7.</b> Log of payments and contact</h3>'+logRows+'</div>'+
    '<div class="pk-sec"><h3><b>8.</b> Document checklist</h3>'+docsHTML()+'<p style="margin-top:16px"><b>Files in my folder</b></p>'+docRows+'</div>'+
-   '<div class="pk-sec"><h3><b>9.</b> Progress</h3><p>'+done+' of '+total+' steps completed.'+(open.length?' Still open from the first three stages:':'')+'</p>'+(open.length?'<ul style="margin:0;padding-left:20px">'+open.map(function(o){return '<li>'+esc(o)+'</li>';}).join('')+'</ul>':'')+'<p class="small muted" style="margin-top:22px">General information only, not legal advice. Child support amounts are set by Inland Revenue.</p></div>'+
+   '<div class="pk-sec"><h3><b>9.</b> Progress</h3><p>'+done+' of '+total+' steps completed.'+(open.length?' Still open from the first three stages:':'')+'</p>'+(open.length?'<ul style="margin:0;padding-left:20px">'+open.map(function(o){return '<li>'+esc(o)+'</li>';}).join('')+'</ul>':'')+'<p class="small muted" style="margin-top:22px">General information only, not legal or financial advice. Child support amounts are set by Inland Revenue.</p></div>'+
   '</div>';
 }
 function renderPack(){$('packView').innerHTML=packHTML();}
 function checklistHTML(){
   var items=DOCS.map(function(d){return d[1];});var _old=['IRD child support application confirmation (with the date IRD received it)','Baby\u2019s birth certificate','KiwiSaver first-home withdrawal letter','Sale and purchase agreement','Settlement statement','Record of title, and how you own it (joint tenants or tenants in common)','Mortgage statements, before and since the father left','Rates notices and payments','House insurance policy and payments','Receipts for repairs since the father left','Bank statements showing what you\u2019ve paid','Messages about money or arrangements (screenshots)','Your simple log','IRD letters and assessments'];
-  return '<div class="paper"><div class="pk-head">'+WM+'<span>Paper trail checklist</span></div><h2 style="margin-top:20px">Your paper trail.</h2><p class="muted">Tick each one off as it goes into your folder.</p><ul style="list-style:none;padding:0;margin:20px 0 0">'+items.map(function(i){return '<li style="padding:12px 0;border-bottom:1px solid #D9CFBF;display:flex;gap:14px"><span style="flex:none;width:20px;height:20px;border:2px solid #2B6A60;border-radius:5px;margin-top:2px"></span>'+esc(i)+'</li>';}).join('')+'</ul><p class="small muted" style="margin-top:22px">General information only, not legal advice.</p></div>';
+  return '<div class="paper"><div class="pk-head">'+WM+'<span>Paper trail checklist</span></div><h2 style="margin-top:20px">Your paper trail.</h2><p class="muted">Tick each one off as it goes into your folder.</p><ul style="list-style:none;padding:0;margin:20px 0 0">'+items.map(function(i){return '<li style="padding:12px 0;border-bottom:1px solid #D9CFBF;display:flex;gap:14px"><span style="flex:none;width:20px;height:20px;border:2px solid #2B6A60;border-radius:5px;margin-top:2px"></span>'+esc(i)+'</li>';}).join('')+'</ul><p class="small muted" style="margin-top:22px">General information only, not legal or financial advice.</p></div>';
 }
 function printThis(html){var pa=$('printArea');pa.innerHTML=html;document.body.classList.add('print-pack');setTimeout(function(){window.print();setTimeout(function(){document.body.classList.remove('print-pack');pa.innerHTML='';},500);},60);}
 $('printPack').addEventListener('click',function(){printThis(packHTML());});
@@ -2576,7 +2597,7 @@ function renderTimeline(){
   $('timeline').innerHTML=(c?'':'<li><span class="tt">Add the date the father left in <a href="#clocks">Two clocks</a></span><span class="ds">Then your property time limit and reminders appear here.</span></li>')+
   ev.map(function(e){return '<li class="'+(e.key?'key ':'')+(e.d<t?'past':'')+'"><span class="dt">'+esc(fmtD(e.d))+'</span><span class="tt">'+esc(e.t)+'</span><span class="ds">'+esc(e.s)+'</span></li>';}).join('');
   var nm=(S.her.name||'').trim().split(' ')[0]||'there';
-  $('emailPrev').innerHTML='<p>Kia ora '+esc(nm)+',</p><p>A quiet heads-up: the 3-year property time limit is <b>one month away</b>'+(c?', on <b>'+esc(fmtD(c.deadline))+'</b>':'')+'.</p><p>If you haven\u2019t settled by agreement yet, now is a good time to check in with your lawyer. Everything you\u2019ve saved is in your quiet record, ready to print.</p><p><a href="#record">Open The Quiet Path</a></p><p class="small muted" style="margin:0">You can turn these off any time. General information only, not legal advice.</p>';
+  $('emailPrev').innerHTML='<p>Kia ora '+esc(nm)+',</p><p>A quiet heads-up: the 3-year property time limit is <b>one month away</b>'+(c?', on <b>'+esc(fmtD(c.deadline))+'</b>':'')+'.</p><p>If you haven\u2019t settled by agreement yet, now is a good time to check in with your lawyer. Everything you\u2019ve saved is in your quiet record, ready to print.</p><p><a href="#record">Open The Quiet Path</a></p><p class="small muted" style="margin:0">You can turn these off any time. General information only, not legal or financial advice.</p>';
 }
 document.querySelectorAll('[data-rem]').forEach(function(el){el.checked=!!S.rem[el.dataset.rem];el.addEventListener('change',function(){S.rem[el.dataset.rem]=el.checked;save();});});
 $('remEmail').value=S.remEmail||S.email||'';
